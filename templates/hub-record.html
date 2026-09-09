@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects — Vantagepoint mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vp-tokens.css">
+<link rel="stylesheet" href="../css/vp-base.css">
+<link rel="stylesheet" href="../css/vp-shell.css">
+<link rel="stylesheet" href="../css/vp-components.css">
+<script defer src="../js/vp-icons.js"></script>
+<script defer src="../js/vp-kit.js"></script>
+</head>
+<body class="vp-app">
+
+  <!-- =============== Global Header Bar (Pattern 1) =============== -->
+  <header class="vp-banner">
+    <button class="vp-banner__icon-btn" data-vp-flyout="navFlyout" title="Menu">
+      <svg class="vp-icon"><use href="#i-menu"/></svg>
+    </button>
+    <div class="vp-banner__product">
+      <span class="vp-banner__logo">D</span>
+      Vantagepoint
+    </div>
+    <div class="vp-banner__search">
+      <svg class="vp-icon vp-icon--sm"><use href="#i-search"/></svg>
+      <input type="text" placeholder="Search Vantagepoint">
+    </div>
+    <div class="vp-banner__actions">
+      <span class="vp-banner__firm"><span class="dot"></span> Apex Design Group</span>
+      <span class="vp-banner__period">Period Ending: 9/1/2026 <svg class="vp-icon vp-icon--sm"><use href="#i-chevron-down"/></svg></span>
+      <button class="vp-banner__icon-btn" title="Toggle dark mode" data-vp-theme-toggle>
+        <svg class="vp-icon"><use href="#i-settings"/></svg>
+      </button>
+      <div class="vp-banner__avatar">AH</div>
+    </div>
+  </header>
+
+  <div class="vp-app__body">
+    <!-- =============== Left Navigation, collapsed (Pattern 1) =============== -->
+    <nav class="vp-nav">
+      <button class="vp-nav__item" title="Dashboards"><svg class="vp-icon"><use href="#i-dashboard"/></svg></button>
+      <button class="vp-nav__item is-selected" title="Hubs"><svg class="vp-icon"><use href="#i-folder"/></svg></button>
+      <button class="vp-nav__item" title="My Stuff"><svg class="vp-icon"><use href="#i-clock"/></svg></button>
+      <button class="vp-nav__item" title="Billing"><svg class="vp-icon"><use href="#i-dollar"/></svg></button>
+      <button class="vp-nav__item" title="Reporting"><svg class="vp-icon"><use href="#i-chart"/></svg></button>
+      <div class="vp-nav__divider"></div>
+      <button class="vp-nav__item" title="Favorites"><svg class="vp-icon"><use href="#i-star"/></svg></button>
+      <div class="vp-nav__bottom">
+        <button class="vp-nav__item" title="Settings"><svg class="vp-icon"><use href="#i-settings"/></svg></button>
+      </div>
+    </nav>
+
+    <!-- Pinned-open navigation menu (Pattern 1). In the product this replaces
+         the icon rail; the module for the current page expands inline. -->
+    <div class="vp-nav-flyout" id="navFlyout">
+      <button class="vp-nav-flyout__pin" data-vp-flyout="navFlyout">
+        <svg class="vp-icon vp-icon--sm"><use href="#i-pin"/></svg> Unpin Menu
+      </button>
+      <button class="vp-nav-flyout__item"><svg class="vp-icon vp-icon--sm"><use href="#i-search"/></svg> Search</button>
+      <button class="vp-nav-flyout__item"><svg class="vp-icon vp-icon--sm"><use href="#i-star"/></svg> Favorites</button>
+      <hr class="vp-divider">
+      <button class="vp-nav-flyout__item"><svg class="vp-icon vp-icon--sm"><use href="#i-building"/></svg> Firms <span class="chev">›</span></button>
+      <button class="vp-nav-flyout__item"><svg class="vp-icon vp-icon--sm"><use href="#i-users"/></svg> Employees <span class="chev">›</span></button>
+      <button class="vp-nav-flyout__item"><svg class="vp-icon vp-icon--sm"><use href="#i-folder"/></svg> Projects <span class="chev">∨</span></button>
+      <div class="vp-nav-flyout__sub">
+        <button class="vp-nav-flyout__item">Dashboard</button>
+        <button class="vp-nav-flyout__item">Project Review</button>
+        <button class="vp-nav-flyout__item is-selected">Project</button>
+        <button class="vp-nav-flyout__item">Estimates</button>
+        <button class="vp-nav-flyout__item">Contract Management</button>
+        <button class="vp-nav-flyout__item">Revenue Forecast</button>
+        <button class="vp-nav-flyout__item">Plan</button>
+        <button class="vp-nav-flyout__item">Budget</button>
+        <button class="vp-nav-flyout__item">Billing Terms</button>
+        <button class="vp-nav-flyout__item">Invoices</button>
+      </div>
+      <button class="vp-nav-flyout__item"><svg class="vp-icon vp-icon--sm"><use href="#i-clock"/></svg> My Stuff <span class="chev">›</span></button>
+      <button class="vp-nav-flyout__item"><svg class="vp-icon vp-icon--sm"><use href="#i-chart"/></svg> Reporting <span class="chev">›</span></button>
+    </div>
+
+    <!-- =============== Main =============== -->
+    <main class="vp-main">
+
+      <!-- Hub Toolbar (Pattern 2) -->
+      <div class="vp-hub-toolbar">
+        <span class="vp-hub-toolbar__module">Projects</span>
+        <div class="vp-search">
+          <svg class="vp-icon vp-icon--sm"><use href="#i-search"/></svg>
+          <input type="text" placeholder="Find Projects">
+        </div>
+        <button class="vp-btn">Active <svg class="vp-icon vp-icon--sm"><use href="#i-chevron-down"/></svg></button>
+        <div class="vp-hub-toolbar__pager">
+          <button title="Previous">‹</button> 4 of 128 <button title="Next">›</button>
+        </div>
+        <button class="vp-btn vp-btn--icon" title="List view"><svg class="vp-icon"><use href="#i-menu"/></svg></button>
+        <div class="vp-spacer"></div>
+        <!-- Inline save state: while editing, "+ New Project" is replaced by
+             Save (primary, LEFT) + Cancel (outlined, RIGHT): -->
+        <button class="vp-btn vp-btn--primary">Save</button>
+        <button class="vp-btn">Cancel</button>
+        <!-- default state instead:
+        <button class="vp-btn vp-btn--add"><svg class="vp-icon vp-icon--sm"><use href="#i-plus"/></svg> New Project</button> -->
+      </div>
+
+      <!-- Record card: white surface w/ blue top line wrapping header + tabs + body -->
+      <div class="vp-record-card">
+
+      <!-- Record Header (Pattern 3) -->
+      <div class="vp-record-header">
+        <button class="vp-record-header__icon" title="Sub-category navigation">
+          <svg class="vp-icon"><use href="#i-folder"/></svg>
+        </button>
+        <div>
+          <div class="vp-record-header__name">Riverside Medical Center Expansion</div>
+          <div class="vp-record-header__id">2024-0117.00</div>
+          <div class="vp-record-header__modified">Last modified 09/01/2026 4:12 PM by Maria Delgado
+            <span class="vp-chip--insights">✦ Insights Available</span>
+          </div>
+        </div>
+        <div class="vp-record-header__actions">
+          <button class="vp-btn vp-btn--dela">✦ Dela Actions <svg class="vp-icon vp-icon--sm"><use href="#i-chevron-down"/></svg></button>
+          <button class="vp-btn">Add Touchpoint</button>
+          <button class="vp-btn">Other Actions <svg class="vp-icon vp-icon--sm"><use href="#i-chevron-down"/></svg></button>
+        </div>
+      </div>
+
+      <!-- Tab Bar (Pattern 4) -->
+      <div class="vp-page-header" style="padding-top:0">
+        <div class="vp-tabs">
+          <button class="vp-tabs__chevron" title="Scroll tabs">‹</button>
+          <button class="vp-tab is-selected" data-vp-tab="tabOverview">Overview</button>
+          <button class="vp-tab">Accounting</button>
+          <button class="vp-tab" data-vp-tab="tabTeam">Team</button>
+          <button class="vp-tab">Dates &amp; Costs</button>
+          <button class="vp-tab">Activities</button>
+          <button class="vp-tab">Marketing Campaigns</button>
+          <button class="vp-tab">Competition</button>
+          <button class="vp-tab">Proposals</button>
+          <button class="vp-tab">Files &amp; Links</button>
+          <button class="vp-tab">[OPP] IQ Info</button>
+          <button class="vp-tab">[Planning] Financial*</button>
+          <button class="vp-tabs__chevron" title="Scroll tabs">›</button>
+        </div>
+      </div>
+
+      <!-- Record body: Sidebar (Pattern 5) + tab content -->
+      <div class="vp-record-body">
+        <aside class="vp-record-sidebar">
+          <button class="vp-record-sidebar__collapse" title="Collapse sidebar">‹</button>
+          <div class="vp-record-sidebar__image">
+            <svg class="vp-icon vp-icon--lg"><use href="#i-building"/></svg>
+            <div class="vp-record-sidebar__stage">Active</div>
+          </div>
+          <div class="vp-record-sidebar__section">
+            <div class="vp-kv"><span class="vp-kv__label">Project Number</span><span class="vp-kv__value">2024-0117.00</span></div>
+            <div class="vp-kv"><span class="vp-kv__label">Status</span><span class="vp-kv__value"><span class="vp-status-square vp-status-square--positive">Active</span></span></div>
+            <div class="vp-kv"><span class="vp-kv__label">Project Type</span><span class="vp-kv__value">Healthcare</span></div>
+            <div class="vp-kv"><span class="vp-kv__label">Responsibility</span><span class="vp-kv__value">Prime</span></div>
+            <div class="vp-record-sidebar__section-title">Project Summary</div>
+            <div class="vp-kv"><span class="vp-kv__label">Stage</span><span class="vp-kv__value vp-stage-text--won">Won</span></div>
+            <div class="vp-kv"><span class="vp-kv__label">Project Manager</span><span class="vp-kv__value"><a href="#">Maria Delgado</a></span></div>
+            <div class="vp-kv"><span class="vp-kv__label">Capacity Calculation</span><span class="vp-kv__value">Included in Scheduled and Utilization</span></div>
+            <div class="vp-kv"><a style="font-size:1.3rem">› Win/Loss Details</a></div>
+          </div>
+        </aside>
+
+        <div class="vp-page-content" style="flex:1">
+          <!-- ============ Overview tab ============ -->
+          <div id="tabOverview" class="vp-stack">
+
+            <!-- Two-Column Field Layout (Pattern 6) — click-to-edit: fields at
+                 rest are plain text (.vp-dfield); one field shown mid-edit -->
+            <div class="vp-panel">
+              <div class="vp-section-title">Name and Background</div>
+              <div class="vp-form-grid">
+                <div class="vp-dfield">
+                  <div class="vp-dfield__label">Project Name</div>
+                  <div class="vp-dfield__value">Riverside Medical Center Expansion</div>
+                </div>
+                <div class="vp-dfield">
+                  <div class="vp-dfield__label">Charge Type</div>
+                  <div class="vp-dfield__value">Regular</div>
+                </div>
+                <!-- contact-block field: linked names + phone lines w/ gray notes -->
+                <div class="vp-dfield">
+                  <div class="vp-dfield__label">Primary Client</div>
+                  <div class="vp-dfield__value">
+                    <a href="#">BioMed Technologies LTD</a><br>
+                    <a href="#">Jon Edwards, PhD</a><br>
+                    (617) 333-1100<span class="vp-dfield__note">Business Phone</span><br>
+                    (617) 420-2164<span class="vp-dfield__note">mobile phone</span>
+                  </div>
+                </div>
+                <div class="vp-dfield">
+                  <div class="vp-dfield__label">Organization
+                    <svg class="vp-icon vp-icon--sm" style="vertical-align:-3px; color:var(--color-icon-dark)"><use href="#i-help"/></svg>
+                  </div>
+                  <div class="vp-dfield__value">Healthcare Studio</div>
+                </div>
+                <!-- active/editing state (Pattern 11): bordered input w/ edited tint -->
+                <div class="vp-field is-edited">
+                  <label class="vp-field__label">Stage</label>
+                  <select><option>Construction Documents</option><option>Schematic Design</option><option>Design Development</option></select>
+                </div>
+                <div class="vp-dfield">
+                  <div class="vp-dfield__label">Start Date</div>
+                  <div class="vp-dfield__value">03/04/2024</div>
+                </div>
+                <div class="vp-dfield">
+                  <div class="vp-dfield__label">Estimated Completion</div>
+                  <div class="vp-dfield__value is-empty">None</div>
+                </div>
+                <div class="vp-dfield span-full">
+                  <div class="vp-dfield__label">Description</div>
+                  <div class="vp-dfield__value">Three-story expansion of the east wing including new surgical suites, imaging center, and rooftop mechanical plant.</div>
+                </div>
+              </div>
+
+              <div class="vp-section-title" style="margin-top:20px">
+                <button class="vp-collapse-toggle" title="Collapse">∨</button> Other Information
+              </div>
+              <div class="vp-form-grid">
+                <div class="vp-dfield">
+                  <div class="vp-dfield__label">Federal Project</div>
+                  <div class="vp-dfield__value">No</div>
+                </div>
+                <div class="vp-dfield">
+                  <div class="vp-dfield__label">GovWin IQ ID</div>
+                  <div class="vp-dfield__value is-empty">None</div>
+                </div>
+                <div class="vp-dfield">
+                  <div class="vp-dfield__label">Referable</div>
+                  <div class="vp-dfield__value">Yes</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Named Grid Section (Pattern 7) -->
+            <div class="vp-grid-section">
+              <div class="vp-grid-section__header">
+                <span class="vp-grid-section__title">Key Team Members
+                  <svg class="vp-icon vp-icon--sm" style="color:var(--color-icon-dark)"><use href="#i-help"/></svg>
+                </span>
+                <button class="vp-btn vp-btn--sm"><svg class="vp-icon vp-icon--sm"><use href="#i-plus"/></svg> Add Team Member</button>
+                <div class="vp-grid-section__toolbar">
+                  <button class="vp-btn vp-btn--icon" title="Expand"><svg class="vp-icon vp-icon--sm"><use href="#i-columns"/></svg></button>
+                  <button class="vp-btn vp-btn--icon" title="Settings"><svg class="vp-icon vp-icon--sm"><use href="#i-settings"/></svg></button>
+                  <button class="vp-btn vp-btn--icon" title="Download"><svg class="vp-icon vp-icon--sm"><use href="#i-download"/></svg></button>
+                  <button class="vp-btn vp-btn--icon" title="Filter"><svg class="vp-icon vp-icon--sm"><use href="#i-filter"/></svg></button>
+                </div>
+              </div>
+              <div class="vp-grid-wrap">
+                <table class="vp-grid">
+                  <thead>
+                    <tr><th>Name <span class="sort">∧</span></th><th>Role</th><th>Hours Budget</th><th>Hours to Date</th><th>Status</th><th style="width:34px"></th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><a href="#">Maria Delgado</a></td><td>Project Manager</td><td class="num">1,200</td><td class="num">744</td><td><span class="vp-status vp-status--positive">Active</span></td><td><button class="row-menu" title="Row actions">⋮</button></td></tr>
+                    <tr class="is-selected"><td><a href="#">James Okafor</a></td><td>Project Architect</td><td class="num">2,400</td><td class="num">1,608</td><td><span class="vp-status vp-status--positive">Active</span></td><td><button class="row-menu" title="Row actions">⋮</button></td></tr>
+                    <tr><td><a href="#">Lena Fischer</a></td><td>Interior Designer</td><td class="num">800</td><td class="num">802</td><td><span class="vp-status vp-status--attention">Over Budget</span></td><td><button class="row-menu" title="Row actions">⋮</button></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Named Grid Section — empty state -->
+            <div class="vp-grid-section">
+              <div class="vp-grid-section__header">
+                <span class="vp-grid-section__title">Marketing Campaigns</span>
+                <button class="vp-btn vp-btn--sm"><svg class="vp-icon vp-icon--sm"><use href="#i-plus"/></svg> Add Campaign</button>
+                <div class="vp-grid-section__toolbar">
+                  <button class="vp-btn vp-btn--icon" title="Settings"><svg class="vp-icon vp-icon--sm"><use href="#i-settings"/></svg></button>
+                  <button class="vp-btn vp-btn--icon" title="Download"><svg class="vp-icon vp-icon--sm"><use href="#i-download"/></svg></button>
+                </div>
+              </div>
+              <div class="vp-grid-empty">There are no records to show in this grid.</div>
+            </div>
+          </div>
+
+          <!-- ============ Team tab ============ -->
+          <div id="tabTeam" hidden>
+            <div class="vp-panel">
+              <div class="vp-section-title">Team</div>
+              <p class="vp-muted">Replace with team content.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </div><!-- /vp-record-card -->
+    </main>
+
+    <!-- =============== Right Utility Rail (Pattern 1) =============== -->
+    <aside class="vp-utility-rail">
+      <button class="vp-utility-rail__item vp-utility-rail__item--dela" title="Dela (AI assistant)">D+</button>
+      <button class="vp-utility-rail__item" title="Pinned"><svg class="vp-icon"><use href="#i-pin"/></svg></button>
+      <button class="vp-utility-rail__item" title="People"><svg class="vp-icon"><use href="#i-users"/></svg></button>
+      <button class="vp-utility-rail__item" title="Notifications"><svg class="vp-icon"><use href="#i-bell"/></svg><span class="vp-badge-dot"></span></button>
+      <button class="vp-utility-rail__item" title="Help"><svg class="vp-icon"><use href="#i-help"/></svg></button>
+    </aside>
+  </div>
+
+</body>
+</html>

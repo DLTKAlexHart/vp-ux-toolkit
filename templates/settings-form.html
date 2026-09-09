@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Settings — Vantagepoint mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vp-tokens.css">
+<link rel="stylesheet" href="../css/vp-base.css">
+<link rel="stylesheet" href="../css/vp-shell.css">
+<link rel="stylesheet" href="../css/vp-components.css">
+<script defer src="../js/vp-icons.js"></script>
+<script defer src="../js/vp-kit.js"></script>
+<style>
+  /* settings two-column layout local to this template */
+  .settings-layout { display: flex; gap: 16px; align-items: flex-start; }
+  .settings-sidenav {
+    flex: none; width: 220px;
+    background: var(--color-base-bg);
+    border: 1px solid var(--color-app-nav-border);
+    border-radius: var(--border-radius-tile, 8px);
+    padding: 6px;
+  }
+  .settings-sidenav button {
+    display: block; width: 100%; text-align: left;
+    padding: 8px 10px; border: 0; border-radius: 6px;
+    background: transparent; color: var(--color-nav-menu-item-text);
+    font: inherit; cursor: pointer;
+  }
+  .settings-sidenav button:hover { background: var(--color-nav-menu-item-bg-hover); }
+  .settings-sidenav button.is-selected {
+    background: var(--color-nav-menu-item-bg-selected);
+    color: var(--color-nav-menu-item-selected);
+  }
+  .settings-body { flex: 1; min-width: 0; }
+</style>
+</head>
+<body class="vp-app">
+
+  <header class="vp-banner">
+    <button class="vp-banner__icon-btn" title="Menu"><svg class="vp-icon"><use href="#i-menu"/></svg></button>
+    <div class="vp-banner__product"><span class="vp-banner__logo">D</span> Vantagepoint</div>
+    <div class="vp-banner__search">
+      <svg class="vp-icon vp-icon--sm"><use href="#i-search"/></svg>
+      <input type="text" placeholder="Search Vantagepoint">
+    </div>
+    <div class="vp-banner__actions">
+      <span class="vp-banner__firm"><span class="dot"></span> Apex Design Group</span>
+      <span class="vp-banner__period">Period Ending: 9/1/2026 <svg class="vp-icon vp-icon--sm"><use href="#i-chevron-down"/></svg></span>
+      <button class="vp-banner__icon-btn" title="Toggle dark mode" data-vp-theme-toggle><svg class="vp-icon"><use href="#i-settings"/></svg></button>
+      <div class="vp-banner__avatar">AH</div>
+    </div>
+  </header>
+
+  <div class="vp-app__body">
+    <nav class="vp-nav">
+      <button class="vp-nav__item" title="Dashboard"><svg class="vp-icon"><use href="#i-dashboard"/></svg></button>
+      <button class="vp-nav__item" title="Projects"><svg class="vp-icon"><use href="#i-folder"/></svg></button>
+      <button class="vp-nav__item" title="Contacts"><svg class="vp-icon"><use href="#i-users"/></svg></button>
+      <button class="vp-nav__item" title="Time"><svg class="vp-icon"><use href="#i-clock"/></svg></button>
+      <div class="vp-nav__bottom">
+        <button class="vp-nav__item is-selected" title="Settings"><svg class="vp-icon"><use href="#i-settings"/></svg></button>
+      </div>
+    </nav>
+
+    <main class="vp-main">
+      <div class="vp-page-header">
+        <div class="vp-breadcrumb">
+          <a href="#">Settings</a><span class="sep">/</span><span>Billing</span>
+        </div>
+        <div class="vp-page-header__row">
+          <div class="vp-page-header__title">Billing Settings</div>
+          <div class="vp-page-header__actions">
+            <button class="vp-btn vp-btn--primary">Save</button>
+            <button class="vp-btn">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="vp-page-content">
+        <div class="settings-layout">
+          <div class="settings-sidenav">
+            <button>General</button>
+            <button class="is-selected">Invoice Options</button>
+            <button>Rate Tables</button>
+            <button>Tax Codes</button>
+            <button>Approval Workflow</button>
+            <button>Numbering</button>
+          </div>
+
+          <div class="settings-body vp-stack">
+            <div class="vp-panel">
+              <div class="vp-panel__header">
+                <div class="vp-panel__title">Invoice Options</div>
+              </div>
+              <div class="vp-stack">
+                <label class="vp-toggle">
+                  <input type="checkbox" checked>
+                  <span class="vp-toggle__track"></span>
+                  Enable draft invoice approvals
+                </label>
+                <label class="vp-toggle">
+                  <input type="checkbox" checked>
+                  <span class="vp-toggle__track"></span>
+                  Email invoices to billing contacts automatically
+                </label>
+                <label class="vp-toggle">
+                  <input type="checkbox">
+                  <span class="vp-toggle__track"></span>
+                  Include backup detail by default
+                </label>
+                <hr class="vp-divider">
+                <div class="vp-form-grid">
+                  <div class="vp-field">
+                    <label class="vp-field__label">Default Invoice Template</label>
+                    <select><option>Standard — Letterhead</option><option>Detailed</option><option>AIA G702/G703</option></select>
+                  </div>
+                  <div class="vp-field">
+                    <label class="vp-field__label">Payment Terms</label>
+                    <select><option>Net 30</option><option>Net 45</option><option>Due on Receipt</option></select>
+                  </div>
+                  <div class="vp-field">
+                    <label class="vp-field__label">Late Fee %</label>
+                    <input type="number" value="1.5" step="0.1">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="vp-panel">
+              <div class="vp-panel__header">
+                <div class="vp-panel__title">Approval Workflow</div>
+                <div class="vp-spacer"></div>
+                <button class="vp-btn vp-btn--sm" data-vp-open="approverDialog">
+                  <svg class="vp-icon vp-icon--sm"><use href="#i-plus"/></svg> Add Approver
+                </button>
+              </div>
+              <div class="vp-grid-wrap">
+                <table class="vp-grid">
+                  <thead><tr><th>Order</th><th>Approver</th><th>Role</th><th>Threshold</th><th></th></tr></thead>
+                  <tbody>
+                    <tr><td>1</td><td>Priya Raman</td><td>Billing Manager</td><td class="num">All invoices</td>
+                      <td><button class="vp-btn vp-btn--icon" title="Remove"><svg class="vp-icon vp-icon--sm"><use href="#i-x"/></svg></button></td></tr>
+                    <tr><td>2</td><td>Daniel Cho</td><td>Principal</td><td class="num">&gt; $50,000</td>
+                      <td><button class="vp-btn vp-btn--icon" title="Remove" data-vp-open="deleteConfirm"><svg class="vp-icon vp-icon--sm"><use href="#i-x"/></svg></button></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Right Utility Rail (Pattern 1) -->
+    <aside class="vp-utility-rail">
+      <button class="vp-utility-rail__item vp-utility-rail__item--dela" title="Dela (AI assistant)">D+</button>
+      <button class="vp-utility-rail__item" title="Pinned"><svg class="vp-icon"><use href="#i-pin"/></svg></button>
+      <button class="vp-utility-rail__item" title="People"><svg class="vp-icon"><use href="#i-users"/></svg></button>
+      <button class="vp-utility-rail__item" title="Notifications"><svg class="vp-icon"><use href="#i-bell"/></svg><span class="vp-badge-dot"></span></button>
+      <button class="vp-utility-rail__item" title="Help"><svg class="vp-icon"><use href="#i-help"/></svg></button>
+    </aside>
+  </div>
+
+  <!-- ================= confirmation dialog (Pattern 10, destructive) ================= -->
+  <div class="vp-dialog vp-dialog--confirm" id="deleteConfirm" hidden>
+    <div class="vp-dialog__header"></div>
+    <div class="vp-dialog__body">
+      <div class="vp-dialog__confirm-title">Remove Approver</div>
+      <p>This will remove Daniel Cho from the invoice approval workflow.</p>
+    </div>
+    <div class="vp-dialog__footer">
+      <button class="vp-btn vp-btn--primary" data-vp-close>Remove</button>
+      <button class="vp-btn" data-vp-close>Cancel</button>
+    </div>
+  </div>
+
+  <!-- ================= form dialog example ================= -->
+  <div class="vp-overlay" hidden></div>
+  <div class="vp-dialog" id="approverDialog" hidden>
+    <div class="vp-dialog__header">
+      <div class="vp-dialog__title">Add Approver</div>
+      <button class="vp-btn vp-btn--icon vp-dialog__close" data-vp-close title="Close">
+        <svg class="vp-icon"><use href="#i-x"/></svg>
+      </button>
+    </div>
+    <div class="vp-dialog__body">
+      <div class="vp-form-grid">
+        <div class="vp-field span-full">
+          <label class="vp-field__label">Employee<span class="req">*</span></label>
+          <select><option>Select an employee…</option><option>Ana Torres</option><option>Ben Liu</option></select>
+        </div>
+        <div class="vp-field">
+          <label class="vp-field__label">Approval Order</label>
+          <input type="number" value="3">
+        </div>
+        <div class="vp-field">
+          <label class="vp-field__label">Threshold</label>
+          <input type="text" placeholder="e.g. > $25,000">
+        </div>
+        <div class="vp-field span-full">
+          <label class="vp-check">
+            <input type="checkbox" checked> Notify by email when an invoice is waiting
+          </label>
+        </div>
+      </div>
+      <a class="vp-dialog__more-link">Add More Approver Information</a>
+    </div>
+    <!-- VP convention: primary action LEFT, Cancel RIGHT -->
+    <div class="vp-dialog__footer">
+      <button class="vp-btn vp-btn--primary" data-vp-close>Save</button>
+      <button class="vp-btn" data-vp-close>Cancel</button>
+    </div>
+  </div>
+
+</body>
+</html>

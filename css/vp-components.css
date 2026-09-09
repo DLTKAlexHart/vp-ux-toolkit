@@ -1,0 +1,902 @@
+/* ==========================================================================
+   vp-components.css — curated Vantagepoint component recipes
+   Clean, semantic `vp-` classes whose rendered output matches the built
+   product. All colors/radii/sizes come from vp-tokens.css (extracted from
+   the real product CSS). Markup examples live in components.html.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Buttons
+   Product: pill-ish 8px radius, primary #4C92D9, secondary white w/ blue
+   border (#3A70A6 text/border), hover #EAEFF5.
+   -------------------------------------------------------------------------- */
+/* measured from live product 09/2026: h32, 12px font, pad 0 10px, r8 */
+.vp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--color-button-border);
+  border-radius: var(--border-radius-button);
+  background: var(--color-button-bg);
+  color: var(--color-button-text);
+  font-family: var(--font-base);
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.vp-btn:hover {
+  background: var(--color-button-bg-hover);
+  border-color: var(--color-button-border-hover);
+  color: var(--color-button-text-hover);
+}
+.vp-btn:disabled,
+.vp-btn.is-disabled {
+  background: var(--color-button-bg-disabled);
+  border-color: var(--color-button-border-disabled);
+  color: var(--color-button-text-disabled);
+  cursor: default;
+  pointer-events: none;
+}
+
+.vp-btn--primary {
+  background: var(--color-button-bg-primary);
+  border-color: var(--color-button-border-primary);
+  color: var(--color-button-text-primary);
+}
+.vp-btn--primary:hover {
+  background: var(--color-button-bg-primary-hover);
+  border-color: var(--color-button-border-primary-hover);
+  color: var(--color-button-text-primary-hover);
+}
+.vp-btn--primary:disabled,
+.vp-btn--primary.is-disabled {
+  background: var(--color-button-bg-primary-disabled);
+  border-color: var(--color-button-border-primary-disabled);
+  color: var(--color-button-text-primary-disabled);
+}
+
+.vp-btn--text {
+  border-color: transparent;
+  background: transparent;
+}
+.vp-btn--icon {
+  width: 32px;
+  padding: 0;
+  border-color: transparent;
+  background: transparent;
+  color: var(--color-icon);
+}
+.vp-btn--icon:hover { background: var(--color-button-bg-hover); }
+.vp-btn--sm { height: 26px; padding: 0 10px; font-size: 1.3rem; }
+
+/* Dela Actions ✦ — AI action menu button (Record Header, Pattern 3).
+   Uses the real product Dela gradient token. */
+.vp-btn--dela {
+  background: var(--color-dela-pane-tab-bg-selected);
+  border-color: transparent;
+  color: #fff;
+}
+.vp-btn--dela:hover { opacity: 0.9; background: var(--color-dela-pane-tab-bg-selected); color: #fff; }
+
+/* "+ New" style add action (banner blue pill) */
+.vp-btn--add {
+  background: var(--color-app-add-action-bg);
+  border-color: var(--color-app-add-action-border);
+  color: var(--color-app-add-action-text);
+  /* measured: the hub-toolbar create button is larger than action buttons */
+  height: auto;
+  padding: 10px 14px;
+  font-size: 1.4rem;
+}
+.vp-btn--add:hover {
+  background: var(--color-app-add-action-bg-hover);
+  border-color: var(--color-app-add-action-border-hover);
+  color: var(--color-app-add-action-text-hover);
+}
+
+/* --------------------------------------------------------------------------
+   Action bar — the row of actions under the page header (Save, Other
+   Actions, etc.). Items are white pills with the action-menu palette.
+   -------------------------------------------------------------------------- */
+.vp-action-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--color-page-header-bg);
+  border-bottom: 1px solid var(--color-app-nav-border);
+}
+.vp-action-bar .vp-btn {
+  border-color: var(--color-action-menu-item-border);
+  background: var(--color-action-menu-item-bg);
+  color: var(--color-action-menu-item-text);
+}
+.vp-action-bar .vp-btn:hover { background: var(--color-action-menu-item-bg-hover); }
+.vp-action-bar .vp-btn--primary {
+  background: var(--color-button-bg-primary);
+  border-color: var(--color-button-border-primary);
+  color: var(--color-button-text-primary);
+}
+.vp-action-bar .vp-btn--primary:hover { background: var(--color-button-bg-primary-hover); }
+.vp-action-bar__sep {
+  width: 1px;
+  align-self: stretch;
+  margin: 4px 2px;
+  background: var(--color-action-menu-separator);
+}
+
+/* --------------------------------------------------------------------------
+   Form fields
+   Product: 28px inputs, 1px #b4b4b4 border, 4px radius, label above in
+   1.2rem #4d4d4d. Edited fields get a blue tint, invalid a yellow tint.
+   -------------------------------------------------------------------------- */
+.vp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.vp-field__label {
+  font-size: 1.2rem;
+  color: var(--color-field-label);
+}
+.vp-field__label .req {
+  color: var(--color-field-border-invalid);
+  margin-left: 2px;
+}
+.vp-field__control,
+.vp-field input[type="text"],
+.vp-field input[type="number"],
+.vp-field input[type="date"],
+.vp-field input[type="email"],
+.vp-field select,
+.vp-field textarea {
+  height: 28px;
+  padding: 0 8px;
+  border: 1px solid var(--color-field-border);
+  border-radius: var(--border-radius-input, 4px);
+  background: var(--color-field-bg);
+  color: var(--color-field-text);
+  font-family: var(--font-base);
+  font-size: 1.4rem;
+  outline: 0;
+  width: 100%;
+}
+.vp-field textarea {
+  height: auto;
+  min-height: 64px;
+  padding: 6px 8px;
+  resize: vertical;
+}
+.vp-field input:hover,
+.vp-field select:hover,
+.vp-field textarea:hover { border-color: var(--color-field-border-hover); }
+.vp-field input:focus,
+.vp-field select:focus,
+.vp-field textarea:focus { border-color: var(--color-element-border-selected, #4C92D9); }
+
+.vp-field.is-edited input,
+.vp-field.is-edited select,
+.vp-field.is-edited textarea {
+  background: var(--color-field-bg-edited);
+  border-color: var(--color-field-border-edited);
+}
+.vp-field.is-invalid input,
+.vp-field.is-invalid select,
+.vp-field.is-invalid textarea {
+  background: var(--color-field-bg-invalid);
+  border-color: var(--color-field-border-invalid);
+}
+.vp-field.is-disabled input,
+.vp-field.is-disabled select,
+.vp-field.is-disabled textarea,
+.vp-field input:disabled,
+.vp-field select:disabled,
+.vp-field textarea:disabled {
+  background: var(--color-field-bg-disabled);
+  border-color: var(--color-field-border-disabled);
+  color: var(--color-field-text-disabled);
+}
+.vp-field__error {
+  font-size: 1.2rem;
+  color: var(--color-field-border-invalid);
+}
+.vp-field__help {
+  font-size: 1.2rem;
+  color: var(--color-banner-text);
+}
+
+/* --------------------------------------------------------------------------
+   Display fields — VP is click-to-edit (Pattern 11): fields at rest render
+   as bold label + plain-text value, NO input chrome. Use .vp-dfield for the
+   resting state; swap to .vp-field (bordered input) only for the field(s)
+   actively being edited in the mockup. Empty values show "None" in gray.
+   -------------------------------------------------------------------------- */
+.vp-dfield {
+  min-width: 0;
+}
+.vp-dfield__label {
+  font-size: 1.3rem;   /* measured: 13px/600 */
+  font-weight: 600;
+  color: var(--color-field-label);
+  margin-bottom: 2px;
+}
+.vp-dfield__value {
+  font-size: 1.4rem;
+  color: var(--color-base-text);
+  overflow-wrap: break-word;
+}
+.vp-dfield__value a { color: var(--color-link-text); }
+.vp-dfield__value.is-empty { color: var(--color-field-text-disabled); }
+
+/* Section header (Pattern 6) — measured: 15px/400 #555, chevron before the
+   label when collapsible, and the horizontal rule starts AFTER the label
+   and fills the remaining width. */
+.vp-section-title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #555555;
+  margin: 8px 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.vp-section-title::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid var(--color-layout-border);
+}
+.vp-section-title .vp-collapse-toggle {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-icon-chevron);
+  font-size: 1.2rem;
+  padding: 0 2px;
+  margin-right: -4px;
+}
+
+/* form grid: responsive label-above field layout */
+.vp-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px 20px;
+}
+.vp-form-grid .span-2 { grid-column: span 2; }
+.vp-form-grid .span-full { grid-column: 1 / -1; }
+
+/* --------------------------------------------------------------------------
+   Checkbox / radio / toggle
+   -------------------------------------------------------------------------- */
+.vp-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  color: var(--color-field-text);
+}
+.vp-check input[type="checkbox"],
+.vp-check input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--color-checkbox-bg-selected);
+  cursor: pointer;
+}
+
+.vp-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.vp-toggle input { position: absolute; opacity: 0; }
+.vp-toggle__track {
+  width: 34px;
+  height: 18px;
+  border-radius: 9px;
+  background: var(--color-checkbox-border);
+  transition: background 0.15s;
+  flex: none;
+}
+.vp-toggle__track::after {
+  content: "";
+  display: block;
+  width: 14px;
+  height: 14px;
+  margin: 2px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.15s;
+}
+.vp-toggle input:checked + .vp-toggle__track { background: var(--color-checkbox-bg-selected); }
+.vp-toggle input:checked + .vp-toggle__track::after { transform: translateX(16px); }
+
+/* --------------------------------------------------------------------------
+   Tabs — product hub tabs: blue text, selected = solid blue pill
+   -------------------------------------------------------------------------- */
+.vp-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow-x: auto;
+}
+/* overflow chevrons at the ends of a crowded tab bar (Pattern 4) */
+.vp-tabs__chevron {
+  border: 0;
+  background: transparent;
+  color: var(--color-icon-chevron);
+  cursor: pointer;
+  font-size: 1.3rem;
+  padding: 0 4px;
+  flex: none;
+}
+/* measured from live product 09/2026: h24, 12px font, pad 0 8px, r4 pill */
+.vp-tab {
+  border: 0;
+  background: transparent;
+  height: 24px;
+  padding: 0 8px;
+  line-height: 24px;
+  border-radius: var(--border-radius-tab, 4px);
+  font-family: var(--font-base);
+  font-size: 1.2rem;
+  color: var(--color-tab-text);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.vp-tab:hover { background: var(--color-tab-bg-hover); }
+.vp-tab.is-selected {
+  background: var(--color-tab-bg-selected);
+  color: var(--color-tab-text-selected);
+}
+.vp-tab.is-invalid { color: var(--color-tab-text-invalid); }
+
+/* --------------------------------------------------------------------------
+   Data grid — header #f3f3f3, 1px #D1D1D1 cell borders, hover #f0ffff,
+   selected #D9EBF2
+   -------------------------------------------------------------------------- */
+.vp-grid-wrap {
+  background: var(--color-grid-bg);
+  border: 1px solid var(--color-grid-border);
+  border-radius: var(--border-radius-tile, 8px);
+  overflow: auto;
+}
+.vp-grid {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.3rem;
+}
+.vp-grid th {
+  position: sticky;
+  top: 0;
+  background: var(--color-grid-header-bg);
+  color: var(--color-grid-column-header-text);
+  font-weight: 600;
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--color-grid-border);
+  border-right: 1px solid var(--color-grid-cell-border);
+  white-space: nowrap;
+  z-index: 1;
+}
+.vp-grid th:last-child { border-right: 0; }
+.vp-grid th .sort {
+  margin-left: 4px;
+  font-size: 1rem;
+  color: var(--color-tab-arrow-active);
+}
+.vp-grid td {
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--color-grid-cell-border);
+  border-right: 1px solid var(--color-grid-cell-border);
+  color: var(--color-list-item-text);
+  background: var(--color-grid-bg);
+  white-space: nowrap;
+}
+.vp-grid td:last-child { border-right: 0; }
+.vp-grid tbody tr:hover td { background: var(--color-grid-bg-hover); }
+.vp-grid tbody tr.is-selected td { background: var(--color-grid-bg-selected); }
+.vp-grid td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.vp-grid tfoot td {
+  background: var(--color-grid-header-bg);
+  font-weight: 600;
+  border-top: 2px solid var(--color-grid-border);
+}
+
+/* --------------------------------------------------------------------------
+   Named Grid Section (Pattern 7) — bordered section containing a data grid,
+   for related-record lists inside a tab. Header bar: title + "+ Add [item]"
+   (small outlined, LEFT next to title); icon toolbar far right (expand,
+   settings, download, filter — omit filter when the grid is empty).
+   -------------------------------------------------------------------------- */
+.vp-grid-section {
+  background: var(--color-base-bg);
+  border: 1px solid var(--color-app-nav-border);
+  border-radius: var(--border-radius-tile, 8px);
+  overflow: hidden;
+}
+.vp-grid-section__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--color-app-nav-border);
+}
+.vp-grid-section__title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.vp-grid-section__toolbar {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.vp-grid-section .vp-grid-wrap { border: 0; border-radius: 0; }
+.vp-grid-empty {
+  padding: 6px 12px;                        /* measured: 14px normal (not italic) */
+  color: var(--color-field-text-disabled);
+  font-size: 1.4rem;
+}
+/* row-level affordances shown on hover */
+.vp-grid tbody tr .row-menu,
+.vp-grid tbody tr .drag-handle { visibility: hidden; border: 0; background: transparent; cursor: pointer; color: var(--color-icon); }
+.vp-grid tbody tr:hover .row-menu,
+.vp-grid tbody tr:hover .drag-handle { visibility: visible; }
+
+/* --------------------------------------------------------------------------
+   Filter / Saved-Search Popup (Pattern 2's two-panel dropdown)
+   Opens from the hub-toolbar Filter button. Left: Saved Searches (Quick Find,
+   system + My + Shared searches, "+ New Search"). Right: "Find in list" live
+   record search with checkbox rows and a Select All mini-button.
+   Measured from live product 09/2026: 615×442, r4, shadow 0 4px 8px .25;
+   left panel 250px; items 12px; Select All = 24px primary pill, 10px font.
+   Toggle with data-vp-flyout="id" (adds .is-open).
+   -------------------------------------------------------------------------- */
+.vp-filter-popup {
+  display: none;
+  position: absolute;
+  z-index: 30;
+  width: 615px;
+  height: 442px;
+  background: var(--color-menu-bg);
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  font-size: 1.2rem;
+}
+.vp-filter-popup.is-open { display: flex; }
+
+.vp-filter-popup__left {
+  flex: none;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--color-menu-separator);
+  padding-bottom: 6px;
+}
+.vp-filter-popup__right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 14px;
+  min-width: 0;
+}
+.vp-filter-popup__header {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--color-menu-text);
+  padding: 8px 18px 4px;
+}
+.vp-filter-popup__quickfind {
+  margin: 4px 18px 8px;
+}
+.vp-filter-popup__group {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-menu-text);
+  padding: 8px 18px 4px;
+  border-top: 1px solid var(--color-menu-separator);
+  margin-top: 6px;
+}
+.vp-filter-popup__item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  color: var(--color-menu-text);
+  padding: 3px 18px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.vp-filter-popup__item:hover { background: var(--color-menu-hover); }
+.vp-filter-popup__item.is-selected { background: var(--color-nav-menu-item-bg-hover); }
+.vp-filter-popup__new {
+  margin: auto 18px 4px;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-menu-separator);
+  font-size: 1.2rem;
+}
+.vp-filter-popup__new a { color: var(--color-link-text); cursor: pointer; }
+
+/* right panel: record rows with checkbox + avatar + name/org */
+.vp-filter-popup__list {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 8px;
+}
+.vp-filter-popup__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 6px;
+  min-height: 38px;
+  cursor: pointer;
+}
+.vp-filter-popup__row:hover,
+.vp-filter-popup__row.is-selected { background: var(--color-menu-hover); }
+.vp-filter-popup__avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  flex: none;
+  background: var(--color-checkbox-bg-selected);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.vp-filter-popup__row-name { font-size: 1.4rem; color: var(--color-field-text); }
+.vp-filter-popup__row-sub { font-size: 1.2rem; color: var(--color-banner-text); }
+.vp-filter-popup__footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 6px;
+}
+.vp-btn--mini {                 /* Select All: 24px primary pill, 10px font */
+  height: 24px;
+  padding: 0 8px;
+  font-size: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   Info Bubble (Pattern 9) — small anchored popover card with a tail.
+   Record-reference mode (linked record names) or informational mode (ⓘ).
+   Position it relative to its trigger in the mockup.
+   -------------------------------------------------------------------------- */
+.vp-bubble {
+  position: absolute;
+  width: 280px;
+  background: var(--color-dialog-bg);
+  border: 1px solid var(--color-dialog-arrow-border);
+  border-radius: 8px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.14);
+  padding: 12px 14px;
+  z-index: 35;
+  font-size: 1.3rem;
+}
+.vp-bubble::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 24px;
+  width: 12px;
+  height: 12px;
+  background: var(--color-dialog-bg);
+  border-left: 1px solid var(--color-dialog-arrow-border);
+  border-top: 1px solid var(--color-dialog-arrow-border);
+  transform: rotate(45deg);
+}
+.vp-bubble--below::before { top: auto; bottom: -7px; transform: rotate(225deg); }
+.vp-bubble__close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-dialog-header-icon);
+}
+.vp-bubble__title { font-size: 1.4rem; font-weight: 700; margin-bottom: 2px; padding-right: 20px; }
+.vp-bubble__meta { font-size: 1.2rem; color: var(--color-banner-text); margin-bottom: 6px; }
+.vp-bubble__footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-divider, #e0e0e0);
+  font-size: 1.2rem;
+}
+.vp-bubble__footer .sep { color: var(--color-divider, #ccc); }
+.vp-bubble__generated { font-style: italic; color: var(--color-banner-text); font-size: 1.2rem; }
+
+/* grid toolbar row (record count, quick find, column tools) */
+.vp-grid-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+}
+.vp-grid-toolbar__count {
+  font-size: 1.3rem;
+  color: var(--color-banner-text);
+}
+
+/* --------------------------------------------------------------------------
+   Search / quick find input with icon
+   -------------------------------------------------------------------------- */
+.vp-search {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 8px;
+  border: 1px solid var(--color-field-border);
+  border-radius: var(--border-radius-input, 4px);
+  background: var(--color-field-bg);
+  color: var(--color-icon);
+}
+.vp-search input {
+  border: 0;
+  outline: 0;
+  font: inherit;
+  font-size: 1.3rem;
+  background: transparent;
+  color: var(--color-field-text);
+  min-width: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Status badges — real product status palette (:root --vp-status-*)
+   -------------------------------------------------------------------------- */
+.vp-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #fff;
+}
+.vp-status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+}
+.vp-status--positive  { background: var(--vp-status-color-positive); }
+.vp-status--negative  { background: var(--vp-status-color-negative); }
+.vp-status--info      { background: var(--vp-status-color-info); }
+.vp-status--attention { background: var(--vp-status-color-attention); color: #4d4d4d; }
+.vp-status--attention::before { background: rgba(0,0,0,0.35); }
+.vp-status--neutral   { background: var(--vp-status-color-neutral); color: #4d4d4d; }
+.vp-status--neutral::before { background: rgba(0,0,0,0.35); }
+
+/* Inline status: small colored square + plain text (sidebar/grid cells use
+   this, NOT the pill) — e.g. Status: ▪ Active */
+.vp-status-square {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1.3rem;
+}
+.vp-status-square::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--vp-status-color-neutral);
+}
+.vp-status-square--positive::before  { background: var(--vp-status-color-positive); }
+.vp-status-square--negative::before  { background: var(--vp-status-color-negative); }
+.vp-status-square--info::before      { background: var(--vp-status-color-info); }
+.vp-status-square--attention::before { background: var(--vp-status-color-attention); }
+
+/* stage-as-text values (e.g. sidebar Stage: "Won" in green) */
+.vp-stage-text--won, .vp-record-sidebar .vp-kv__value.vp-stage-text--won { color: var(--vp-status-color-positive); }
+.vp-stage-text--lost, .vp-record-sidebar .vp-kv__value.vp-stage-text--lost { color: var(--vp-status-color-negative); }
+
+/* "✦ Insights Available" indicator chip (record header) — measured 09/2026 */
+.vp-chip--insights {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #D0DFFF;
+  color: #454BD4;
+  font-size: 1rem;
+  border-radius: 16px;
+  padding: 2px 8px;
+}
+
+/* field-value annotation, e.g. "(617) 333-1100  Business Phone" */
+.vp-dfield__note {
+  font-size: 1.1rem;
+  color: var(--color-icon-disabled);
+  margin-left: 6px;
+}
+
+/* subtle variant (tinted chip, used in approval center etc.) */
+.vp-chip {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  color: var(--color-base-text);
+}
+.vp-chip--approved  { background: var(--color-approval-center-approved-bg); }
+.vp-chip--rejected  { background: var(--color-approval-center-rejected-bg); }
+.vp-chip--submitted { background: var(--color-approval-center-submitted-bg); }
+
+/* --------------------------------------------------------------------------
+   Dialog / modal — 16px radius per product --border-radius-dialog
+   -------------------------------------------------------------------------- */
+.vp-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--color-dialog-overlay-bg);
+  opacity: var(--color-dialog-overlay-opacity, 0.1);
+  z-index: 40;
+}
+/* measured from live product 09/2026: r4 (the 16px --border-radius-dialog
+   token is NOT what shipped dialogs use), gray 40px title bar, shadow
+   0 4px 8px .25, footer pair anchored bottom-right (primary still left
+   of Cancel within the pair). */
+.vp-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 420px;
+  max-width: min(1000px, 92vw);
+  max-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-dialog-bg);
+  border: 1px solid var(--color-dialog-border);
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  z-index: 50;
+}
+.vp-dialog__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  flex: none;
+  padding: 0 12px;
+  background: var(--color-dialog-header-bg);
+  border-bottom: 1px solid var(--color-dialog-header-border);
+  border-radius: 4px 4px 0 0;
+}
+.vp-dialog__title {
+  font-size: 1.8rem;    /* measured: 18px/600 #555 */
+  font-weight: 600;
+  color: #555555;
+}
+.vp-dialog__close { margin-left: auto; }
+.vp-dialog__body {
+  padding: 18px;
+  overflow-y: auto;
+}
+/* VP convention (Pattern 10): primary/destructive action LEFT of Cancel —
+   the opposite of many apps. Put the primary button first in the markup.
+   Measured: the pair is anchored to the dialog's bottom-RIGHT. */
+.vp-dialog__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 18px;
+  border-top: 1px solid var(--color-dialog-header-border);
+}
+
+/* Confirmation dialog variant — no title bar or × close; bold title lives in
+   the body (e.g. "Delete Firm"), destructive action left + Cancel right. */
+.vp-dialog--confirm .vp-dialog__header { display: none; }
+.vp-dialog--confirm { min-width: 360px; }
+.vp-dialog--confirm .vp-dialog__body { padding-bottom: 8px; }
+.vp-dialog--confirm .vp-dialog__footer { border-top: 0; }
+.vp-dialog__confirm-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+/* Progressive disclosure link at bottom of form-dialog body */
+.vp-dialog__more-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 1.3rem;
+  color: var(--color-link-text);
+  cursor: pointer;
+}
+
+/* hidden helper for dialogs/flyouts */
+[hidden] { display: none !important; }
+
+/* --------------------------------------------------------------------------
+   Dropdown menu
+   -------------------------------------------------------------------------- */
+.vp-menu {
+  position: absolute;
+  min-width: 180px;
+  padding: 4px;
+  background: var(--color-menu-bg);
+  border: 1px solid var(--color-menu-border);
+  border-radius: var(--border-radius-popup, 4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  z-index: 30;
+}
+.vp-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--color-menu-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.vp-menu__item:hover { background: var(--color-menu-hover); }
+.vp-menu__sep {
+  border: 0;
+  border-top: 1px solid var(--color-menu-separator);
+  margin: 4px 6px;
+}
+
+/* --------------------------------------------------------------------------
+   Banner message (page-level info/warning strip)
+   -------------------------------------------------------------------------- */
+.vp-message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: var(--border-radius-tile, 8px);
+  border: 1px solid;
+  font-size: 1.3rem;
+}
+.vp-message--info      { border-color: var(--vp-status-color-info); background: color-mix(in srgb, var(--vp-status-color-info) 8%, var(--color-base-bg)); }
+.vp-message--attention { border-color: var(--vp-status-color-attention); background: color-mix(in srgb, var(--vp-status-color-attention) 12%, var(--color-base-bg)); }
+.vp-message--negative  { border-color: var(--vp-status-color-negative); background: color-mix(in srgb, var(--vp-status-color-negative) 8%, var(--color-base-bg)); }
+.vp-message--positive  { border-color: var(--vp-status-color-positive); background: color-mix(in srgb, var(--vp-status-color-positive) 10%, var(--color-base-bg)); }
+
+/* --------------------------------------------------------------------------
+   Key/value summary (record header facts)
+   -------------------------------------------------------------------------- */
+.vp-kv {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.vp-kv__label {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-banner-text);
+}
+.vp-kv__value { font-size: 1.4rem; color: var(--color-base-text); font-weight: 500; }

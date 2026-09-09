@@ -1,0 +1,20 @@
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# editors
+.vscode/
+.idea/
+*.swp
+
+# node (if anything ever adds a build step)
+node_modules/
+
+# raw product stylesheets — inputs, not deliverables; keep out of the repo.
+# Regenerate css/vp-tokens.css via scripts/extract-tokens.py instead.
+styles*.min.css
+*.min.css.map
+
+# local scratch
+*.log
+tmp/

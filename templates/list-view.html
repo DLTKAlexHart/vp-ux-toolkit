@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project List — Vantagepoint mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vp-tokens.css">
+<link rel="stylesheet" href="../css/vp-base.css">
+<link rel="stylesheet" href="../css/vp-shell.css">
+<link rel="stylesheet" href="../css/vp-components.css">
+<script defer src="../js/vp-icons.js"></script>
+<script defer src="../js/vp-kit.js"></script>
+</head>
+<body class="vp-app">
+
+  <header class="vp-banner">
+    <button class="vp-banner__icon-btn" data-vp-flyout="navFlyout" title="Menu">
+      <svg class="vp-icon"><use href="#i-menu"/></svg>
+    </button>
+    <div class="vp-banner__product">
+      <span class="vp-banner__logo">D</span>
+      Vantagepoint
+    </div>
+    <div class="vp-banner__search">
+      <svg class="vp-icon vp-icon--sm"><use href="#i-search"/></svg>
+      <input type="text" placeholder="Search Vantagepoint">
+    </div>
+    <div class="vp-banner__actions">
+      <span class="vp-banner__firm"><span class="dot"></span> Apex Design Group</span>
+      <span class="vp-banner__period">Period Ending: 9/1/2026 <svg class="vp-icon vp-icon--sm"><use href="#i-chevron-down"/></svg></span>
+      <button class="vp-banner__icon-btn" title="Toggle dark mode" data-vp-theme-toggle><svg class="vp-icon"><use href="#i-settings"/></svg></button>
+      <div class="vp-banner__avatar">AH</div>
+    </div>
+  </header>
+
+  <div class="vp-app__body">
+    <nav class="vp-nav">
+      <button class="vp-nav__item" title="Dashboard"><svg class="vp-icon"><use href="#i-dashboard"/></svg></button>
+      <button class="vp-nav__item is-selected" title="Projects"><svg class="vp-icon"><use href="#i-folder"/></svg></button>
+      <button class="vp-nav__item" title="Contacts"><svg class="vp-icon"><use href="#i-users"/></svg></button>
+      <button class="vp-nav__item" title="Firms"><svg class="vp-icon"><use href="#i-building"/></svg></button>
+      <button class="vp-nav__item" title="Time"><svg class="vp-icon"><use href="#i-clock"/></svg></button>
+      <button class="vp-nav__item" title="Billing"><svg class="vp-icon"><use href="#i-dollar"/></svg></button>
+      <button class="vp-nav__item" title="Reporting"><svg class="vp-icon"><use href="#i-chart"/></svg></button>
+      <div class="vp-nav__bottom">
+        <button class="vp-nav__item" title="Settings"><svg class="vp-icon"><use href="#i-settings"/></svg></button>
+      </div>
+    </nav>
+
+    <div class="vp-nav-flyout" id="navFlyout">
+      <div class="vp-nav-flyout__title">Hubs</div>
+      <button class="vp-nav-flyout__item is-selected"><svg class="vp-icon"><use href="#i-folder"/></svg> Projects</button>
+      <button class="vp-nav-flyout__item"><svg class="vp-icon"><use href="#i-users"/></svg> Contacts</button>
+      <button class="vp-nav-flyout__item"><svg class="vp-icon"><use href="#i-building"/></svg> Firms</button>
+    </div>
+
+    <main class="vp-main">
+      <!-- Hub Toolbar (Pattern 2) — list context -->
+      <div class="vp-hub-toolbar">
+        <span class="vp-hub-toolbar__module">Projects</span>
+        <div class="vp-search">
+          <svg class="vp-icon vp-icon--sm"><use href="#i-search"/></svg>
+          <input type="text" placeholder="Find Projects">
+        </div>
+        <div style="position:relative">
+          <button class="vp-btn" data-vp-flyout="filterPopup"><svg class="vp-icon vp-icon--sm"><use href="#i-filter"/></svg> Active Projects — My Studio <svg class="vp-icon vp-icon--sm"><use href="#i-chevron-down"/></svg></button>
+
+          <!-- Filter / Saved-Search two-panel popup (Pattern 2) -->
+          <div class="vp-filter-popup" id="filterPopup" style="top:36px; left:0">
+            <div class="vp-filter-popup__left">
+              <div class="vp-filter-popup__header">Saved Searches</div>
+              <div class="vp-search vp-filter-popup__quickfind"><input type="text" placeholder="Quick Find"></div>
+              <button class="vp-filter-popup__item">Selection</button>
+              <button class="vp-filter-popup__item is-selected">Active</button>
+              <button class="vp-filter-popup__item">All</button>
+              <button class="vp-filter-popup__item">Mine</button>
+              <div class="vp-filter-popup__group">My Searches</div>
+              <button class="vp-filter-popup__item">Active Projects — My Studio</button>
+              <button class="vp-filter-popup__item">Healthcare Pursuits</button>
+              <button class="vp-filter-popup__item">Closeout Candidates</button>
+              <div class="vp-filter-popup__group">Shared Searches</div>
+              <button class="vp-filter-popup__item">Architecture</button>
+              <button class="vp-filter-popup__item">Engineering</button>
+              <div class="vp-filter-popup__new"><a>+ New Search</a></div>
+            </div>
+            <div class="vp-filter-popup__right">
+              <div class="vp-search"><input type="text" placeholder="Find in list..."></div>
+              <div class="vp-filter-popup__list">
+                <label class="vp-filter-popup__row">
+                  <input type="checkbox"><span class="vp-filter-popup__avatar">RM</span>
+                  <span><span class="vp-filter-popup__row-name">Riverside Medical Center Expansion - 2024-0117.00</span><br>
+                  <span class="vp-filter-popup__row-sub">Healthcare Studio</span></span>
+                </label>
+                <label class="vp-filter-popup__row">
+                  <input type="checkbox"><span class="vp-filter-popup__avatar">LE</span>
+                  <span><span class="vp-filter-popup__row-name">Lakeview Elementary Modernization - 2024-0121.00</span><br>
+                  <span class="vp-filter-popup__row-sub">Education</span></span>
+                </label>
+                <label class="vp-filter-popup__row">
+                  <input type="checkbox"><span class="vp-filter-popup__avatar">HT</span>
+                  <span><span class="vp-filter-popup__row-name">Harborfront Transit Hub - 2023-0348.00</span><br>
+                  <span class="vp-filter-popup__row-sub">Civic</span></span>
+                </label>
+                <label class="vp-filter-popup__row">
+                  <input type="checkbox"><span class="vp-filter-popup__avatar">SR</span>
+                  <span><span class="vp-filter-popup__row-name">Summit Ridge Community Center - 2023-0290.00</span><br>
+                  <span class="vp-filter-popup__row-sub">Civic</span></span>
+                </label>
+              </div>
+              <div class="vp-filter-popup__footer">
+                <button class="vp-btn vp-btn--primary vp-btn--mini">Select All</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="vp-btn vp-btn--icon" title="List view"><svg class="vp-icon"><use href="#i-menu"/></svg></button>
+        <div class="vp-spacer"></div>
+        <span class="vp-grid-toolbar__count">128 records</span>
+        <button class="vp-btn vp-btn--icon" title="Export"><svg class="vp-icon"><use href="#i-download"/></svg></button>
+        <button class="vp-btn vp-btn--add"><svg class="vp-icon vp-icon--sm"><use href="#i-plus"/></svg> New Project</button>
+      </div>
+
+      <div class="vp-page-content">
+        <div class="vp-grid-wrap" style="max-height:100%">
+          <table class="vp-grid">
+            <thead>
+              <tr>
+                <th style="width:32px"><input type="checkbox"></th>
+                <th>Project Number <span class="sort">▲</span></th>
+                <th>Project Name</th>
+                <th>Organization</th>
+                <th>Project Manager</th>
+                <th>Status</th>
+                <th>Stage</th>
+                <th>Contract</th>
+                <th>% Complete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>2024-0117.00</td>
+                <td><a href="hub-record.html">Riverside Medical Center Expansion</a></td>
+                <td>Healthcare Studio</td><td>Maria Delgado</td>
+                <td><span class="vp-status vp-status--positive">Active</span></td>
+                <td>Construction Documents</td>
+                <td class="num">$2,450,000</td><td class="num">62%</td>
+              </tr>
+              <tr class="is-selected">
+                <td><input type="checkbox" checked></td>
+                <td>2024-0121.00</td>
+                <td><a href="#">Lakeview Elementary Modernization</a></td>
+                <td>Education</td><td>James Okafor</td>
+                <td><span class="vp-status vp-status--positive">Active</span></td>
+                <td>Design Development</td>
+                <td class="num">$1,180,000</td><td class="num">38%</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>2023-0348.00</td>
+                <td><a href="#">Harborfront Transit Hub</a></td>
+                <td>Civic</td><td>Lena Fischer</td>
+                <td><span class="vp-status vp-status--attention">At Risk</span></td>
+                <td>Construction Administration</td>
+                <td class="num">$5,720,000</td><td class="num">84%</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>2023-0290.00</td>
+                <td><a href="#">Summit Ridge Community Center</a></td>
+                <td>Civic</td><td>Sam Whitfield</td>
+                <td><span class="vp-status vp-status--neutral">On Hold</span></td>
+                <td>Schematic Design</td>
+                <td class="num">$940,000</td><td class="num">12%</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>2022-0455.00</td>
+                <td><a href="#">Northgate Corporate Campus Phase II</a></td>
+                <td>Commercial</td><td>Maria Delgado</td>
+                <td><span class="vp-status vp-status--negative">Inactive</span></td>
+                <td>Closeout</td>
+                <td class="num">$8,300,000</td><td class="num">100%</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>2024-0009.00</td>
+                <td><a href="#">Cedar Falls Public Library</a></td>
+                <td>Civic</td><td>James Okafor</td>
+                <td><span class="vp-status vp-status--info">Proposed</span></td>
+                <td>Pursuit</td>
+                <td class="num">$2,050,000</td><td class="num">0%</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td></td><td colspan="6">6 of 128 shown</td>
+                <td class="num">$20,640,000</td><td></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <!-- Right Utility Rail (Pattern 1) -->
+    <aside class="vp-utility-rail">
+      <button class="vp-utility-rail__item vp-utility-rail__item--dela" title="Dela (AI assistant)">D+</button>
+      <button class="vp-utility-rail__item" title="Pinned"><svg class="vp-icon"><use href="#i-pin"/></svg></button>
+      <button class="vp-utility-rail__item" title="People"><svg class="vp-icon"><use href="#i-users"/></svg></button>
+      <button class="vp-utility-rail__item" title="Notifications"><svg class="vp-icon"><use href="#i-bell"/></svg><span class="vp-badge-dot"></span></button>
+      <button class="vp-utility-rail__item" title="Help"><svg class="vp-icon"><use href="#i-help"/></svg></button>
+    </aside>
+  </div>
+
+</body>
+</html>

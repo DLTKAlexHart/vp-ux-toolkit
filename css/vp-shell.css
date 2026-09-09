@@ -1,0 +1,567 @@
+/* ==========================================================================
+   vp-shell.css — the Vantagepoint application shell
+   Top banner (44px), left icon navigation rail (52px), nav flyout,
+   page header with record title + tab bar, and the main content region.
+   All values come from tokens extracted from the built product.
+   ========================================================================== */
+
+.vp-app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Top banner
+   -------------------------------------------------------------------------- */
+.vp-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: none;
+  height: var(--banner-height);
+  padding: 0 12px;
+  background: var(--color-banner-bg);
+  border-bottom: 1px solid var(--color-app-nav-border);
+  color: var(--color-banner-text);
+  z-index: 20;
+}
+
+.vp-banner__product {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--color-banner-product-name);
+  white-space: nowrap;
+}
+
+.vp-banner__logo {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: var(--color-banner-settings-icon-bg);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* global search box in the banner */
+.vp-banner__search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 1 420px;
+  height: 30px;
+  padding: 0 10px;
+  border: 1px solid var(--color-app-nav-field-border);
+  border-radius: 15px;
+  background: var(--color-field-bg);
+  color: var(--color-banner-text);
+}
+.vp-banner__search input {
+  border: 0;
+  outline: 0;
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  background: transparent;
+  color: var(--color-field-text);
+}
+
+.vp-banner__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+/* firm name + status dot and accounting-period label (Pattern 1 header right) */
+.vp-banner__firm {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1.3rem;
+  color: var(--color-banner-text);
+  white-space: nowrap;
+}
+.vp-banner__firm .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--vp-status-color-positive);
+}
+.vp-banner__period {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 1.3rem;
+  color: var(--color-banner-text);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.vp-banner__icon-btn {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: var(--border-radius-icon, 8px);
+  background: transparent;
+  color: var(--color-banner-text);
+  cursor: pointer;
+  position: relative;
+}
+.vp-banner__icon-btn:hover { background: var(--color-nav-menu-item-bg-hover); }
+.vp-banner__icon-btn .vp-badge-dot {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-banner-notification);
+  border: 1px solid var(--color-banner-bg);
+}
+.vp-banner__avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--color-app-add-action-bg);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   Body region: nav rail + main
+   -------------------------------------------------------------------------- */
+.vp-app__body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Left icon rail — 52px wide, white, like the current product */
+.vp-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex: none;
+  width: var(--nav-menu-width);
+  padding: 8px 0;
+  background: var(--color-nav-menu-bg);
+  border-right: 1px solid var(--color-nav-menu-divider);
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.vp-nav__item {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: var(--border-radius-icon-bar, 12px);
+  background: transparent;
+  color: var(--color-nav-menu-item-icon);
+  cursor: pointer;
+}
+.vp-nav__item:hover { background: var(--color-nav-menu-item-bg-hover); }
+.vp-nav__item.is-selected {
+  background: var(--color-nav-menu-item-bg-selected);
+  color: var(--color-nav-menu-item-selected);
+}
+.vp-nav__divider {
+  width: 28px;
+  border-top: 1px solid var(--color-nav-menu-divider);
+  margin: 6px 0;
+}
+.vp-nav__bottom {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Pinned-open navigation menu (Pattern 1, "Pin Menu" state).
+   Measured 09/2026: 250px wide, white, rounded right corners (0 12px 12px 0);
+   items 30px tall / 12px font / #646D82; selected item = blue 8px-radius pill
+   with white text; sub-items indent under their module.
+   In the product the pinned menu replaces the icon rail and the content
+   shifts right; in mockups it overlays, which reads the same in a static
+   image. Toggle with data-vp-flyout. */
+.vp-nav-flyout {
+  position: absolute;
+  top: var(--banner-height);
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  background: var(--color-nav-menu-bg);
+  border-radius: 0 12px 12px 0;
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
+  padding: 10px 12px;
+  overflow-y: auto;
+  z-index: 15;
+  display: none;
+}
+.vp-nav-flyout.is-open { display: block; }
+
+/* "Unpin Menu" header row */
+.vp-nav-flyout__pin {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.2rem;
+  color: var(--color-nav-menu-item-text);
+  padding: 4px 8px 10px;
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+}
+
+.vp-nav-flyout__title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-nav-menu-title);
+  padding: 8px 8px 4px;
+}
+.vp-nav-flyout__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 30px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: var(--border-radius-icon, 8px);
+  background: transparent;
+  color: var(--color-nav-menu-item-text);
+  font-size: 1.2rem;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.vp-nav-flyout__item .chev { margin-left: auto; color: var(--color-icon-chevron); font-size: 1.1rem; }
+.vp-nav-flyout__item:hover { background: var(--color-nav-menu-item-bg-hover); }
+.vp-nav-flyout__item.is-selected {
+  background: var(--color-nav-menu-item-bg-selected);
+  color: var(--color-nav-menu-item-selected);
+}
+/* sub-items indented under an expanded module, with a connector line */
+.vp-nav-flyout__sub {
+  margin-left: 18px;
+  padding-left: 10px;
+  border-left: 1px solid var(--color-nav-menu-divider);
+}
+.vp-nav-flyout__sub .vp-nav-flyout__item { font-size: 1.2rem; }
+
+/* --------------------------------------------------------------------------
+   Right Utility Rail (Pattern 1) — narrow icon strip fixed to the far right.
+   Always present: Dela (AI), pin, person, notifications, help.
+   Boilerplate — don't annotate unless the feature touches it.
+   -------------------------------------------------------------------------- */
+.vp-utility-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex: none;
+  width: 44px;
+  padding: 8px 0;
+  background: var(--color-nav-menu-bg);
+  border-left: 1px solid var(--color-nav-menu-divider);
+  z-index: 10;
+}
+.vp-utility-rail__item {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: var(--border-radius-icon, 8px);
+  background: transparent;
+  color: var(--color-nav-menu-item-icon);
+  cursor: pointer;
+  position: relative;
+}
+.vp-utility-rail__item:hover { background: var(--color-nav-menu-item-bg-hover); }
+.vp-utility-rail__item .vp-badge-dot {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-banner-notification);
+  border: 1px solid var(--color-nav-menu-bg);
+}
+/* Dela AI entry — real product gradient */
+.vp-utility-rail__item--dela {
+  background: var(--color-dela-pane-tab-bg-selected);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.vp-utility-rail__item--dela:hover { background: var(--color-dela-pane-tab-bg-selected); opacity: 0.9; }
+
+/* --------------------------------------------------------------------------
+   Hub Toolbar (Pattern 2) — top of the content area in any Hub module.
+   Module label · Find [record type] · Filter · pager ‹ N of NNN › ·
+   list-view toggle · + New [record type] (far right).
+   Inline save state: + New is replaced by Save (primary, left) + Cancel.
+   -------------------------------------------------------------------------- */
+.vp-hub-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+  padding: 8px 16px;
+  background: var(--color-page-header-bg);
+  border-bottom: 1px solid var(--color-app-nav-border);
+}
+.vp-hub-toolbar__module {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-application-header-text, #5A6170);
+  white-space: nowrap;
+}
+.vp-hub-toolbar__pager {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1.3rem;
+  color: var(--color-banner-text);
+  white-space: nowrap;
+}
+.vp-hub-toolbar__pager button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-icon);
+  font-size: 1.4rem;
+  padding: 2px 4px;
+}
+.vp-hub-toolbar .vp-spacer { flex: 1; }
+
+/* --------------------------------------------------------------------------
+   Record Header (Pattern 3) — identifies the open record; record-level
+   actions right-aligned (Dela Actions ✦ / Add Touchpoint / Other Actions ∨).
+   Does not scroll with tab content.
+   -------------------------------------------------------------------------- */
+/* The record card: white surface with the product's blue top line and rounded
+   top corners; wraps Record Header + Tab Bar + record body. (measured 09/2026) */
+.vp-record-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  margin: 6px 8px 0;
+  background: var(--color-base-bg);
+  border-top: 2px solid var(--color-application-top-line);
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.vp-record-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: none;
+  padding: 12px 12px 9px;   /* measured */
+  background: var(--color-page-header-bg);
+}
+.vp-record-header__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--color-application-header-bg);
+  color: var(--color-application-header-text);
+  display: grid;
+  place-items: center;
+  flex: none;
+  cursor: pointer;
+}
+.vp-record-header__name {
+  font-size: 2.2rem;    /* measured: 22px/500 #555 */
+  line-height: 1.3;
+  font-weight: 500;
+  color: #555555;
+}
+.vp-record-header__id {
+  font-size: 1.2rem;
+  color: var(--color-banner-text);
+  margin-top: 2px;
+}
+.vp-record-header__modified {
+  font-size: 1.3rem;    /* measured: 13px/500 #555 */
+  font-weight: 500;
+  color: #555555;
+  margin-top: 2px;
+}
+.vp-record-header__actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   Record Detail Sidebar (Pattern 5) — fixed-width panel on the left of the
+   tab content. Image/avatar w/ stage badge, then key field/value pairs.
+   Collapsible via chevron.
+   -------------------------------------------------------------------------- */
+.vp-record-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+.vp-record-sidebar {
+  position: relative;
+  flex: none;
+  width: 200px;          /* measured: ~201px */
+  background: var(--color-base-bg);
+  border-right: 1px solid var(--color-app-nav-border);
+  overflow-y: auto;
+  padding-bottom: 16px;
+}
+/* measured: 150×150 image, 20px radius (--border-radius-hub-image), centered */
+.vp-record-sidebar__image {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 16px auto 10px;
+  border-radius: var(--border-radius-hub-image, 20px);
+  overflow: hidden;
+  background: var(--color-application-header-bg);
+  display: grid;
+  place-items: center;
+  color: var(--color-icon-light);
+}
+.vp-record-sidebar__image .vp-icon { width: 56px; height: 56px; stroke-width: 1.25; }
+.vp-record-sidebar__stage {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 3px 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--vp-status-color-positive);
+}
+.vp-record-sidebar__section {
+  padding: 12px 14px 0;
+}
+.vp-record-sidebar__section-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.vp-record-sidebar .vp-kv { margin-bottom: 12px; }
+.vp-record-sidebar .vp-kv__label {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-field-label);
+}
+.vp-record-sidebar .vp-kv__value { font-weight: 400; font-size: 1.3rem; }
+.vp-record-sidebar__collapse {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  border: 0;
+  background: transparent;
+  color: var(--color-icon-chevron);
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+
+/* --------------------------------------------------------------------------
+   Main / page
+   -------------------------------------------------------------------------- */
+.vp-main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  background: var(--color-page-bg);
+}
+
+.vp-page-header {
+  flex: none;
+  background: var(--color-page-header-bg);
+  border-bottom: 1px solid var(--color-app-nav-border);
+  padding: 10px 16px 0;
+}
+
+.vp-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1.2rem;
+  color: var(--color-banner-text);
+  padding-bottom: 6px;
+}
+.vp-breadcrumb a { color: var(--color-banner-text); }
+.vp-breadcrumb .sep { opacity: 0.5; }
+
+.vp-page-header__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 10px;
+}
+.vp-page-header__title {
+  font-size: var(--font-size-application-header);
+  line-height: var(--line-height-application-header);
+  font-weight: 600;
+  color: var(--color-application-header-text, #5A6170);
+}
+.vp-page-header__subtitle {
+  font-size: 1.2rem;
+  color: var(--color-banner-text);
+}
+.vp-page-header__actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vp-page-content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+/* content card / section panel */
+.vp-panel {
+  background: var(--color-base-bg);
+  border: 1px solid var(--color-app-nav-border);
+  border-radius: var(--border-radius-tile, 8px);
+  padding: 16px;
+}
+.vp-panel__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.vp-panel__title { font-size: 1.5rem; font-weight: 600; color: var(--color-application-header-text); }

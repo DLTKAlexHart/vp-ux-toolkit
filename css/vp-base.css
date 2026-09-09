@@ -1,0 +1,83 @@
+/* ==========================================================================
+   vp-base.css — reset, typography, and page scaffolding
+   Matches the built Vantagepoint product: html { font-size: 62.5% } so
+   1rem = 10px. Body text is 1.4rem (14px) in var(--font-base) (Lexend).
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%; /* 1rem = 10px, same as the product */
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  font-family: var(--font-base);
+  font-size: 1.4rem;
+  line-height: 1.4;
+  color: var(--color-base-text);
+  background-color: var(--color-page-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Lexend — loaded from Google Fonts in the templates. If offline, the
+   product fallback stack (tahoma, calibri, trebuchet ms) still applies. */
+
+h1, h2, h3, h4, p {
+  margin: 0;
+}
+
+h1 { font-size: var(--font-size-application-header, 1.8rem); line-height: var(--line-height-application-header, 2rem); font-weight: 600; }
+h2 { font-size: 1.6rem; font-weight: 600; }
+h3 { font-size: 1.4rem; font-weight: 600; }
+h4 { font-size: 1.3rem; font-weight: 600; }
+
+a {
+  color: var(--color-link-text);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+img, svg { max-width: 100%; }
+
+/* --- inline SVG icon sizing --- */
+.vp-icon {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.vp-icon--sm { width: 16px; height: 16px; }
+.vp-icon--lg { width: 24px; height: 24px; }
+
+/* --- scrollbars (product-style slim scrollbars) --- */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-scrollbar, #c1c1c1);
+  border-radius: var(--border-radius-thumb, 2px);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-track { background: transparent; }
+
+/* --- simple layout utilities --- */
+.vp-row { display: flex; align-items: center; gap: 8px; }
+.vp-stack { display: flex; flex-direction: column; gap: 12px; }
+.vp-spacer { flex: 1; }
+.vp-divider {
+  border: 0;
+  border-top: 1px solid var(--color-divider, #e0e0e0);
+  margin: 8px 0;
+}
+.vp-muted { color: var(--color-banner-text); }
+.vp-truncate { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }

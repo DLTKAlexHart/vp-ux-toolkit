@@ -1,0 +1,34 @@
+---
+description: Vantagepoint mockup kit — how to build VP-styled mockups in this repo
+globs:
+alwaysApply: true
+---
+
+# Vantagepoint Vibe Coding Kit rules
+
+- Build mockups that match the current built Vantagepoint product using this kit,
+  not the Harmony north-star design system and not generic styling.
+- Every page links, in order: `css/vp-tokens.css`, `css/vp-base.css`,
+  `css/vp-shell.css`, `css/vp-components.css`, then `js/vp-icons.js` and
+  `js/vp-kit.js` with `defer`.
+- Never hardcode colors, radii, or fonts — use `var(--…)` tokens from
+  `css/vp-tokens.css`. They are extracted from the real product and are ground truth.
+- Start new pages by copying the closest file in `templates/` (hub-record,
+  list-view, settings-form) and keep the shell (banner + nav rail).
+- Use the markup patterns from `docs/COMPONENTS.md` / `components.html`
+  (`vp-btn`, `vp-field`, `vp-grid`, `vp-tabs`, `vp-dialog`, `vp-status`, …).
+- Icons: `<svg class="vp-icon"><use href="#i-NAME"/></svg>`; ids listed in
+  `icons/_sprite.html`. Add new symbols there, then run
+  `python3 scripts/build-icons.py`.
+- Page-specific styles go in that page's `<style>` block, built on tokens.
+  Do not edit shared `css/` files for one-off mockups.
+- No frameworks or build steps; pages must work opened directly from disk.
+- Dark mode = `data-theme="dark"` on `<html>`; tokens handle it, don't write
+  custom dark styles.
+- VP conventions: button pairs are primary LEFT / Cancel RIGHT (dialogs too);
+  fields at rest are plain text (`.vp-dfield`, click-to-edit) — only actively
+  edited fields are bordered inputs; hub pages use Hub Toolbar + Record Header
+  + Tab Bar + Record Sidebar (no breadcrumbs); empty grids say "There are no
+  records to show in this grid." Pattern-to-class map: docs/COMPONENTS.md.
+
+Full agent guide: `CLAUDE.md`. Component reference: `docs/COMPONENTS.md`.

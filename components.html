@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VP Kit — Component Gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/vp-tokens.css">
+<link rel="stylesheet" href="css/vp-base.css">
+<link rel="stylesheet" href="css/vp-shell.css">
+<link rel="stylesheet" href="css/vp-components.css">
+<script defer src="js/vp-icons.js"></script>
+<script defer src="js/vp-kit.js"></script>
+<style>
+  body { padding: 32px; max-width: 1080px; margin: 0 auto; height: auto; overflow: auto; }
+  .demo { margin-bottom: 36px; }
+  .demo h2 { margin-bottom: 4px; }
+  .demo .classes {
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 1.2rem; color: var(--color-banner-text); margin-bottom: 12px; display: block;
+  }
+  .demo .row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px; }
+  .swatch { display: flex; align-items: center; gap: 8px; font-size: 1.2rem; }
+  .swatch i {
+    width: 26px; height: 26px; border-radius: 6px; flex: none;
+    border: 1px solid var(--color-layout-border);
+  }
+  .swatch code { color: var(--color-banner-text); }
+</style>
+</head>
+<body>
+
+<h1 style="font-size:2.2rem; line-height:1.3">Vantagepoint Kit — Component Gallery</h1>
+<p class="vp-muted" style="margin:6px 0 8px">
+  Every component below uses tokens extracted from the built product.
+  Copy the markup; see <code>docs/COMPONENTS.md</code> for the full reference.
+</p>
+<p style="margin-bottom:28px"><button class="vp-btn vp-btn--sm" data-vp-theme-toggle>Toggle dark mode</button></p>
+
+<div class="demo">
+  <h2>Buttons</h2>
+  <span class="classes">.vp-btn · --primary · --add · --text · --icon · --sm · :disabled</span>
+  <div class="row">
+    <button class="vp-btn vp-btn--primary">Save</button>
+    <button class="vp-btn">Cancel</button>
+    <button class="vp-btn vp-btn--add"><svg class="vp-icon vp-icon--sm"><use href="#i-plus"/></svg> New Project</button>
+    <button class="vp-btn vp-btn--text">Text Action</button>
+    <button class="vp-btn vp-btn--icon" title="Edit"><svg class="vp-icon"><use href="#i-pencil"/></svg></button>
+    <button class="vp-btn vp-btn--sm">Small</button>
+    <button class="vp-btn vp-btn--primary" disabled>Disabled</button>
+    <button class="vp-btn" disabled>Disabled</button>
+    <button class="vp-btn vp-btn--dela">✦ Dela Actions <svg class="vp-icon vp-icon--sm"><use href="#i-chevron-down"/></svg></button>
+  </div>
+  <p class="vp-muted" style="font-size:1.2rem">Convention: in any button pair, the primary action goes LEFT, Cancel goes RIGHT.</p>
+</div>
+
+<div class="demo">
+  <h2>Action bar</h2>
+  <span class="classes">.vp-action-bar &gt; .vp-btn · .vp-action-bar__sep</span>
+  <div class="vp-action-bar" style="border:1px solid var(--color-app-nav-border); border-radius:8px">
+    <button class="vp-btn vp-btn--primary">Save</button>
+    <button class="vp-btn">Cancel</button>
+    <div class="vp-action-bar__sep"></div>
+    <button class="vp-btn">Other Actions <svg class="vp-icon vp-icon--sm"><use href="#i-chevron-down"/></svg></button>
+    <div class="vp-spacer"></div>
+    <button class="vp-btn vp-btn--icon"><svg class="vp-icon"><use href="#i-dots"/></svg></button>
+  </div>
+</div>
+
+<div class="demo">
+  <h2>Form fields</h2>
+  <span class="classes">.vp-field · .is-edited · .is-invalid · .is-disabled · .vp-form-grid</span>
+  <div class="vp-form-grid" style="background:var(--color-base-bg); padding:16px; border:1px solid var(--color-app-nav-border); border-radius:8px">
+    <div class="vp-field">
+      <label class="vp-field__label">Text Field<span class="req">*</span></label>
+      <input type="text" value="Value">
+    </div>
+    <div class="vp-field">
+      <label class="vp-field__label">Dropdown</label>
+      <select><option>Option A</option><option>Option B</option></select>
+    </div>
+    <div class="vp-field is-edited">
+      <label class="vp-field__label">Edited Field</label>
+      <input type="text" value="Unsaved change">
+    </div>
+    <div class="vp-field is-invalid">
+      <label class="vp-field__label">Invalid Field<span class="req">*</span></label>
+      <input type="text">
+      <span class="vp-field__error">Required field</span>
+    </div>
+    <div class="vp-field">
+      <label class="vp-field__label">Disabled</label>
+      <input type="text" value="Read only" disabled>
+    </div>
+    <div class="vp-field">
+      <label class="vp-field__label">Date</label>
+      <input type="date" value="2026-09-02">
+    </div>
+    <div class="vp-field span-full">
+      <label class="vp-field__label">Multiline</label>
+      <textarea placeholder="Notes…"></textarea>
+    </div>
+  </div>
+</div>
+
+<div class="demo">
+  <h2>Display fields — click-to-edit resting state</h2>
+  <span class="classes">.vp-dfield · .vp-dfield__value.is-empty · .vp-section-title — VP fields at rest are plain text, not inputs (Pattern 11)</span>
+  <div style="background:var(--color-base-bg); padding:16px; border:1px solid var(--color-app-nav-border); border-radius:8px">
+    <div class="vp-section-title">Name and Background</div>
+    <div class="vp-form-grid">
+      <div class="vp-dfield"><div class="vp-dfield__label">Project Name</div><div class="vp-dfield__value">Riverside Medical Center Expansion</div></div>
+      <div class="vp-dfield"><div class="vp-dfield__label">Principal</div><div class="vp-dfield__value"><a href="#">Daniel Cho</a></div></div>
+      <div class="vp-dfield"><div class="vp-dfield__label">Estimated Completion</div><div class="vp-dfield__value is-empty">None</div></div>
+      <div class="vp-field is-edited"><label class="vp-field__label">Stage (active edit)</label><select><option>Construction Documents</option></select></div>
+    </div>
+  </div>
+</div>
+
+<div class="demo">
+  <h2>Checkbox, radio &amp; toggle</h2>
+  <span class="classes">.vp-check · .vp-toggle</span>
+  <div class="row">
+    <label class="vp-check"><input type="checkbox" checked> Checkbox</label>
+    <label class="vp-check"><input type="radio" name="r" checked> Radio A</label>
+    <label class="vp-check"><input type="radio" name="r"> Radio B</label>
+    <label class="vp-toggle"><input type="checkbox" checked><span class="vp-toggle__track"></span> Toggle on</label>
+    <label class="vp-toggle"><input type="checkbox"><span class="vp-toggle__track"></span> Toggle off</label>
+  </div>
+</div>
+
+<div class="demo">
+  <h2>Tabs</h2>
+  <span class="classes">.vp-tabs &gt; .vp-tab · .is-selected · data-vp-tab="panelId"</span>
+  <div class="vp-tabs" style="background:var(--color-page-header-bg); padding:8px 8px 0; border:1px solid var(--color-app-nav-border); border-radius:8px 8px 0 0">
+    <button class="vp-tab is-selected">Overview</button>
+    <button class="vp-tab">Team</button>
+    <button class="vp-tab">Contract</button>
+    <button class="vp-tab is-invalid">Billing Terms</button>
+  </div>
+</div>
+
+<div class="demo">
+  <h2>Data grid</h2>
+  <span class="classes">.vp-grid-wrap &gt; table.vp-grid · tr.is-selected · td.num</span>
+  <div class="vp-grid-wrap">
+    <table class="vp-grid">
+      <thead><tr><th>Project <span class="sort">▲</span></th><th>Manager</th><th>Status</th><th>Contract</th></tr></thead>
+      <tbody>
+        <tr><td>Riverside Medical Center</td><td>Maria Delgado</td><td><span class="vp-status vp-status--positive">Active</span></td><td class="num">$2,450,000</td></tr>
+        <tr class="is-selected"><td>Lakeview Elementary</td><td>James Okafor</td><td><span class="vp-status vp-status--positive">Active</span></td><td class="num">$1,180,000</td></tr>
+        <tr><td>Harborfront Transit Hub</td><td>Lena Fischer</td><td><span class="vp-status vp-status--attention">At Risk</span></td><td class="num">$5,720,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="demo">
+  <h2>Named grid section</h2>
+  <span class="classes">.vp-grid-section · __header · __title · __toolbar · .vp-grid-empty — "+ Add" sits LEFT next to the title (Pattern 7)</span>
+  <div class="vp-stack">
+    <div class="vp-grid-section">
+      <div class="vp-grid-section__header">
+        <span class="vp-grid-section__title">Key Team Members</span>
+        <button class="vp-btn vp-btn--sm"><svg class="vp-icon vp-icon--sm"><use href="#i-plus"/></svg> Add Team Member</button>
+        <div class="vp-grid-section__toolbar">
+          <button class="vp-btn vp-btn--icon" title="Settings"><svg class="vp-icon vp-icon--sm"><use href="#i-settings"/></svg></button>
+          <button class="vp-btn vp-btn--icon" title="Download"><svg class="vp-icon vp-icon--sm"><use href="#i-download"/></svg></button>
+          <button class="vp-btn vp-btn--icon" title="Filter"><svg class="vp-icon vp-icon--sm"><use href="#i-filter"/></svg></button>
+        </div>
+      </div>
+      <div class="vp-grid-wrap">
+        <table class="vp-grid">
+          <thead><tr><th>Name</th><th>Role</th><th style="width:34px"></th></tr></thead>
+          <tbody>
+            <tr><td><a href="#">Maria Delgado</a></td><td>Project Manager</td><td><button class="row-menu">⋮</button></td></tr>
+            <tr><td><a href="#">James Okafor</a></td><td>Project Architect</td><td><button class="row-menu">⋮</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="vp-grid-section">
+      <div class="vp-grid-section__header">
+        <span class="vp-grid-section__title">Marketing Campaigns</span>
+        <button class="vp-btn vp-btn--sm"><svg class="vp-icon vp-icon--sm"><use href="#i-plus"/></svg> Add Campaign</button>
+      </div>
+      <div class="vp-grid-empty">There are no records to show in this grid.</div>
+    </div>
+  </div>
+</div>
+
+<div class="demo">
+  <h2>Info bubble</h2>
+  <span class="classes">.vp-bubble (record-reference &amp; informational modes) · position relative to trigger</span>
+  <div style="position:relative; height:180px">
+    <a href="#">Maria Delgado</a>
+    <div class="vp-bubble" style="top:28px; left:0">
+      <button class="vp-bubble__close">✕</button>
+      <div class="vp-bubble__title">Maria Delgado</div>
+      <div class="vp-bubble__meta">00123 · PROJECT MANAGER · HEALTHCARE STUDIO</div>
+      <div>Work: (555) 210-3348<br>Mobile: (555) 894-1121</div>
+      <div class="vp-bubble__footer">
+        <span class="vp-status vp-status--positive">Active</span>
+        <span class="sep">|</span>
+        <a href="#">More…</a>
+      </div>
+    </div>
+    <div class="vp-bubble" style="top:28px; left:320px">
+      <button class="vp-bubble__close">✕</button>
+      <div class="vp-bubble__title">Pursuit Score</div>
+      <div>8.7 Strong Pursuit</div>
+      <div class="vp-bubble__generated">Generated 09/24/2025</div>
+      <div class="vp-bubble__footer"><a href="#">Regenerate Score</a><span class="sep">|</span><a href="#">View Details</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="demo">
+  <h2>Status badges &amp; chips</h2>
+  <span class="classes">.vp-status--positive/negative/info/attention/neutral · .vp-chip--approved/rejected/submitted</span>
+  <div class="row">
+    <span class="vp-status vp-status--positive">Active</span>
+    <span class="vp-status vp-status--negative">Inactive</span>
+    <span class="vp-status vp-status--info">Proposed</span>
+    <span class="vp-status vp-status--attention">At Risk</span>
+    <span class="vp-status vp-status--neutral">On Hold</span>
+    <span class="vp-chip vp-chip--approved">Approved</span>
+    <span class="vp-chip vp-chip--submitted">Submitted</span>
+    <span class="vp-chip vp-chip--rejected">Rejected</span>
+  </div>
+</div>
+
+<div class="demo">
+  <h2>Messages</h2>
+  <span class="classes">.vp-message--info/attention/negative/positive</span>
+  <div class="vp-stack">
+    <div class="vp-message vp-message--info"><svg class="vp-icon vp-icon--sm"><use href="#i-help"/></svg> This record has pending approvals.</div>
+    <div class="vp-message vp-message--attention"><svg class="vp-icon vp-icon--sm"><use href="#i-bell"/></svg> Timesheet is due today.</div>
+    <div class="vp-message vp-message--negative"><svg class="vp-icon vp-icon--sm"><use href="#i-x"/></svg> Save failed — 2 required fields are missing.</div>
+    <div class="vp-message vp-message--positive"><svg class="vp-icon vp-icon--sm"><use href="#i-check"/></svg> Invoice submitted for approval.</div>
+  </div>
+</div>
+
+<div class="demo">
+  <h2>Dialog</h2>
+  <span class="classes">.vp-overlay + .vp-dialog · data-vp-open="id" · data-vp-close</span>
+  <button class="vp-btn" data-vp-open="demoDialog">Open dialog</button>
+</div>
+
+<div class="demo">
+  <h2>Dropdown menu</h2>
+  <span class="classes">.vp-menu &gt; .vp-menu__item · .vp-menu__sep</span>
+  <div class="vp-menu" style="position:static; display:inline-block">
+    <button class="vp-menu__item"><svg class="vp-icon vp-icon--sm"><use href="#i-pencil"/></svg> Edit</button>
+    <button class="vp-menu__item"><svg class="vp-icon vp-icon--sm"><use href="#i-download"/></svg> Export</button>
+    <hr class="vp-menu__sep">
+    <button class="vp-menu__item"><svg class="vp-icon vp-icon--sm"><use href="#i-x"/></svg> Delete</button>
+  </div>
+</div>
+
+<div class="demo">
+  <h2>Key/value summary</h2>
+  <span class="classes">.vp-kv</span>
+  <div class="row">
+    <div class="vp-kv"><span class="vp-kv__label">Project Manager</span><span class="vp-kv__value">Maria Delgado</span></div>
+    <div class="vp-kv"><span class="vp-kv__label">Contract</span><span class="vp-kv__value">$2,450,000</span></div>
+    <div class="vp-kv"><span class="vp-kv__label">% Complete</span><span class="vp-kv__value">62%</span></div>
+  </div>
+</div>
+
+<div class="demo">
+  <h2>Core color tokens</h2>
+  <span class="classes">from css/vp-tokens.css — extracted from the built product</span>
+  <div class="swatches">
+    <div class="swatch"><i style="background:var(--color-button-bg-primary)"></i><code>--color-button-bg-primary</code></div>
+    <div class="swatch"><i style="background:var(--color-button-text)"></i><code>--color-button-text</code></div>
+    <div class="swatch"><i style="background:var(--color-page-bg)"></i><code>--color-page-bg</code></div>
+    <div class="swatch"><i style="background:var(--color-base-text)"></i><code>--color-base-text</code></div>
+    <div class="swatch"><i style="background:var(--color-nav-menu-item-bg-selected)"></i><code>--color-nav-menu-item-bg-selected</code></div>
+    <div class="swatch"><i style="background:var(--color-grid-header-bg)"></i><code>--color-grid-header-bg</code></div>
+    <div class="swatch"><i style="background:var(--color-field-bg-edited)"></i><code>--color-field-bg-edited</code></div>
+    <div class="swatch"><i style="background:var(--color-field-bg-invalid)"></i><code>--color-field-bg-invalid</code></div>
+    <div class="swatch"><i style="background:var(--vp-status-color-positive)"></i><code>--vp-status-color-positive</code></div>
+    <div class="swatch"><i style="background:var(--vp-status-color-negative)"></i><code>--vp-status-color-negative</code></div>
+    <div class="swatch"><i style="background:var(--vp-status-color-attention)"></i><code>--vp-status-color-attention</code></div>
+    <div class="swatch"><i style="background:var(--vp-status-color-info)"></i><code>--vp-status-color-info</code></div>
+  </div>
+</div>
+
+<!-- demo dialog -->
+<div class="vp-overlay" hidden></div>
+<div class="vp-dialog" id="demoDialog" hidden>
+  <div class="vp-dialog__header">
+    <div class="vp-dialog__title">Example Dialog</div>
+    <button class="vp-btn vp-btn--icon vp-dialog__close" data-vp-close><svg class="vp-icon"><use href="#i-x"/></svg></button>
+  </div>
+  <div class="vp-dialog__body">
+    <p>Dialog body content. 16px corner radius per the product token <code>--border-radius-dialog</code>.</p>
+  </div>
+  <!-- VP convention: primary LEFT, Cancel RIGHT -->
+  <div class="vp-dialog__footer">
+    <button class="vp-btn vp-btn--primary" data-vp-close>Save</button>
+    <button class="vp-btn" data-vp-close>Cancel</button>
+  </div>
+</div>
+
+</body>
+</html>

@@ -338,7 +338,7 @@
   padding: 0 4px;
   flex: none;
 }
-/* measured from live product 09/2026: h24, 12px font, pad 0 8px, r4 pill */
+/* measured from live product 09/2026: h24, 12px font, pad 0 8px, r4 pill, uppercase */
 .vp-tab {
   border: 0;
   background: transparent;
@@ -351,6 +351,8 @@
   color: var(--color-tab-text);
   cursor: pointer;
   white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 .vp-tab:hover { background: var(--color-tab-bg-hover); }
 .vp-tab.is-selected {
@@ -362,9 +364,11 @@
 /* --------------------------------------------------------------------------
    Data grid — header #f3f3f3, 1px #D1D1D1 cell borders, hover #f0ffff,
    selected #D9EBF2
+   Verified from live product 09/2026: rows 33px, header 36px, td padding 6px 6px,
+   column headers uppercase, no vertical separators in header row.
    -------------------------------------------------------------------------- */
 .vp-grid-wrap {
-  background: var(--color-grid-bg);
+  background: var(--color-grid-body-bg, #F9F9F9);
   border: 1px solid var(--color-grid-border);
   border-radius: var(--border-radius-tile, 8px);
   overflow: auto;
@@ -374,27 +378,33 @@
   border-collapse: collapse;
   font-size: 1.3rem;
 }
+/* measured: 36px tall, uppercase labels, no right border between columns */
 .vp-grid th {
   position: sticky;
   top: 0;
+  height: 36px;
   background: var(--color-grid-header-bg);
   color: var(--color-grid-column-header-text);
+  font-size: 1.3rem;
   font-weight: 600;
   text-align: left;
-  padding: 8px 10px;
+  text-transform: uppercase;
+  padding: 0 6px;
   border-bottom: 1px solid var(--color-grid-border);
-  border-right: 1px solid var(--color-grid-cell-border);
   white-space: nowrap;
   z-index: 1;
 }
-.vp-grid th:last-child { border-right: 0; }
 .vp-grid th .sort {
   margin-left: 4px;
   font-size: 1rem;
   color: var(--color-tab-arrow-active);
+  text-transform: none;
 }
+/* measured: 33px row height, 6px padding, vertical-align top */
+.vp-grid tbody tr { height: 33px; }
 .vp-grid td {
-  padding: 7px 10px;
+  padding: 6px;
+  vertical-align: top;
   border-bottom: 1px solid var(--color-grid-cell-border);
   border-right: 1px solid var(--color-grid-cell-border);
   color: var(--color-list-item-text);
@@ -409,6 +419,34 @@
   background: var(--color-grid-header-bg);
   font-weight: 600;
   border-top: 2px solid var(--color-grid-border);
+}
+
+/* Per-column filter row (second <tr> in <thead>, toggled with a toolbar button).
+   measured: 34px tall, inputs 29px, operator column 33px,
+   border color: --color-grid-border-filter-row */
+.vp-grid thead tr.vp-filter-row th {
+  height: 34px;
+  padding: 2px 0;
+  background: var(--color-grid-header-bg);
+  border-bottom: 1px solid var(--color-grid-border-filter-row);
+  border-right: 1px solid var(--color-grid-border-filter-row);
+  text-transform: none;
+  top: 36px;   /* stick below the column header row */
+}
+.vp-grid thead tr.vp-filter-row th:last-child {
+  border-right: 1px solid var(--color-grid-border-filter-row);
+}
+.vp-grid thead tr.vp-filter-row input {
+  width: 100%;
+  height: 29px;
+  border: none;
+  background: var(--color-field-bg);
+  padding: 0 6px;
+  font: inherit;
+  font-size: 1.3rem;
+  color: var(--color-field-text);
+  outline: none;
+  display: block;
 }
 
 /* --------------------------------------------------------------------------

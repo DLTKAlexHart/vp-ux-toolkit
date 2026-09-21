@@ -144,8 +144,28 @@
 
 <div class="demo">
   <h2>Data grid</h2>
-  <span class="classes">.vp-grid-wrap &gt; table.vp-grid · tr.is-selected · td.num</span>
+  <span class="classes">.vp-grid-wrap &gt; table.vp-grid · tbody tr (33px) · td.num · tr.vp-filter-row</span>
+  <p class="vp-muted" style="font-size:1.2rem;margin-bottom:8px">Column headers are uppercase (measured). No vertical separators in header row. Body row height 33px, cell padding 6px.</p>
   <div class="vp-grid-wrap">
+    <table class="vp-grid">
+      <thead>
+        <tr><th>Project <span class="sort">▲</span></th><th>Manager</th><th>Status</th><th>Contract</th></tr>
+        <tr class="vp-filter-row">
+          <th><input type="text" placeholder="Filter…"></th>
+          <th><input type="text" placeholder="Filter…"></th>
+          <th><input type="text" placeholder="Filter…"></th>
+          <th><input type="text" placeholder="Filter…"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Riverside Medical Center</td><td>Maria Delgado</td><td><span class="vp-status vp-status--positive">Active</span></td><td class="num">$2,450,000</td></tr>
+        <tr class="is-selected"><td>Lakeview Elementary</td><td>James Okafor</td><td><span class="vp-status vp-status--positive">Active</span></td><td class="num">$1,180,000</td></tr>
+        <tr><td>Harborfront Transit Hub</td><td>Lena Fischer</td><td><span class="vp-status vp-status--attention">At Risk</span></td><td class="num">$5,720,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="vp-muted" style="font-size:1.2rem;margin-top:8px">Without filter row (standard):</p>
+  <div class="vp-grid-wrap" style="margin-top:4px">
     <table class="vp-grid">
       <thead><tr><th>Project <span class="sort">▲</span></th><th>Manager</th><th>Status</th><th>Contract</th></tr></thead>
       <tbody>

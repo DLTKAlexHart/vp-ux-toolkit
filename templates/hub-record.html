@@ -17,23 +17,13 @@
 
   <!-- =============== Global Header Bar (Pattern 1) =============== -->
   <header class="vp-banner">
-    <button class="vp-banner__icon-btn" data-vp-flyout="navFlyout" title="Menu">
-      <svg class="vp-icon"><use href="#i-menu"/></svg>
-    </button>
     <div class="vp-banner__product">
       <span class="vp-banner__logo">D</span>
       Vantagepoint
     </div>
-    <div class="vp-banner__search">
-      <svg class="vp-icon vp-icon--sm"><use href="#i-search"/></svg>
-      <input type="text" placeholder="Search Vantagepoint">
-    </div>
     <div class="vp-banner__actions">
       <span class="vp-banner__firm"><span class="dot"></span> Apex Design Group</span>
       <span class="vp-banner__period">Period Ending: 9/1/2026 <svg class="vp-icon vp-icon--sm"><use href="#i-chevron-down"/></svg></span>
-      <button class="vp-banner__icon-btn" title="Toggle dark mode" data-vp-theme-toggle>
-        <svg class="vp-icon"><use href="#i-settings"/></svg>
-      </button>
       <div class="vp-banner__avatar">AH</div>
     </div>
   </header>
@@ -41,6 +31,7 @@
   <div class="vp-app__body">
     <!-- =============== Left Navigation, collapsed (Pattern 1) =============== -->
     <nav class="vp-nav">
+      <button class="vp-nav__item" data-vp-flyout="navFlyout" title="Menu"><svg class="vp-icon"><use href="#i-menu"/></svg></button>
       <button class="vp-nav__item" title="Dashboards"><svg class="vp-icon"><use href="#i-dashboard"/></svg></button>
       <button class="vp-nav__item is-selected" title="Hubs"><svg class="vp-icon"><use href="#i-folder"/></svg></button>
       <button class="vp-nav__item" title="My Stuff"><svg class="vp-icon"><use href="#i-clock"/></svg></button>
@@ -97,12 +88,11 @@
         </div>
         <button class="vp-btn vp-btn--icon" title="List view"><svg class="vp-icon"><use href="#i-menu"/></svg></button>
         <div class="vp-spacer"></div>
+        <button class="vp-btn vp-btn--add"><svg class="vp-icon vp-icon--sm"><use href="#i-plus"/></svg> New Project</button>
         <!-- Inline save state: while editing, "+ New Project" is replaced by
-             Save (primary, LEFT) + Cancel (outlined, RIGHT): -->
+             Save (primary, LEFT) + Cancel (outlined, RIGHT):
         <button class="vp-btn vp-btn--primary">Save</button>
-        <button class="vp-btn">Cancel</button>
-        <!-- default state instead:
-        <button class="vp-btn vp-btn--add"><svg class="vp-icon vp-icon--sm"><use href="#i-plus"/></svg> New Project</button> -->
+        <button class="vp-btn">Cancel</button> -->
       </div>
 
       <!-- Record card: white surface w/ blue top line wrapping header + tabs + body -->

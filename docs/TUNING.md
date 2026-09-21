@@ -12,7 +12,7 @@ Environment: vantagepointqe3 / Vantagepoint 2026.4, Firms hub record, 09/02/2026
 | Record action buttons (Dela/Other Actions) | h 32px, font 12px, pad 0 10px, radius 8px, border #3A70A6 | ✅ `.vp-btn` |
 | Dela Actions | gradient `119deg #8A33C2 → #423FE2`, white text | ✅ `.vp-btn--dela` |
 | `+ New [record]` (hub toolbar) | font 14px, pad 10px 14px (h ≈ 40–42) | ✅ `.vp-btn--add` |
-| Tabs | h 24px, font 12px, pad 0 8px, radius 4px, active bg #4C92D9 | ✅ `.vp-tab` |
+| Tabs | h 24px, font 12px, pad 0 8px, radius 4px, **uppercase**, active bg #4C92D9 | ✅ `.vp-tab` (uppercase+letter-spacing added 09/10) |
 | Record name | 22px / 500 / #555 | ✅ |
 | Last-modified line | 13px / 500 / #555 | ✅ |
 | Field group labels / grid headers | 13px / 600 / #4d4d4d | ✅ |
@@ -79,11 +79,45 @@ right-anchored; required-but-empty fields use the yellow tint
 dialogs can contain their own tab bar, and a tab can carry a red required
 marker (kit: `.vp-tab.is-invalid` or a `<span class="req">*</span>`).
 
+## Verified 09/09/2026 — data grid (source: styles20260907204731.min.css)
+
+Extracted from the production stylesheet directly (saved web page from Contacts hub list view).
+
+| Element | Measured | Kit |
+|---|---|---|
+| Body row height | 33px (`height:33px` on `tbody>tr`) | ✅ `tbody tr { height: 33px }` |
+| Body cell (TD) padding | `6px 6px` | ✅ updated from `7px 10px` |
+| Body cell vertical-align | `top` | ✅ added |
+| Header row height | 36px (`.hdrHeight { height: 36px }`) | ✅ `th { height: 36px }` |
+| Header cell padding | 4px 6px (inner `.columnHdr`) | ✅ `th { padding: 0 6px }` |
+| Column header text-transform | `uppercase` | ✅ added `text-transform: uppercase` |
+| Header column separators | **none** — `th` has border-bottom only | ✅ removed `border-right` from `th` |
+| Body cell borders | `border-width: 1px 0 0 1px` (top+left) | ✅ equivalent via bottom+right on each cell |
+| Cell border color | `var(--color-grid-cell-border)` = `#D1D1D1` | ✅ |
+| Hover bg | `var(--color-grid-bg-hover)` = `#f0ffff` | ✅ confirmed (odd cyan, but real) |
+| Selected row bg | `var(--color-grid-bg-selected)` = `#D9EBF2` | ✅ |
+| Grid body bg | `var(--color-grid-body-bg)` = `#F9F9F9` | ✅ updated `.vp-grid-wrap` |
+| Filter row height | 34px | ✅ `.vp-filter-row th { height: 34px }` |
+| Filter row input height | 29px | ✅ |
+| Filter row border color | `var(--color-grid-border-filter-row)` = `#B0B0B0` | ✅ |
+
+Notes: Filter row inputs in the product have an operator dropdown (33px wide) to the left of each input — the kit simplifies this to a plain text input, which is sufficient for mockup fidelity.
+
+## Verified 09/10/2026 — hub record shell (source: styles20260909205338.min.css, Projects hub pages)
+
+| Element | Measured | Kit |
+|---|---|---|
+| Module label (hub toolbar) | `var(--font-size-application-header)` = 1.8rem / 600 / `#5A6170` | ✅ updated from 1.5rem |
+| Record name | `var(--color-title-header-text)` = `#555555` | ✅ switched from hardcoded `#555555` |
+| Record ID line | 1.5rem / 500 / `var(--color-title-subheader-text)` = `#555555` | ✅ updated from 1.2rem / `--color-banner-text` |
+| Record modified line | 1.3rem / 500 / `var(--color-title-secondary-subheader-text)` = `#555555` | ✅ switched from hardcoded `#555555` |
+| Sidebar section padding | `10px 8px 0` | ✅ updated from `12px 14px 0` |
+| Hub toolbar default state | shows `+ New [record]`, not Save/Cancel | ✅ template corrected |
+| Banner bg (default light theme) | `#FFFFFF` (gradient is company-specific theming) | ✅ confirmed |
+
 ## Not yet verified
 
-- Grid row height / cell padding (kit ≈ 30–34px; looked close on screenshot)
-- Grid per-column filter row (inputs with ≈ operator buttons under the header
-  row, seen in the Create Document dialog) — not built
+- Grid per-column filter row operator dropdown (33px wide, precedes each filter input) — kit uses plain input only
 - List-view extras seen on real Employees list: Bulk Update button, View
   selector ("View: Default"), record-count + calendar icons in the filter
   pill group — not built

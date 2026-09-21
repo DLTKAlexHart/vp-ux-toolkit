@@ -249,10 +249,23 @@ Lay fields out with `.vp-form-grid` (auto-fill 220px columns); span with
 
 ## Data grid
 
+Column headers are **uppercase** (measured). No vertical separators between
+header columns. Body rows are 33px tall; cells have 6px padding, vertical-align
+top. Hover bg is `#f0ffff` (the real product color — cyan, but verified).
+
 ```html
 <div class="vp-grid-wrap">
   <table class="vp-grid">
-    <thead><tr><th>Col <span class="sort">▲</span></th><th>Amount</th></tr></thead>
+    <thead>
+      <tr>
+        <th>Col <span class="sort">▲</span></th><th>Amount</th>
+      </tr>
+      <!-- optional per-column filter row (34px, plain text inputs): -->
+      <tr class="vp-filter-row">
+        <th><input type="text" placeholder="Filter…"></th>
+        <th><input type="text" placeholder="Filter…"></th>
+      </tr>
+    </thead>
     <tbody>
       <tr><td>Row</td><td class="num">$1,000</td></tr>
       <tr class="is-selected"><td>Selected row</td><td class="num">$2,000</td></tr>

@@ -1,0 +1,74 @@
+/* Harmony / Vantagepoint icon fonts — the real product glyphs.
+   Usage: <i class="vp-hicon vp-hicon--search"></i>  (nav-* use the Vantagepoint font) */
+@font-face { font-family: "Harmony"; src: url("../fonts/Harmony.woff2") format("woff2"); font-display: block; }
+@font-face { font-family: "Vantagepoint"; src: url("../fonts/Vantagepoint.woff2") format("woff2"); font-display: block; }
+.vp-hicon { font-family: "Harmony"; font-style: normal; font-weight: normal; font-size: 2.4rem; line-height: 1; display: inline-block; -webkit-font-smoothing: antialiased; }
+.vp-hicon::before { content: var(--g); }
+.vp-hicon[class*="vp-hicon--nav-"] { font-family: "Vantagepoint"; }
+.vp-hicon--sm { font-size: 1.6rem; }
+.vp-hicon--nav-my-stuff { --g: "\e90d"; }
+.vp-hicon--nav-dashboard { --g: "\e906"; }
+.vp-hicon--nav-hubs { --g: "\e90c"; }
+.vp-hicon--nav-resource-management { --g: "\e912"; }
+.vp-hicon--nav-proposals { --g: "\e910"; }
+.vp-hicon--nav-billing { --g: "\e901"; }
+.vp-hicon--nav-transaction { --g: "\e915"; }
+.vp-hicon--nav-cash-management { --g: "\e902"; }
+.vp-hicon--nav-accounting { --g: "\e900"; }
+.vp-hicon--nav-asset-management { --g: "\e91e"; }
+.vp-hicon--nav-general-ledger { --g: "\e90b"; }
+.vp-hicon--nav-payroll { --g: "\e90e"; }
+.vp-hicon--nav-purchasing { --g: "\e911"; }
+.vp-hicon--nav-utilities { --g: "\e917"; }
+.vp-hicon--nav-settings { --g: "\e913"; }
+.vp-hicon--search { --g: "\e941"; }
+.vp-hicon--star { --g: "\e9be"; }
+.vp-hicon--chevrons-right { --g: "\e96b"; }
+.vp-hicon--bell { --g: "\e961"; }
+.vp-hicon--help { --g: "\e906"; }
+.vp-hicon--filter { --g: "\e974"; }
+.vp-hicon--export { --g: "\e920"; }
+.vp-hicon--expand { --g: "\e95e"; }
+.vp-hicon--refresh { --g: "\e93a"; }
+.vp-hicon--ask-dela { --g: "\e9d6"; }
+.vp-hicon--chevron-down { --g: "\e924"; }
+.vp-hicon--dela-1 { --g: "\ea44"; }
+.vp-hicon--dela-2 { --g: "\ea45"; }
+.vp-hicon--dela-3 { --g: "\ea46"; }
+.vp-hicon--dela-4 { --g: "\ea47"; }
+.vp-hicon--pinned { --g: "\ea57"; }
+.vp-hicon--sparkles { --g: "\ea15"; }
+/* Dela multi-path glyph: <i class="vp-hicon vp-dela"><span class="vp-hicon vp-hicon--dela-1"></span>…x4</i> */
+.vp-dela { position: relative; width: 1em; height: 1em; }
+.vp-dela .vp-hicon { position: absolute; inset: 0; font-size: inherit; }
+.vp-dela .vp-hicon--dela-1, .vp-dela .vp-hicon--dela-2 { color: #8a30be; }
+/* Harmony-theme mappings (override the classic-set codepoints above) */
+.vp-hicon--search { --g: "\e9d9"; }
+.vp-hicon--star { --g: "\ea1c"; }
+.vp-hicon--bell { --g: "\e945"; }
+.vp-hicon--help { --g: "\ea00"; }
+.vp-hicon--filter { --g: "\e9b8"; }
+.vp-hicon--export { --g: "\e979"; }
+.vp-hicon--expand { --g: "\e91c"; }
+.vp-hicon--refresh { --g: "\e915"; }
+.vp-hicon--chevron-down { --g: "\e96d"; }
+.vp-hicon--ask-dela { --g: "\ea86"; }
+
+/* Harmony-theme nav glyphs: outline set from the Harmony font (the classic filled
+   set lives in the Vantagepoint font and is NOT what the Harmony theme shows). */
+.vp-hicon--nav-my-stuff { --g: "\ea2a"; }
+.vp-hicon--nav-dashboard { --g: "\ea1a"; }
+.vp-hicon--nav-hubs { --g: "\ea40"; }
+.vp-hicon--nav-resource-management { --g: "\ea3e"; }
+.vp-hicon--nav-proposals { --g: "\e95c"; }
+.vp-hicon--nav-billing { --g: "\ea3d"; }
+.vp-hicon--nav-transaction { --g: "\e91d"; }
+.vp-hicon--nav-cash-management { --g: "\e938"; }
+.vp-hicon--nav-accounting { --g: "\e957"; }
+.vp-hicon--nav-asset-management { --g: "\ea71"; }
+.vp-hicon--nav-general-ledger { --g: "\e94f"; }
+.vp-hicon--nav-payroll { --g: "\ea3f"; }
+.vp-hicon--nav-purchasing { --g: "\ea11"; }
+.vp-hicon--nav-utilities { --g: "\ea39"; }
+.vp-hicon--nav-settings { --g: "\e901"; }
+.vp-hicon[class*="vp-hicon--nav-"] { font-family: "Harmony"; }

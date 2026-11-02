@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="css/vp-base.css">
 <link rel="stylesheet" href="css/vp-shell.css">
 <link rel="stylesheet" href="css/vp-components.css">
+<link rel="stylesheet" href="css/vp-hicons.css">
 <script defer src="js/vp-icons.js"></script>
 <script defer src="js/vp-kit.js"></script>
 <style>
@@ -28,6 +29,9 @@
     border: 1px solid var(--color-layout-border);
   }
   .swatch code { color: var(--color-banner-text); }
+  .shell-demo { display: flex; height: 340px; overflow: hidden; border: 1px solid var(--color-layout-border); border-radius: 8px; background: var(--color-workbench-bg); }
+  .shell-demo .vp-nav, .shell-demo .vp-utility-rail { margin-top: 12px; }
+  .shell-demo .vp-utility-rail--floating { margin-top: 12px; }
 </style>
 </head>
 <body>
@@ -267,6 +271,32 @@
     <div class="vp-kv"><span class="vp-kv__label">Project Manager</span><span class="vp-kv__value">Maria Delgado</span></div>
     <div class="vp-kv"><span class="vp-kv__label">Contract</span><span class="vp-kv__value">$2,450,000</span></div>
     <div class="vp-kv"><span class="vp-kv__label">% Complete</span><span class="vp-kv__value">62%</span></div>
+  </div>
+</div>
+
+<div class="demo">
+  <h2>Dashboard shell — floating nav &amp; utility rail</h2>
+  <span class="classes">.vp-app--workbench · .vp-nav--floating · .vp-utility-rail--floating · .vp-dash-card · needs css/vp-hicons.css · full page: templates/dashboard-shell.html</span>
+  <div class="shell-demo">
+    <nav class="vp-nav vp-nav--floating">
+      <button class="vp-nav__item" title="Expand"><i class="vp-hicon vp-hicon--chevrons-right"></i></button>
+      <div class="vp-nav__divider"></div>
+      <button class="vp-nav__item" title="Search"><i class="vp-hicon vp-hicon--search"></i></button>
+      <button class="vp-nav__item" title="Favorites"><i class="vp-hicon vp-hicon--star"></i></button>
+      <button class="vp-nav__item is-selected" title="Dashboards"><i class="vp-hicon vp-hicon--nav-dashboard"></i></button>
+      <button class="vp-nav__item" title="Hubs"><i class="vp-hicon vp-hicon--nav-hubs"></i></button>
+      <button class="vp-nav__item" title="Billing"><i class="vp-hicon vp-hicon--nav-billing"></i></button>
+      <button class="vp-nav__item" title="Settings"><i class="vp-hicon vp-hicon--nav-settings"></i></button>
+    </nav>
+    <div class="vp-dash-card" style="margin-top:12px"><div class="vp-dash-card__body"><span class="vp-muted">.vp-dash-card</span></div></div>
+    <aside class="vp-utility-rail vp-utility-rail--floating">
+      <button class="vp-utility-rail__item vp-utility-rail__item--dela" title="Ask Dela">
+        <i class="vp-hicon vp-dela"><span class="vp-hicon vp-hicon--dela-1"></span><span class="vp-hicon vp-hicon--dela-2"></span><span class="vp-hicon vp-hicon--dela-3"></span><span class="vp-hicon vp-hicon--dela-4"></span></i>
+      </button>
+      <button class="vp-utility-rail__item" title="Insights"><i class="vp-hicon vp-hicon--sparkles"></i></button>
+      <button class="vp-utility-rail__item" title="Notifications"><i class="vp-hicon vp-hicon--bell"></i><span class="vp-badge-dot"></span></button>
+      <button class="vp-utility-rail__item" title="Help"><i class="vp-hicon vp-hicon--help"></i></button>
+    </aside>
   </div>
 </div>
 

@@ -30,6 +30,8 @@ agentic IDE. No build step, no frameworks, no npm.
 | `js/vp-kit.js` | Tiny vanilla JS: tabs, dialogs, flyout, dark-mode toggle. |
 | `js/vp-icons.js` | Injects the shared SVG icon sprite (source: `icons/_sprite.html`). |
 | `templates/` | Full-shell starting pages: hub record, list view, settings + dialog. |
+| `css/vp-hicons.css` | Harmony / Vantagepoint icon fonts and glyph classes (`vp-hicon--*`), used by the dashboard shell. |
+| `js/vp-nav.js` | Optional: renders the floating nav and utility rail from arrays. |
 | `components.html` | Live component gallery with class names. |
 | `docs/COMPONENTS.md` | Copy-paste markup reference (what agents read). |
 | `CLAUDE.md` / `AGENTS.md` / `.cursor/rules/` | Agent guidance. |

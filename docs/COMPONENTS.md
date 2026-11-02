@@ -10,6 +10,7 @@ reference (v2.0, bundled with the `vantagepoint-mockup` skill):
 | Pattern | Kit classes |
 |---|---|
 | 1 · Application Shell | `.vp-app`, `.vp-banner`, `.vp-nav`, `.vp-nav-flyout`, `.vp-utility-rail` |
+| 1b · Dashboard Shell (floating) | `.vp-app--workbench`, `.vp-nav--floating`, `.vp-utility-rail--floating`, `.vp-dash-card`, `.vp-app-header`, `.vp-banner__indicator` |
 | 2 · Hub Toolbar | `.vp-hub-toolbar` |
 | 3 · Record Header | `.vp-record-header`, `.vp-btn--dela` |
 | 4 · Tab Bar | `.vp-tabs`, `.vp-tab` |
@@ -58,6 +59,75 @@ reference (v2.0, bundled with the `vantagepoint-mockup` skill):
 See `templates/hub-record.html` for the complete markup. Non-hub pages
 (settings, dashboards) keep banner + nav + utility rail and use
 `.vp-page-header` / `.vp-page-content` directly.
+
+## Dashboard shell (floating nav and utility rail)
+
+Variant of the shell for dashboard pages. The nav and utility rail become
+rounded cards floating on a bluish-gray workbench surface; the page content
+sits in a rounded `.vp-dash-card` with a 6px primary top line. Full page:
+`templates/dashboard-shell.html`.
+
+```html
+<body class="vp-app vp-app--workbench">
+  <header class="vp-banner" style="--company-color:#008b8b">
+    …product · <div class="vp-spacer"></div> · actions…
+    <div class="vp-banner__indicator"></div>   <!-- gradient company bar -->
+  </header>
+  <div class="vp-app__body">
+    <nav class="vp-nav vp-nav--floating">
+      <button class="vp-nav__item" title="Expand"><i class="vp-hicon vp-hicon--chevrons-right"></i></button>
+      <div class="vp-nav__divider"></div>
+      <button class="vp-nav__item" title="Search"><i class="vp-hicon vp-hicon--search"></i></button>
+      <button class="vp-nav__item is-selected" title="Dashboards"><i class="vp-hicon vp-hicon--nav-dashboard"></i></button>
+      …one button per module…
+    </nav>
+    <main class="vp-main">
+      <div class="vp-app-header"><h1 class="vp-app-header__title">…</h1><div class="vp-app-header__actions">…</div></div>
+      <div class="vp-dash-card"><div class="vp-dash-card__body">…widgets…</div></div>
+    </main>
+    <aside class="vp-utility-rail vp-utility-rail--floating">
+      <button class="vp-utility-rail__item vp-utility-rail__item--dela" title="Ask Dela">
+        <i class="vp-hicon vp-dela">
+          <span class="vp-hicon vp-hicon--dela-1"></span><span class="vp-hicon vp-hicon--dela-2"></span>
+          <span class="vp-hicon vp-hicon--dela-3"></span><span class="vp-hicon vp-hicon--dela-4"></span>
+        </i>
+      </button>
+      <button class="vp-utility-rail__item" title="Insights"><i class="vp-hicon vp-hicon--sparkles"></i></button>
+      <button class="vp-utility-rail__item" title="Notifications"><i class="vp-hicon vp-hicon--bell"></i><span class="vp-badge-dot"></span></button>
+      <button class="vp-utility-rail__item" title="Help"><i class="vp-hicon vp-hicon--help"></i></button>
+    </aside>
+  </div>
+</body>
+```
+
+- Needs `css/vp-hicons.css` (Harmony and Vantagepoint fonts in `fonts/`). Icons are
+  font glyphs: `<i class="vp-hicon vp-hicon--NAME">`, add `vp-hicon--sm` for 16px.
+  Nav glyph names: `nav-my-stuff`, `nav-dashboard`, `nav-hubs`,
+  `nav-resource-management`, `nav-proposals`, `nav-billing`, `nav-transaction`,
+  `nav-cash-management`, `nav-accounting`, `nav-asset-management`,
+  `nav-general-ledger`, `nav-payroll`, `nav-purchasing`, `nav-utilities`,
+  `nav-settings`; general: `search`, `star`, `chevrons-right`, `bell`, `help`,
+  `filter`, `export`, `expand`, `refresh`, `sparkles`, `chevron-down`.
+- Selected nav item: add `is-selected` (blue pill, white icon).
+- The Dela button is a four-layer glyph (`.vp-dela`); add `is-active` to show
+  the gradient tile while a Dela pane is open.
+- Optional: `js/vp-nav.js` renders the nav and rail from an array instead:
+
+```html
+<div id="nav"></div>
+<script src="js/vp-nav.js"></script>
+<script>
+  vpNav.render("#nav", [
+    { title: "Search", icon: "search" },
+    { divider: true },
+    { title: "Dashboards", icon: "nav-dashboard" },
+  ], { selected: "Dashboards", onSelect: (item) => console.log(item.title) });
+  vpUtilityRail.render("#rail", { onDela: () => {} });
+</script>
+```
+
+  The render targets sit inside `.vp-app__body` as the nav and rail's parents; give
+  them `style="display:contents"` so the flex layout is unchanged.
 
 ## Pinned navigation menu
 

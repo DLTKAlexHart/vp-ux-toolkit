@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard — Vantagepoint mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vp-tokens.css">
+<link rel="stylesheet" href="../css/vp-base.css">
+<link rel="stylesheet" href="../css/vp-shell.css">
+<link rel="stylesheet" href="../css/vp-components.css">
+<link rel="stylesheet" href="../css/vp-hicons.css">
+<script defer src="../js/vp-icons.js"></script>
+<script defer src="../js/vp-kit.js"></script>
+</head>
+<!-- Dashboard shell variant: floating nav + utility rail on a workbench surface.
+     Nav and rail icons are Harmony font glyphs (css/vp-hicons.css), not the SVG sprite.
+     To generate the nav/rail from arrays instead, see js/vp-nav.js. -->
+<body class="vp-app vp-app--workbench">
+
+  <header class="vp-banner" style="--company-color:#008b8b">
+    <div class="vp-banner__product">
+      <span class="vp-banner__logo">D</span>
+      Vantagepoint
+    </div>
+    <div class="vp-spacer"></div>
+    <div class="vp-banner__actions">
+      <span class="vp-banner__firm"><span class="dot" style="background:#008b8b"></span> Apex Design Group</span>
+      <span class="vp-banner__period">Period Ending: 9/30/2026 <svg class="vp-icon vp-icon--sm"><use href="#i-chevron-down"/></svg></span>
+      <div class="vp-banner__avatar">AH</div>
+    </div>
+    <div class="vp-banner__indicator"></div>
+  </header>
+
+  <div class="vp-app__body">
+    <nav class="vp-nav vp-nav--floating">
+      <button class="vp-nav__item" title="Expand"><i class="vp-hicon vp-hicon--chevrons-right"></i></button>
+      <div class="vp-nav__divider"></div>
+      <button class="vp-nav__item" title="Search"><i class="vp-hicon vp-hicon--search"></i></button>
+      <button class="vp-nav__item" title="Favorites"><i class="vp-hicon vp-hicon--star"></i></button>
+      <button class="vp-nav__item" title="My Stuff"><i class="vp-hicon vp-hicon--nav-my-stuff"></i></button>
+      <button class="vp-nav__item is-selected" title="Dashboards"><i class="vp-hicon vp-hicon--nav-dashboard"></i></button>
+      <button class="vp-nav__item" title="Hubs"><i class="vp-hicon vp-hicon--nav-hubs"></i></button>
+      <button class="vp-nav__item" title="Billing"><i class="vp-hicon vp-hicon--nav-billing"></i></button>
+      <button class="vp-nav__item" title="Settings"><i class="vp-hicon vp-hicon--nav-settings"></i></button>
+    </nav>
+
+    <main class="vp-main">
+      <div class="vp-app-header">
+        <h1 class="vp-app-header__title">Billing Review, Month-End</h1>
+        <div class="vp-app-header__actions">
+          <label class="vp-toggle"><span>Edit Mode:</span><input type="checkbox"><span class="vp-toggle__track"></span></label>
+        </div>
+      </div>
+
+      <div class="vp-dash-card">
+        <div class="vp-dash-card__body">
+
+          <!-- Dashboard content goes here (widgets, KPI tiles, grids). -->
+          <div class="vp-grid-wrap">
+            <table class="vp-grid">
+              <thead><tr><th>Project</th><th>0–30</th><th>31–60</th><th>Over 60</th></tr></thead>
+              <tbody>
+                <tr><td>Government Center Renovation</td><td>$20,000</td><td>$18,400</td><td>$60,000</td></tr>
+                <tr><td>Baari Sep17 Pro 1 Main</td><td>$12,000</td><td>$8,000</td><td>$50,000</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <aside class="vp-utility-rail vp-utility-rail--floating">
+      <button class="vp-utility-rail__item vp-utility-rail__item--dela" title="Ask Dela" aria-label="Ask Dela">
+        <i class="vp-hicon vp-dela">
+          <span class="vp-hicon vp-hicon--dela-1"></span><span class="vp-hicon vp-hicon--dela-2"></span>
+          <span class="vp-hicon vp-hicon--dela-3"></span><span class="vp-hicon vp-hicon--dela-4"></span>
+        </i>
+      </button>
+      <button class="vp-utility-rail__item" title="Insights"><i class="vp-hicon vp-hicon--sparkles"></i></button>
+      <button class="vp-utility-rail__item" title="Notifications"><i class="vp-hicon vp-hicon--bell"></i><span class="vp-badge-dot"></span></button>
+      <button class="vp-utility-rail__item" title="Help"><i class="vp-hicon vp-hicon--help"></i></button>
+    </aside>
+  </div>
+
+</body>
+</html>

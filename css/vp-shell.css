@@ -586,3 +586,73 @@
   margin-bottom: 12px;
 }
 .vp-panel__title { font-size: 1.5rem; font-weight: 600; color: var(--color-application-header-text); }
+
+/* --------------------------------------------------------------------------
+   Dashboard shell variant — floating nav + utility cards on a workbench
+   surface, gradient company bar under the banner, rounded dashboard card.
+   Icons come from css/vp-hicons.css (Harmony font).
+   -------------------------------------------------------------------------- */
+.vp-app--workbench,
+.vp-app--workbench .vp-app__body,
+.vp-app--workbench .vp-main { background: var(--color-workbench-bg); }
+
+.vp-banner { position: relative; }
+.vp-banner__indicator {
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, transparent 0, var(--company-color, #008b8b) 50%, transparent 100%);
+  pointer-events: none;
+}
+.vp-banner__avatar-img { width: 36px; height: 36px; max-width: none; flex: none; object-fit: contain; }
+.vp-banner__logo-img { width: 200px; height: 34px; margin-left: 4px; flex: none; }
+.vp-app--workbench .vp-banner__actions { gap: 20px; }
+
+.vp-nav--floating,
+.vp-utility-rail--floating {
+  align-self: flex-start;
+  margin-top: 12px;
+  border: 0;
+  background: var(--color-nav-menu-bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+.vp-nav--floating { margin-left: 4px; border-radius: 12px; padding: 10px 0; }
+.vp-nav--floating .vp-nav__bottom { margin-top: 0; }
+.vp-nav--floating .vp-nav__item.is-selected { color: #fff; }
+.vp-nav--floating .vp-icon { width: 24px; height: 24px; }
+.vp-nav--floating .vp-hicon { font-size: 2.4rem; }
+
+.vp-utility-rail--floating { margin-top: 86px; margin-right: 0; width: 50px; border-radius: 12px 0 0 12px; padding: 12px 0; }
+.vp-utility-rail--floating .vp-utility-rail__item { width: 40px; height: 40px; }
+.vp-utility-rail--floating .vp-utility-rail__item--dela { background: transparent; color: var(--color-nav-menu-item-icon); font-size: 1.8rem; }
+.vp-utility-rail--floating .vp-badge-dot { background: #d9261c; width: 6px; height: 6px; top: 7px; right: 9px; border: 0; }
+.vp-utility-rail--floating .vp-icon { width: 24px; height: 24px; }
+.vp-utility-rail--floating .vp-hicon { font-size: 2.4rem; }
+.vp-utility-rail--floating .vp-dela { font-size: 2.6rem; }
+
+/* Dashboard card: solid 6px top line in the primary blue following the large corners */
+.vp-dash-card {
+  flex: 1;
+  min-height: 0;
+  margin: 0 16px;
+  border-top: 6px solid var(--color-application-top-line);
+  border-radius: 32px 32px 0 0;
+  background: var(--color-page-bg);
+  overflow: auto;
+}
+.vp-dash-card__body { display: flex; flex-direction: column; gap: 10px; padding: 28px 16px 24px; max-width: 1170px; }
+
+/* Application header (title row) */
+.vp-app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: none;
+  min-height: 64px;
+  padding: 0 32px 0 34px;
+}
+.vp-app-header__title { font-size: var(--font-size-application-header); font-weight: 600; color: var(--color-application-header-text, #5A6170); }
+.vp-app-header__actions { display: flex; align-items: center; gap: 8px; font-size: 1.3rem; font-weight: 500; }
+.vp-app-header__actions .vp-toggle { gap: 8px; }

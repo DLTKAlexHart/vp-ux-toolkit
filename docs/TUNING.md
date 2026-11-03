@@ -115,6 +115,24 @@ Notes: Filter row inputs in the product have an operator dropdown (33px wide) to
 | Hub toolbar default state | shows `+ New [record]`, not Save/Cancel | ✅ template corrected |
 | Banner bg (default light theme) | `#FFFFFF` (gradient is company-specific theming) | ✅ confirmed |
 
+## Verified 2026-11-03 — collapsed left nav rail (computed styles, live Hubs page)
+
+| Element | Measured | Kit |
+|---|---|---|
+| Nav container width | 52px | ✅ `--nav-menu-width` |
+| Nav item width | 42px | ✅ updated from 40px |
+| Nav item height | 32px | ✅ updated from 40px |
+| Nav item border-radius | 8px | ✅ |
+| Nav item selected bg | `rgb(76, 146, 217)` = `#4C92D9` | ✅ primary blue token |
+| Nav item selected icon | `rgb(255, 255, 255)` white | ✅ |
+| Nav icon type | Harmony font glyphs (`vp-hicon`) on **all pages**, not SVG sprite | ✅ updated all templates |
+| Nav item order | Expand `»` · divider · Search · Favorites · My Stuff · Dashboards · Hubs · Resource Management · Proposals · Billing · Transaction Center · Cash Management · Accounting · Asset Management · General Ledger · Payroll · Purchasing · Utilities · Settings | ✅ updated all templates |
+| Utility rail items | Dela (hicon glyph) · Insights (sparkles) · Notifications (bell) · Help | ✅ updated from D+ · Pin · People · Bell · Help |
+
+Notes: The product nav uses a single DOM element that expands in place (class `closed`
+toggled to open the pinned menu), shifting content right. The kit uses a separate
+`vp-nav-flyout` overlay — reads identically in static mockups, but doesn't push content.
+
 ## Not yet verified
 
 - Grid per-column filter row operator dropdown (33px wide, precedes each filter input) — kit uses plain input only

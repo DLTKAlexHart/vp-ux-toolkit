@@ -39,7 +39,15 @@ reference (v2.0, bundled with the `vantagepoint-mockup` skill):
 <body class="vp-app">
   <header class="vp-banner">…logo · search · firm + period + avatar…</header>
   <div class="vp-app__body">
-    <nav class="vp-nav">…icon rail…</nav>
+    <nav class="vp-nav">
+      <!-- Nav icons are Harmony glyphs on ALL page types (vp-hicons.css required) -->
+      <button class="vp-nav__item" data-vp-flyout="navFlyout" title="Expand"><i class="vp-hicon vp-hicon--chevrons-right"></i></button>
+      <div class="vp-nav__divider"></div>
+      <button class="vp-nav__item" title="Search"><i class="vp-hicon vp-hicon--search"></i></button>
+      …one button per module in product order…
+      <button class="vp-nav__item is-selected" title="Hubs"><i class="vp-hicon vp-hicon--nav-hubs"></i></button>
+      …
+    </nav>
     <div class="vp-nav-flyout" id="navFlyout">…</div>   <!-- optional -->
     <main class="vp-main">
       <div class="vp-hub-toolbar">…module · Find · Filter · pager · +New…</div>
@@ -52,7 +60,8 @@ reference (v2.0, bundled with the `vantagepoint-mockup` skill):
         </div>
       </div>
     </main>
-    <aside class="vp-utility-rail">…Dela · pin · person · bell · help…</aside>
+    <!-- Utility rail: Dela · Insights · Notifications · Help (no pin/people buttons) -->
+    <aside class="vp-utility-rail">…Dela hicon · sparkles · bell · help…</aside>
   </div>
 </body>
 ```

@@ -5,23 +5,27 @@ Keep it short — durable facts belong in TUNING.md (measurements),
 COMPONENTS.md (markup), or CLAUDE.md (conventions). Update before ending a
 work session.
 
-## Current state (2026-11-03)
+## Current state (2026-11-03, session 2)
 
-Kit is current through the 2026-11-03 session. Christopher's dashboard PR (merged
-2026-11-02) added the dashboard shell template, Harmony icon fonts, floating nav/rail
-CSS, and widget CSS. All of that is now fully documented.
+Nav tuning pass complete (measured from live product via computed styles + screenshots):
+- Nav items corrected to 42×32px (were 40×40)
+- All hub templates switched from SVG sprite icons to Harmony glyphs in the nav rail
+- Full production module order applied to all templates
+- Utility rail corrected: Dela hicon · Insights · Notifications · Help (removed Pin, People)
+- `css/vp-hicons.css` now required on all page types (not dashboard-only)
+- All agent guides updated and in sync
 
 Key facts:
 - Widget CSS lives in `css/vp-components.css` (lines 942–989) — no build needed
 - Floating nav/rail is a modifier on the existing `.vp-nav` / `.vp-utility-rail` base
 - `js/vp-nav.js` is optional vanilla JS only — no framework, no build step
-- All agent guides (CLAUDE.md, AGENTS.md, .cursor/rules/vp-kit.mdc) are in sync
+- All agent guides (CLAUDE.md, AGENTS.md, .cursor/rules/vp-kit.mdc, docs/COMPONENTS.md) are in sync
 
 ## Next up
 
-- Per-column filter row operator dropdown (33px wide button before each filter input) — kit has plain input only, sufficient for mockups
+- Pinned nav menu (expanded state): verify the full item list and "Unpin Menu" header against the live product pinned view — screenshots captured, deeper pass pending
 - List-view extras: Bulk Update button, "View: Default" selector
-- Consider: pinned menu pushing content (currently overlays)
+- Per-column filter row operator dropdown (33px wide button before each filter input) — kit has plain input only, sufficient for mockups
 - Dashboard widget components (KPI tiles, charts, sparklines) — dashboard shell template exists but widgets are not built
 - Dark theme side-by-side check against product dark mode
 

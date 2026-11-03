@@ -5,28 +5,24 @@ Keep it short — durable facts belong in TUNING.md (measurements),
 COMPONENTS.md (markup), or CLAUDE.md (conventions). Update before ending a
 work session.
 
-## Current state (2026-09-10)
+## Current state (2026-11-03)
 
-Grid and hub record shell both tuned. Token file refreshed to Sept 9 build
-(styles20260909205338.min.css from Projects hub pages — same token values as Sept 7).
+Kit is current through the 2026-11-03 session. Christopher's dashboard PR (merged
+2026-11-02) added the dashboard shell template, Harmony icon fonts, floating nav/rail
+CSS, and widget CSS. All of that is now fully documented.
 
-Hub record shell changes applied (see TUNING.md for details):
-- Module label: corrected to 1.8rem (was 1.5rem), now uses `--font-size-application-header`
-- Record ID line: corrected to 1.5rem/500 (was 1.2rem), now uses `--color-title-subheader-text`
-- Record name + modified line: switched from hardcoded `#555555` to correct tokens
-  (`--color-title-header-text` / `--color-title-secondary-subheader-text`) — these
-  properly adapt to dark mode (#dddddd in dark)
-- Sidebar section padding: 10px 8px 0 (was 12px 14px 0)
-- Template default: hub toolbar now shows `+ New Project`, Save/Cancel in comment
-- Tabs: `text-transform: uppercase; letter-spacing: 0.03em` added to `.vp-tab`
-  (confirmed from production .ngcrm-tabs stylesheet rule)
+Key facts:
+- Widget CSS lives in `css/vp-components.css` (lines 942–989) — no build needed
+- Floating nav/rail is a modifier on the existing `.vp-nav` / `.vp-utility-rail` base
+- `js/vp-nav.js` is optional vanilla JS only — no framework, no build step
+- All agent guides (CLAUDE.md, AGENTS.md, .cursor/rules/vp-kit.mdc) are in sync
 
 ## Next up
 
 - Per-column filter row operator dropdown (33px wide button before each filter input) — kit has plain input only, sufficient for mockups
 - List-view extras: Bulk Update button, "View: Default" selector
 - Consider: pinned menu pushing content (currently overlays)
-- Dashboard template (dashboards.scss in the parent folder is the source)
+- Dashboard widget components (KPI tiles, charts, sparklines) — dashboard shell template exists but widgets are not built
 - Dark theme side-by-side check against product dark mode
 
 ## Working setup

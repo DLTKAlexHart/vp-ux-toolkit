@@ -61,10 +61,11 @@ touching when the product visually changes.
 
 Templates load **Lexend** (the product's UI font) from Google Fonts, with the
 product's fallback stack (`tahoma, calibri, trebuchet ms`) when offline.
-The product's **Harmony icon font** is not bundled; the kit uses inline SVG
-icons instead. If you want font icons, drop `Harmony.woff2` from the product
-repo into `fonts/` and add an `@font-face` — the glyph tokens
-(`--harmony-icon-*`) are already in `vp-tokens.css`.
+The **Harmony and Vantagepoint icon fonts** are bundled in `fonts/` and loaded
+by `css/vp-hicons.css`. The dashboard shell uses these font glyphs
+(`<i class="vp-hicon vp-hicon--NAME">`) for nav and rail icons. Hub-page
+templates use inline SVG icons via the sprite (`<svg class="vp-icon"><use href="#i-NAME"/></svg>`)
+and do not require `vp-hicons.css`.
 
 ## Pattern alignment
 
@@ -85,5 +86,5 @@ visual layer (real extracted tokens) — the two are complementary: patterns for
   the product; token colors/radii/fonts are exact.
 - The nav rail/flyout is a simplified version of VP navigation (pin/unpin and
   inline module expansion not fully modeled).
-- Dashboards aren't templated yet (`dashboards.scss` is a good source if you
-  add one).
+- Dashboard widget types (KPI tiles, charts, sparklines) are not yet built —
+  `templates/dashboard-shell.html` provides the shell only.

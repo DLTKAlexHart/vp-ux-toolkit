@@ -11,6 +11,7 @@ reference (v2.0, bundled with the `vantagepoint-mockup` skill):
 |---|---|
 | 1 · Application Shell | `.vp-app`, `.vp-banner`, `.vp-nav`, `.vp-nav-flyout`, `.vp-utility-rail` |
 | 1b · Dashboard Shell (floating) | `.vp-app--workbench`, `.vp-nav--floating`, `.vp-utility-rail--floating`, `.vp-dash-card`, `.vp-app-header`, `.vp-banner__indicator` |
+| 1c · Dashboard Widget | `.vp-widget`, `.vp-widget__header`, `.vp-widget__meta`, `.vp-widget__tool`, `.vp-widget__toolbar`, `.vp-widget__body`, `.vp-widget--fill` |
 | 2 · Hub Toolbar | `.vp-hub-toolbar` |
 | 3 · Record Header | `.vp-record-header`, `.vp-btn--dela` |
 | 4 · Tab Bar | `.vp-tabs`, `.vp-tab` |
@@ -128,6 +129,132 @@ sits in a rounded `.vp-dash-card` with a 6px primary top line. Full page:
 
   The render targets sit inside `.vp-app__body` as the nav and rail's parents; give
   them `style="display:contents"` so the flex layout is unchanged.
+
+## Dashboard widget
+
+Dashpart widgets are the content cards placed inside `.vp-dash-card__body`. Each
+has a gray 36px title bar, optional meta text and icon tools in the header,
+an optional circled-icon toolbar row, and a body for content (usually a grid).
+Requires `css/vp-hicons.css` for toolbar icons.
+
+**Basic widget — header with meta and icon tools:**
+
+```html
+<div class="vp-widget">
+  <div class="vp-widget__header">
+    Aging Summary
+    <span class="vp-widget__meta">Sep 2026</span>
+    <button class="vp-widget__tool" title="Refresh"><i class="vp-hicon vp-hicon--refresh"></i></button>
+    <button class="vp-widget__tool" title="More options"><i class="vp-hicon vp-hicon--chevron-down"></i></button>
+  </div>
+  <div class="vp-widget__body">
+    <!-- content, KPI tiles, text, etc. -->
+  </div>
+</div>
+```
+
+- `.vp-widget__meta` pushes subsequent tools to the right edge (via `margin-left: auto`).
+- `.vp-widget__tool` in the header is icon-only, no border — use for Refresh, More, ×.
+
+**Widget with circled toolbar (below the header):**
+
+```html
+<div class="vp-widget">
+  <div class="vp-widget__header">Revenue by Client</div>
+  <div class="vp-widget__toolbar">
+    <button class="vp-widget__tool" title="Filter"><i class="vp-hicon vp-hicon--filter"></i></button>
+    <button class="vp-widget__tool" title="Export"><i class="vp-hicon vp-hicon--export"></i></button>
+    <button class="vp-widget__tool" title="Expand"><i class="vp-hicon vp-hicon--expand"></i></button>
+  </div>
+  <div class="vp-widget__body">…</div>
+</div>
+```
+
+- `.vp-widget__toolbar` tools have a circular border (22×22px) and are right-aligned.
+
+**Widget with fixed-column grid and totals row:**
+
+Grids inside widgets skip the outer `.vp-grid-wrap` border/radius — put
+`.vp-grid-wrap` directly inside `.vp-widget`, not inside `.vp-widget__body`.
+Add `vp-grid--fixed` for wrapping column headers and even cell padding.
+
+```html
+<div class="vp-widget">
+  <div class="vp-widget__header">
+    Aging Summary
+    <span class="vp-widget__meta">Period: Sep 2026</span>
+  </div>
+  <div class="vp-grid-wrap">
+    <table class="vp-grid vp-grid--fixed">
+      <thead>
+        <tr>
+          <th>Client</th>
+          <th class="num">0–30</th>
+          <th class="num">31–60</th>
+          <th class="num">Over 60</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="twisty"><svg class="vp-icon vp-icon--sm"><use href="#i-chevron-right"/></svg></span>
+            Apex Design Group
+          </td>
+          <td class="num">$20,000</td>
+          <td class="num">$18,400</td>
+          <td class="num">$60,000</td>
+        </tr>
+        <tr>
+          <td>Baari Sep17 Pro 1 Main</td>
+          <td class="num">$12,000</td>
+          <td class="num">$8,000</td>
+          <td class="num">$50,000</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr class="is-totals">
+          <td>Total</td>
+          <td class="num">$32,000</td>
+          <td class="num">$26,400</td>
+          <td class="num">$110,000</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+```
+
+- `tr.is-totals` — totals row: distinct background, bold 600 text, 36px height. First cell auto-indented to align with tree content (uses `padding-left: 34px`).
+- `.twisty` — inline expand/collapse icon for tree rows (use `vp-icon--sm` chevron).
+
+**Zebra-striped grid (for dense lists):**
+
+```html
+<div class="vp-widget">
+  <div class="vp-widget__header">Top Projects by Revenue</div>
+  <div class="vp-grid-wrap">
+    <table class="vp-grid vp-grid--fixed vp-grid--zebra">
+      <thead><tr><th>Project</th><th class="num">Revenue</th></tr></thead>
+      <tbody>
+        <tr><td>Riverside Medical Center</td><td class="num">$2,450,000</td></tr>
+        <tr><td>Harborfront Transit Hub</td><td class="num">$5,720,000</td></tr>
+        <tr><td>Lakeview Elementary</td><td class="num">$1,180,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+```
+
+- `.vp-grid--zebra` — odd rows get `--color-grid-header-bg` background; row height 30px.
+- Combine with `vp-grid--fixed` for consistent padding.
+
+**Full-height widget:**
+
+Add `.vp-widget--fill` to set a fixed 440px height (for tall chart or grid widgets).
+
+```html
+<div class="vp-widget vp-widget--fill">…</div>
+```
 
 ## Pinned navigation menu
 

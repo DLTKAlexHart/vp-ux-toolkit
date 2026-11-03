@@ -321,6 +321,99 @@
 </div>
 
 <div class="demo">
+  <h2>Dashboard widget</h2>
+  <span class="classes">.vp-widget · __header · __meta · __tool · __toolbar · __body · .vp-widget--fill · .vp-grid--fixed · .vp-grid--zebra · tr.is-totals · full page: templates/dashboard-shell.html</span>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start">
+
+    <!-- Header with meta + icon tools -->
+    <div>
+      <p class="vp-muted" style="font-size:1.2rem;margin-bottom:6px">Header with meta and icon tools</p>
+      <div class="vp-widget">
+        <div class="vp-widget__header">
+          Top Clients
+          <span class="vp-widget__meta">Sep 2026</span>
+          <button class="vp-widget__tool" title="Refresh"><i class="vp-hicon vp-hicon--refresh"></i></button>
+          <button class="vp-widget__tool" title="Options"><i class="vp-hicon vp-hicon--chevron-down"></i></button>
+        </div>
+        <div class="vp-widget__body" style="padding:12px 16px">
+          <p class="vp-muted" style="font-size:1.2rem">.vp-widget__body — any content</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Circled toolbar row -->
+    <div>
+      <p class="vp-muted" style="font-size:1.2rem;margin-bottom:6px">Circled-icon toolbar row</p>
+      <div class="vp-widget">
+        <div class="vp-widget__header">Revenue by Client</div>
+        <div class="vp-widget__toolbar">
+          <button class="vp-widget__tool" title="Filter"><i class="vp-hicon vp-hicon--filter"></i></button>
+          <button class="vp-widget__tool" title="Export"><i class="vp-hicon vp-hicon--export"></i></button>
+          <button class="vp-widget__tool" title="Expand"><i class="vp-hicon vp-hicon--expand"></i></button>
+        </div>
+        <div class="vp-widget__body" style="padding:12px 16px">
+          <p class="vp-muted" style="font-size:1.2rem">.vp-widget__toolbar — circled, right-aligned</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fixed grid with totals row -->
+    <div>
+      <p class="vp-muted" style="font-size:1.2rem;margin-bottom:6px">Fixed-column grid + totals row</p>
+      <div class="vp-widget">
+        <div class="vp-widget__header">
+          Aging Summary
+          <span class="vp-widget__meta">Period: Sep 2026</span>
+        </div>
+        <div class="vp-grid-wrap">
+          <table class="vp-grid vp-grid--fixed">
+            <thead>
+              <tr><th>Client</th><th class="num">0–30</th><th class="num">31–60</th><th class="num">Over 60</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="twisty"><svg class="vp-icon vp-icon--sm"><use href="#i-chevron-right"/></svg></span>Apex Design Group</td>
+                <td class="num">$20,000</td><td class="num">$18,400</td><td class="num">$60,000</td>
+              </tr>
+              <tr>
+                <td>Baari Sep17 Pro 1 Main</td>
+                <td class="num">$12,000</td><td class="num">$8,000</td><td class="num">$50,000</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr class="is-totals">
+                <td>Total</td>
+                <td class="num">$32,000</td><td class="num">$26,400</td><td class="num">$110,000</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Zebra grid -->
+    <div>
+      <p class="vp-muted" style="font-size:1.2rem;margin-bottom:6px">Zebra-striped grid</p>
+      <div class="vp-widget">
+        <div class="vp-widget__header">Top Projects by Revenue</div>
+        <div class="vp-grid-wrap">
+          <table class="vp-grid vp-grid--fixed vp-grid--zebra">
+            <thead><tr><th>Project</th><th class="num">Revenue</th></tr></thead>
+            <tbody>
+              <tr><td>Riverside Medical Center</td><td class="num">$2,450,000</td></tr>
+              <tr><td>Harborfront Transit Hub</td><td class="num">$5,720,000</td></tr>
+              <tr><td>Lakeview Elementary</td><td class="num">$1,180,000</td></tr>
+              <tr><td>Apex Design Group</td><td class="num">$980,000</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="demo">
   <h2>Core color tokens</h2>
   <span class="classes">from css/vp-tokens.css — extracted from the built product</span>
   <div class="swatches">
@@ -347,7 +440,7 @@
     <button class="vp-btn vp-btn--icon vp-dialog__close" data-vp-close><svg class="vp-icon"><use href="#i-x"/></svg></button>
   </div>
   <div class="vp-dialog__body">
-    <p>Dialog body content. 16px corner radius per the product token <code>--border-radius-dialog</code>.</p>
+    <p>Dialog body content. Note: shipped dialogs render at <strong>4px radius</strong> — the <code>--border-radius-dialog</code> token says 16px but the built product overrides it (verified in TUNING.md).</p>
   </div>
   <!-- VP convention: primary LEFT, Cancel RIGHT -->
   <div class="vp-dialog__footer">

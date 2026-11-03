@@ -10,16 +10,19 @@ alwaysApply: true
   not the Harmony north-star design system and not generic styling.
 - Every page links, in order: `css/vp-tokens.css`, `css/vp-base.css`,
   `css/vp-shell.css`, `css/vp-components.css`, then `js/vp-icons.js` and
-  `js/vp-kit.js` with `defer`.
+  `js/vp-kit.js` with `defer`. Dashboard pages also add `css/vp-hicons.css`
+  (Harmony/Vantagepoint icon fonts) and optionally `js/vp-nav.js`.
 - Never hardcode colors, radii, or fonts — use `var(--…)` tokens from
   `css/vp-tokens.css`. They are extracted from the real product and are ground truth.
 - Start new pages by copying the closest file in `templates/` (hub-record,
-  list-view, settings-form) and keep the shell (banner + nav rail).
+  list-view, settings-form, dashboard-shell) and keep the shell (banner + nav rail).
 - Use the markup patterns from `docs/COMPONENTS.md` / `components.html`
   (`vp-btn`, `vp-field`, `vp-grid`, `vp-tabs`, `vp-dialog`, `vp-status`, …).
-- Icons: `<svg class="vp-icon"><use href="#i-NAME"/></svg>`; ids listed in
-  `icons/_sprite.html`. Add new symbols there, then run
-  `python3 scripts/build-icons.py`.
+- Icons: hub pages use `<svg class="vp-icon"><use href="#i-NAME"/></svg>`; ids
+  listed in `icons/_sprite.html`. Add new symbols there, then run
+  `python3 scripts/build-icons.py`. Dashboard pages use Harmony font glyphs:
+  `<i class="vp-hicon vp-hicon--NAME"></i>` (requires `css/vp-hicons.css`);
+  glyph names listed in `docs/COMPONENTS.md`.
 - Page-specific styles go in that page's `<style>` block, built on tokens.
   Do not edit shared `css/` files for one-off mockups.
 - No frameworks or build steps; pages must work opened directly from disk.
@@ -29,6 +32,8 @@ alwaysApply: true
   fields at rest are plain text (`.vp-dfield`, click-to-edit) — only actively
   edited fields are bordered inputs; hub pages use Hub Toolbar + Record Header
   + Tab Bar + Record Sidebar (no breadcrumbs); empty grids say "There are no
-  records to show in this grid." Pattern-to-class map: docs/COMPONENTS.md.
+  records to show in this grid."; dashboard widgets (`.vp-widget`) sit inside
+  `.vp-dash-card__body` with a gray header, optional circled toolbar, and fixed
+  or zebra grid. Pattern-to-class map: docs/COMPONENTS.md.
 
 Full agent guide: `CLAUDE.md`. Component reference: `docs/COMPONENTS.md`.

@@ -10,6 +10,8 @@ what customers actually see today.
 1. **Always use the kit's CSS.** Link these four files (in this order) in every page:
    `css/vp-tokens.css`, `css/vp-base.css`, `css/vp-shell.css`, `css/vp-components.css`,
    plus `js/vp-icons.js` and `js/vp-kit.js` (both `defer`). Use relative paths.
+   For **dashboard pages**, also add `css/vp-hicons.css` (Harmony/Vantagepoint icon fonts)
+   and optionally `js/vp-nav.js` (renders floating nav and utility rail from arrays).
 2. **Never hardcode colors, radii, or fonts.** Use the CSS custom properties from
    `css/vp-tokens.css` (e.g. `var(--color-button-bg-primary)`). They were extracted
    from the real product stylesheet — treat them as ground truth.
@@ -17,11 +19,14 @@ what customers actually see today.
    inventing new structures. Class reference: `docs/COMPONENTS.md`.
 4. **Start new pages from a template.** For a record/detail screen copy
    `templates/hub-record.html`; for a list screen copy `templates/list-view.html`;
-   for settings/forms copy `templates/settings-form.html`. Keep the shell
-   (banner + nav rail) intact so mockups feel like real product screens.
-5. **Icons:** use the inline sprite via `<svg class="vp-icon"><use href="#i-NAME"/></svg>`.
+   for settings/forms copy `templates/settings-form.html`; for a dashboard copy
+   `templates/dashboard-shell.html`. Keep the shell intact so mockups feel like
+   real product screens.
+5. **Icons:** Hub pages use the inline SVG sprite: `<svg class="vp-icon"><use href="#i-NAME"/></svg>`.
    Available ids are in `icons/_sprite.html`. To add an icon, add a `<symbol>` there
    and run `python3 scripts/build-icons.py`.
+   Dashboard pages use Harmony font glyphs instead: `<i class="vp-hicon vp-hicon--NAME"></i>`
+   (requires `css/vp-hicons.css`). Nav glyph names are listed in `docs/COMPONENTS.md`.
 6. **Page-specific styles** go in a `<style>` block in that page, built on tokens —
    don't edit the shared `css/` files for a one-off mockup.
 7. **Dark mode** works automatically: set `data-theme="dark"` on `<html>`
@@ -45,6 +50,7 @@ what customers actually see today.
   by …" line, actions right: Dela Actions ✦ / Add Touchpoint / Other Actions ∨),
   Tab Bar, then Record Sidebar (`.vp-record-sidebar`) + tab content.
   While editing, `+ New` is replaced by Save (left) + Cancel (right).
+- **Dashboard widgets** (`.vp-widget`) sit inside `.vp-dash-card__body`. Each has a gray 36px header (title + optional `.vp-widget__meta` text + `.vp-widget__tool` icon buttons), an optional `.vp-widget__toolbar` row of circled icon buttons below the header, and a `.vp-widget__body` for content. Grids inside widgets use `.vp-grid-wrap` placed directly inside `.vp-widget` (not inside `__body`) with modifiers `vp-grid--fixed` (wrapping headers, even padding) and/or `vp-grid--zebra` (striped, 30px rows). Totals rows: `tr.is-totals`. Tree-row expand icons: `<span class="twisty">`. Full markup reference: `docs/COMPONENTS.md`.
 - **Shell:** global banner + collapsed left nav rail + Right Utility Rail
   (`.vp-utility-rail`: Dela D+, pin, person, notifications, help) are on every
   screen. They're boilerplate — include them, don't make them the focus.

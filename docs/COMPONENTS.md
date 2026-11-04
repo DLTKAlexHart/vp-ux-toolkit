@@ -41,12 +41,20 @@ reference (v2.0, bundled with the `vantagepoint-mockup` skill):
   <div class="vp-app__body">
     <nav class="vp-nav">
       <!-- Nav icons are Harmony glyphs on ALL page types (vp-hicons.css required) -->
+      <!-- Typical item set — real users have 5–12 modules, adjust to match the mockup's persona -->
       <button class="vp-nav__item" data-vp-flyout="navFlyout" title="Expand"><i class="vp-hicon vp-hicon--chevrons-right"></i></button>
       <div class="vp-nav__divider"></div>
       <button class="vp-nav__item" title="Search"><i class="vp-hicon vp-hicon--search"></i></button>
-      …one button per module in product order…
+      <button class="vp-nav__item" title="Favorites"><i class="vp-hicon vp-hicon--star"></i></button>
+      <button class="vp-nav__item" title="My Stuff"><i class="vp-hicon vp-hicon--nav-my-stuff"></i></button>
+      <button class="vp-nav__item" title="Dashboards"><i class="vp-hicon vp-hicon--nav-dashboard"></i></button>
       <button class="vp-nav__item is-selected" title="Hubs"><i class="vp-hicon vp-hicon--nav-hubs"></i></button>
-      …
+      <button class="vp-nav__item" title="Resource Management"><i class="vp-hicon vp-hicon--nav-resource-management"></i></button>
+      <button class="vp-nav__item" title="Transaction Center"><i class="vp-hicon vp-hicon--nav-transaction"></i></button>
+      <button class="vp-nav__item" title="Accounting"><i class="vp-hicon vp-hicon--nav-accounting"></i></button>
+      <button class="vp-nav__item" title="General Ledger"><i class="vp-hicon vp-hicon--nav-general-ledger"></i></button>
+      <button class="vp-nav__item" title="Utilities"><i class="vp-hicon vp-hicon--nav-utilities"></i></button>
+      <button class="vp-nav__item" title="Settings"><i class="vp-hicon vp-hicon--nav-settings"></i></button>
     </nav>
     <div class="vp-nav-flyout" id="navFlyout">…</div>   <!-- optional -->
     <main class="vp-main">
@@ -271,22 +279,30 @@ Toggled by the banner hamburger (`data-vp-flyout="navFlyout"`). 250px white
 panel, rounded right corners; the current module expands inline with indented
 sub-items; selected item = blue pill:
 
+Icons in the flyout use Harmony glyphs (`vp-hicon--sm`), matching the collapsed rail.
+Two dividers: one after the pin header, one between Favorites and My Stuff.
+
 ```html
 <div class="vp-nav-flyout" id="navFlyout">
   <button class="vp-nav-flyout__pin" data-vp-flyout="navFlyout">
-    <svg class="vp-icon vp-icon--sm"><use href="#i-pin"/></svg> Unpin Menu
+    <i class="vp-hicon vp-hicon--sm vp-hicon--pinned"></i> Unpin Menu
+    <span class="chev" style="margin-left:auto">‹‹</span>
   </button>
-  <button class="vp-nav-flyout__item"><svg class="vp-icon vp-icon--sm"><use href="#i-search"/></svg> Search</button>
   <hr class="vp-divider">
-  <button class="vp-nav-flyout__item"><svg class="vp-icon vp-icon--sm"><use href="#i-folder"/></svg> Projects <span class="chev">∨</span></button>
+  <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--search"></i> Search</button>
+  <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--star"></i> Favorites</button>
+  <hr class="vp-divider">
+  <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--nav-my-stuff"></i> My Stuff</button>
+  <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--nav-hubs"></i> Hubs <span class="chev">∨</span></button>
   <div class="vp-nav-flyout__sub">
-    <button class="vp-nav-flyout__item is-selected">Project</button>
-    <button class="vp-nav-flyout__item">Plan</button>
+    <button class="vp-nav-flyout__item is-selected">Projects</button>
+    <button class="vp-nav-flyout__item">Contacts</button>
   </div>
+  <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--nav-settings"></i> Settings <span class="chev">›</span></button>
 </div>
 ```
 
-Full example (Projects module expanded): `templates/hub-record.html`.
+Full example (Hubs expanded): `templates/hub-record.html`.
 
 ## Hub toolbar
 

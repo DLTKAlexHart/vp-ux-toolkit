@@ -22,11 +22,13 @@ what customers actually see today.
    for settings/forms copy `templates/settings-form.html`; for a dashboard copy
    `templates/dashboard-shell.html`. Keep the shell intact so mockups feel like
    real product screens.
-5. **Icons:** Hub pages use the inline SVG sprite: `<svg class="vp-icon"><use href="#i-NAME"/></svg>`.
-   Available ids are in `icons/_sprite.html`. To add an icon, add a `<symbol>` there
-   and run `python3 scripts/build-icons.py`.
-   Dashboard pages use Harmony font glyphs instead: `<i class="vp-hicon vp-hicon--NAME"></i>`
-   (requires `css/vp-hicons.css`). Nav glyph names are listed in `docs/COMPONENTS.md`.
+5. **Icons:** The **nav rail and utility rail** use Harmony font glyphs on **all page types**
+   (verified against live product 2026-11-03): `<i class="vp-hicon vp-hicon--NAME"></i>`.
+   Always include `css/vp-hicons.css` — not just on dashboard pages.
+   Nav glyph names are listed in `docs/COMPONENTS.md`.
+   The **SVG sprite** (`<svg class="vp-icon"><use href="#i-NAME"/></svg>`) is for
+   content-area icons only (buttons, fields, grids). Available ids in `icons/_sprite.html`;
+   add new ones there and run `python3 scripts/build-icons.py`.
 6. **Page-specific styles** go in a `<style>` block in that page, built on tokens —
    don't edit the shared `css/` files for a one-off mockup.
 7. **Dark mode** works automatically: set `data-theme="dark"` on `<html>`
@@ -52,7 +54,7 @@ what customers actually see today.
   While editing, `+ New` is replaced by Save (left) + Cancel (right).
 - **Dashboard widgets** (`.vp-widget`) sit inside `.vp-dash-card__body`. Each has a gray 36px header (title + optional `.vp-widget__meta` text + `.vp-widget__tool` icon buttons), an optional `.vp-widget__toolbar` row of circled icon buttons below the header, and a `.vp-widget__body` for content. Grids inside widgets use `.vp-grid-wrap` placed directly inside `.vp-widget` (not inside `__body`) with modifiers `vp-grid--fixed` (wrapping headers, even padding) and/or `vp-grid--zebra` (striped, 30px rows). Totals rows: `tr.is-totals`. Tree-row expand icons: `<span class="twisty">`. Full markup reference: `docs/COMPONENTS.md`.
 - **Shell:** global banner + collapsed left nav rail + Right Utility Rail
-  (`.vp-utility-rail`: Dela D+, pin, person, notifications, help) are on every
+  (`.vp-utility-rail`: Dela hicon · Insights · Notifications · Help) are on every
   screen. They're boilerplate — include them, don't make them the focus.
 - **Grids:** related-record lists use Named Grid Sections (`.vp-grid-section`)
   with `+ Add [item]` LEFT next to the title and icon toolbar right; empty
@@ -84,7 +86,7 @@ what customers actually see today.
 - Inputs are 28px tall, 4px radius, `#b4b4b4` border. Edited fields get a blue tint
   (`.is-edited`), invalid a yellow tint (`.is-invalid`).
 - Top banner is 44px (`--banner-height`); left nav is a 52px white icon rail
-  (`--nav-menu-width`) with a 12px-radius selected state in primary blue.
+  (`--nav-menu-width`); nav items are 42×32px with 8px radius; selected = primary blue bg, white icon.
 - Hub content sits in a white record card (`.vp-record-card`) with a blue top line
   (`--color-application-top-line`) and rounded top corners, inset ~8px from the edges.
 - Record sidebar: 200px wide; 150×150 image with 20px radius (`--border-radius-hub-image`).

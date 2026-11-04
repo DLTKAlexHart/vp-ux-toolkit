@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="../css/vp-base.css">
 <link rel="stylesheet" href="../css/vp-shell.css">
 <link rel="stylesheet" href="../css/vp-components.css">
+<link rel="stylesheet" href="../css/vp-hicons.css">
 <script defer src="../js/vp-icons.js"></script>
 <script defer src="../js/vp-kit.js"></script>
 </head>
@@ -29,24 +30,44 @@
 
   <div class="vp-app__body">
     <nav class="vp-nav">
-      <button class="vp-nav__item" data-vp-flyout="navFlyout" title="Menu"><svg class="vp-icon"><use href="#i-menu"/></svg></button>
-      <button class="vp-nav__item" title="Dashboard"><svg class="vp-icon"><use href="#i-dashboard"/></svg></button>
-      <button class="vp-nav__item is-selected" title="Projects"><svg class="vp-icon"><use href="#i-folder"/></svg></button>
-      <button class="vp-nav__item" title="Contacts"><svg class="vp-icon"><use href="#i-users"/></svg></button>
-      <button class="vp-nav__item" title="Firms"><svg class="vp-icon"><use href="#i-building"/></svg></button>
-      <button class="vp-nav__item" title="Time"><svg class="vp-icon"><use href="#i-clock"/></svg></button>
-      <button class="vp-nav__item" title="Billing"><svg class="vp-icon"><use href="#i-dollar"/></svg></button>
-      <button class="vp-nav__item" title="Reporting"><svg class="vp-icon"><use href="#i-chart"/></svg></button>
-      <div class="vp-nav__bottom">
-        <button class="vp-nav__item" title="Settings"><svg class="vp-icon"><use href="#i-settings"/></svg></button>
-      </div>
+      <button class="vp-nav__item" data-vp-flyout="navFlyout" title="Expand"><i class="vp-hicon vp-hicon--chevrons-right"></i></button>
+      <div class="vp-nav__divider"></div>
+      <button class="vp-nav__item" title="Search"><i class="vp-hicon vp-hicon--search"></i></button>
+      <button class="vp-nav__item" title="Favorites"><i class="vp-hicon vp-hicon--star"></i></button>
+      <button class="vp-nav__item" title="My Stuff"><i class="vp-hicon vp-hicon--nav-my-stuff"></i></button>
+      <button class="vp-nav__item" title="Dashboards"><i class="vp-hicon vp-hicon--nav-dashboard"></i></button>
+      <button class="vp-nav__item is-selected" title="Hubs"><i class="vp-hicon vp-hicon--nav-hubs"></i></button>
+      <button class="vp-nav__item" title="Resource Management"><i class="vp-hicon vp-hicon--nav-resource-management"></i></button>
+      <button class="vp-nav__item" title="Transaction Center"><i class="vp-hicon vp-hicon--nav-transaction"></i></button>
+      <button class="vp-nav__item" title="Accounting"><i class="vp-hicon vp-hicon--nav-accounting"></i></button>
+      <button class="vp-nav__item" title="General Ledger"><i class="vp-hicon vp-hicon--nav-general-ledger"></i></button>
+      <button class="vp-nav__item" title="Utilities"><i class="vp-hicon vp-hicon--nav-utilities"></i></button>
+      <button class="vp-nav__item" title="Settings"><i class="vp-hicon vp-hicon--nav-settings"></i></button>
     </nav>
 
     <div class="vp-nav-flyout" id="navFlyout">
-      <div class="vp-nav-flyout__title">Hubs</div>
-      <button class="vp-nav-flyout__item is-selected"><svg class="vp-icon"><use href="#i-folder"/></svg> Projects</button>
-      <button class="vp-nav-flyout__item"><svg class="vp-icon"><use href="#i-users"/></svg> Contacts</button>
-      <button class="vp-nav-flyout__item"><svg class="vp-icon"><use href="#i-building"/></svg> Firms</button>
+      <button class="vp-nav-flyout__pin" data-vp-flyout="navFlyout">
+        <i class="vp-hicon vp-hicon--sm vp-hicon--pinned"></i> Unpin Menu
+        <span class="chev" style="margin-left:auto">‹‹</span>
+      </button>
+      <hr class="vp-divider">
+      <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--search"></i> Search</button>
+      <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--star"></i> Favorites</button>
+      <hr class="vp-divider">
+      <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--nav-my-stuff"></i> My Stuff</button>
+      <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--nav-dashboard"></i> Dashboards</button>
+      <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--nav-hubs"></i> Hubs <span class="chev">∨</span></button>
+      <div class="vp-nav-flyout__sub">
+        <button class="vp-nav-flyout__item is-selected">Projects</button>
+        <button class="vp-nav-flyout__item">Contacts</button>
+        <button class="vp-nav-flyout__item">Firms</button>
+      </div>
+      <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--nav-resource-management"></i> Resource Management</button>
+      <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--nav-transaction"></i> Transaction Center</button>
+      <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--nav-accounting"></i> Accounting</button>
+      <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--nav-general-ledger"></i> General Ledger</button>
+      <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--nav-utilities"></i> Utilities</button>
+      <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--nav-settings"></i> Settings</button>
     </div>
 
     <main class="vp-main">
@@ -198,13 +219,17 @@
       </div>
     </main>
 
-    <!-- Right Utility Rail (Pattern 1) -->
+    <!-- Right Utility Rail (Pattern 1) — Dela · Insights · Notifications · Help -->
     <aside class="vp-utility-rail">
-      <button class="vp-utility-rail__item vp-utility-rail__item--dela" title="Dela (AI assistant)">D+</button>
-      <button class="vp-utility-rail__item" title="Pinned"><svg class="vp-icon"><use href="#i-pin"/></svg></button>
-      <button class="vp-utility-rail__item" title="People"><svg class="vp-icon"><use href="#i-users"/></svg></button>
-      <button class="vp-utility-rail__item" title="Notifications"><svg class="vp-icon"><use href="#i-bell"/></svg><span class="vp-badge-dot"></span></button>
-      <button class="vp-utility-rail__item" title="Help"><svg class="vp-icon"><use href="#i-help"/></svg></button>
+      <button class="vp-utility-rail__item vp-utility-rail__item--dela" title="Ask Dela">
+        <i class="vp-hicon vp-dela">
+          <span class="vp-hicon vp-hicon--dela-1"></span><span class="vp-hicon vp-hicon--dela-2"></span>
+          <span class="vp-hicon vp-hicon--dela-3"></span><span class="vp-hicon vp-hicon--dela-4"></span>
+        </i>
+      </button>
+      <button class="vp-utility-rail__item" title="Insights"><i class="vp-hicon vp-hicon--sparkles"></i></button>
+      <button class="vp-utility-rail__item" title="Notifications"><i class="vp-hicon vp-hicon--bell"></i><span class="vp-badge-dot"></span></button>
+      <button class="vp-utility-rail__item" title="Help"><i class="vp-hicon vp-hicon--help"></i></button>
     </aside>
   </div>
 

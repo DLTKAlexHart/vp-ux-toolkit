@@ -78,8 +78,13 @@
           <svg class="vp-icon vp-icon--sm"><use href="#i-search"/></svg>
           <input type="text" placeholder="Find Projects">
         </div>
-        <div style="position:relative">
-          <button class="vp-btn" data-vp-flyout="filterPopup"><svg class="vp-icon vp-icon--sm"><use href="#i-filter"/></svg> Active Projects — My Studio <svg class="vp-icon vp-icon--sm"><use href="#i-chevron-down"/></svg></button>
+        <!-- Toolbar group: filter · pager · view toggle (all one bordered pill) -->
+        <div class="vp-toolbar-group" style="position:relative">
+          <button class="vp-toolbar-group__seg" data-vp-flyout="filterPopup">
+            <svg class="vp-icon vp-icon--sm"><use href="#i-filter"/></svg>
+            Active Projects — My Studio
+            <svg class="vp-icon vp-icon--sm"><use href="#i-chevron-down"/></svg>
+          </button>
 
           <!-- Filter / Saved-Search two-panel popup (Pattern 2) -->
           <div class="vp-filter-popup" id="filterPopup" style="top:36px; left:0">
@@ -128,10 +133,20 @@
               </div>
             </div>
           </div>
+
+          <div class="vp-toolbar-group__sep"></div>
+          <span class="vp-toolbar-group__seg vp-toolbar-group__seg--pager">
+            <button title="Previous">‹</button>
+            128 records
+            <button title="Next">›</button>
+          </span>
+          <div class="vp-toolbar-group__sep"></div>
+          <!-- Single toggle: shows record/hub icon because current view is list -->
+          <button class="vp-toolbar-group__seg vp-toolbar-group__seg--icon" title="Record view" onclick="window.location='hub-record.html'">
+            <svg class="vp-icon"><use href="#i-layout"/></svg>
+          </button>
         </div>
-        <button class="vp-btn vp-btn--icon" title="List view"><svg class="vp-icon"><use href="#i-menu"/></svg></button>
         <div class="vp-spacer"></div>
-        <span class="vp-grid-toolbar__count">128 records</span>
         <button class="vp-btn vp-btn--icon" title="Export"><svg class="vp-icon"><use href="#i-download"/></svg></button>
         <button class="vp-btn vp-btn--add"><svg class="vp-icon vp-icon--sm"><use href="#i-plus"/></svg> New Project</button>
       </div>

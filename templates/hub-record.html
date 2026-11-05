@@ -90,11 +90,59 @@
           <svg class="vp-icon vp-icon--sm"><use href="#i-search"/></svg>
           <input type="text" placeholder="Find Projects">
         </div>
-        <button class="vp-btn">Active <svg class="vp-icon vp-icon--sm"><use href="#i-chevron-down"/></svg></button>
-        <div class="vp-hub-toolbar__pager">
-          <button title="Previous">‹</button> 4 of 128 <button title="Next">›</button>
+        <!-- Toolbar group: filter · pager · view toggle (all one bordered pill) -->
+        <div class="vp-toolbar-group" style="position:relative">
+          <button class="vp-toolbar-group__seg" data-vp-flyout="filterPopup">
+            <svg class="vp-icon vp-icon--sm"><use href="#i-filter"/></svg>
+            My Active
+            <svg class="vp-icon vp-icon--sm"><use href="#i-chevron-down"/></svg>
+          </button>
+
+          <!-- Filter / Saved-Search two-panel popup (anchored to group) -->
+          <div class="vp-filter-popup" id="filterPopup" style="top:36px; left:0">
+            <div class="vp-filter-popup__left">
+              <div class="vp-filter-popup__header">Saved Searches</div>
+              <div class="vp-search vp-filter-popup__quickfind"><input type="text" placeholder="Quick Find"></div>
+              <button class="vp-filter-popup__item">Selection</button>
+              <button class="vp-filter-popup__item is-selected">My Active</button>
+              <button class="vp-filter-popup__item">Active</button>
+              <button class="vp-filter-popup__item">All</button>
+              <div class="vp-filter-popup__group">My Searches</div>
+              <button class="vp-filter-popup__item">Active Projects — My Studio</button>
+              <div class="vp-filter-popup__new"><a>+ New Search</a></div>
+            </div>
+            <div class="vp-filter-popup__right">
+              <div class="vp-search"><input type="text" placeholder="Find in list..."></div>
+              <div class="vp-filter-popup__list">
+                <label class="vp-filter-popup__row">
+                  <input type="checkbox"><span class="vp-filter-popup__avatar">RM</span>
+                  <span><span class="vp-filter-popup__row-name">Riverside Medical Center Expansion - 2024-0117.00</span><br>
+                  <span class="vp-filter-popup__row-sub">Healthcare Studio</span></span>
+                </label>
+                <label class="vp-filter-popup__row">
+                  <input type="checkbox"><span class="vp-filter-popup__avatar">LE</span>
+                  <span><span class="vp-filter-popup__row-name">Lakeview Elementary Modernization - 2024-0121.00</span><br>
+                  <span class="vp-filter-popup__row-sub">Education</span></span>
+                </label>
+              </div>
+              <div class="vp-filter-popup__footer">
+                <button class="vp-btn vp-btn--primary vp-btn--mini">Select All</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="vp-toolbar-group__sep"></div>
+          <span class="vp-toolbar-group__seg vp-toolbar-group__seg--pager">
+            <button title="Previous">‹</button>
+            4 of 128
+            <button title="Next">›</button>
+          </span>
+          <div class="vp-toolbar-group__sep"></div>
+          <!-- Single toggle: shows list icon because current view is record/hub -->
+          <button class="vp-toolbar-group__seg vp-toolbar-group__seg--icon" title="List view" onclick="window.location='list-view.html'">
+            <svg class="vp-icon"><use href="#i-menu"/></svg>
+          </button>
         </div>
-        <button class="vp-btn vp-btn--icon" title="List view"><svg class="vp-icon"><use href="#i-menu"/></svg></button>
         <div class="vp-spacer"></div>
         <button class="vp-btn vp-btn--add"><svg class="vp-icon vp-icon--sm"><use href="#i-plus"/></svg> New Project</button>
         <!-- Inline save state: while editing, "+ New Project" is replaced by

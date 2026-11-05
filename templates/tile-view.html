@@ -103,19 +103,7 @@
     gap: 4px;
   }
 
-  /* ── View toggle in hub toolbar ─────────────────────────────────────────
-     The active view button uses is-selected to show which is active.       */
-  .vp-view-toggle {
-    display: flex;
-    gap: 2px;
-  }
-  .vp-view-toggle .vp-btn--icon.is-selected {
-    background: var(--color-button-bg-primary);
-    color: var(--color-button-text-primary);
-  }
-  .vp-view-toggle .vp-btn--icon.is-selected svg {
-    color: #fff;
-  }
+
 </style>
 </head>
 <body class="vp-app">
@@ -131,6 +119,7 @@
     <symbol id="i-dashboard" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></symbol>
     <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 17v.01"/><path d="M12 13.5a1.5 1.5 0 0 1 1-1.5a2.6 2.6 0 1 0-3-4"/></symbol>
     <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v.01"/><path d="M12 11v6"/></symbol>
+    <symbol id="i-layout" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M4 9h16"/></symbol>
   </svg>
 
   <header class="vp-banner">
@@ -196,9 +185,11 @@
           <svg class="vp-icon vp-icon--sm"><use href="#i-search"/></svg>
           <input type="text" placeholder="Find…">
         </div>
-        <div style="position:relative">
-          <button class="vp-btn" data-vp-flyout="filterPopup">
-            <svg class="vp-icon vp-icon--sm"><use href="#i-filter"/></svg> All
+        <!-- Toolbar group: filter · pager · view toggle (all one bordered pill) -->
+        <div class="vp-toolbar-group" style="position:relative">
+          <button class="vp-toolbar-group__seg" data-vp-flyout="filterPopup">
+            <svg class="vp-icon vp-icon--sm"><use href="#i-filter"/></svg>
+            All
             <svg class="vp-icon vp-icon--sm"><use href="#i-chevron-down"/></svg>
           </button>
 
@@ -232,22 +223,22 @@
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Record count -->
-        <span class="vp-grid-toolbar__count">14 records</span>
-
-        <!-- View toggle: tile (active) / list -->
-        <div class="vp-view-toggle">
-          <button class="vp-btn vp-btn--icon is-selected" title="Tile view">
-            <svg class="vp-icon"><use href="#i-dashboard"/></svg>
-          </button>
-          <button class="vp-btn vp-btn--icon" title="List view" onclick="window.location='list-view.html'">
+          <div class="vp-toolbar-group__sep"></div>
+          <span class="vp-toolbar-group__seg vp-toolbar-group__seg--pager">
+            <button title="Previous">‹</button>
+            14 records
+            <button title="Next">›</button>
+          </span>
+          <div class="vp-toolbar-group__sep"></div>
+          <!-- Single toggle: shows list icon because current view is tile -->
+          <button class="vp-toolbar-group__seg vp-toolbar-group__seg--icon" title="List view" onclick="window.location='list-view.html'">
             <svg class="vp-icon"><use href="#i-menu"/></svg>
           </button>
         </div>
 
         <div class="vp-spacer"></div>
+        <button class="vp-btn vp-btn--icon" title="Export"><svg class="vp-icon"><use href="#i-download"/></svg></button>
         <button class="vp-btn vp-btn--add">
           <svg class="vp-icon vp-icon--sm"><use href="#i-plus"/></svg> New Record
         </button>

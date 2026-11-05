@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tile View — Vantagepoint mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vp-tokens.css">
+<link rel="stylesheet" href="../css/vp-base.css">
+<link rel="stylesheet" href="../css/vp-shell.css">
+<link rel="stylesheet" href="../css/vp-components.css">
+<link rel="stylesheet" href="../css/vp-hicons.css">
+<script defer src="../js/vp-icons.js"></script>
+<script defer src="../js/vp-kit.js"></script>
+<style>
+  /* ── Tile grid ─────────────────────────────────────────────────────────── */
+  .vp-tile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+    padding: 16px;
+  }
+
+  /* ── Individual tile ───────────────────────────────────────────────────── */
+  .vp-tile {
+    background: var(--color-base-bg);
+    border: 1px solid var(--color-app-nav-border);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.15s, border-color 0.15s;
+  }
+  .vp-tile:hover {
+    border-color: var(--color-button-bg-primary);
+    box-shadow: 0 2px 8px rgba(76, 146, 217, 0.18);
+  }
+  .vp-tile.is-selected {
+    border-color: var(--color-button-bg-primary);
+    box-shadow: 0 0 0 2px rgba(76, 146, 217, 0.25);
+  }
+
+  /* Image slot — square, full tile width */
+  .vp-tile__image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: var(--color-grid-header-bg, #f3f3f3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-app-nav-border);
+  }
+  .vp-tile__image img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+  }
+  /* Placeholder when no image */
+  .vp-tile__image--placeholder {
+    color: var(--color-app-nav-border);
+    font-size: 4rem;
+    line-height: 1;
+  }
+
+  /* Name label below the image */
+  .vp-tile__name {
+    padding: 10px 12px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-base-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ── Section title for tile groups (reuses .vp-section-title pattern) ─── */
+  .vp-tile-section {
+    padding: 0 16px;
+  }
+  .vp-tile-section + .vp-tile-section {
+    margin-top: 8px;
+  }
+
+  /* ── Subscription-required badge (top of tile, inside image) ─────────── */
+  .vp-tile__badge {
+    position: relative;
+  }
+  .vp-tile__badge-label {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    padding: 2px 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-base-text);
+    background: var(--color-base-bg);
+    border: 1px solid var(--color-app-nav-border);
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* ── View toggle in hub toolbar ─────────────────────────────────────────
+     The active view button uses is-selected to show which is active.       */
+  .vp-view-toggle {
+    display: flex;
+    gap: 2px;
+  }
+  .vp-view-toggle .vp-btn--icon.is-selected {
+    background: var(--color-button-bg-primary);
+    color: var(--color-button-text-primary);
+  }
+  .vp-view-toggle .vp-btn--icon.is-selected svg {
+    color: #fff;
+  }
+</style>
+</head>
+<body class="vp-app">
+
+  <!-- SVG sprite (content-area icons) -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10" cy="10" r="7"/><path d="M21 21l-6-6"/></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 5h16l-6 7v6l-4 2v-8z"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="M6 9l6 6l6-6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="M5 12h14"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/><path d="M12 4v12"/><path d="M7 11l5 5l5-5"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></symbol>
+    <symbol id="i-dashboard" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></symbol>
+    <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 17v.01"/><path d="M12 13.5a1.5 1.5 0 0 1 1-1.5a2.6 2.6 0 1 0-3-4"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v.01"/><path d="M12 11v6"/></symbol>
+  </svg>
+
+  <header class="vp-banner">
+    <div class="vp-banner__product">
+      <span class="vp-banner__logo">D</span>
+      Vantagepoint
+    </div>
+    <div class="vp-banner__actions">
+      <span class="vp-banner__firm"><span class="dot"></span> Apex Design Group</span>
+      <span class="vp-banner__period">Period Ending: 9/1/2026 <svg class="vp-icon vp-icon--sm"><use href="#i-chevron-down"/></svg></span>
+      <div class="vp-banner__avatar">AH</div>
+    </div>
+  </header>
+
+  <div class="vp-app__body">
+    <nav class="vp-nav">
+      <button class="vp-nav__item" data-vp-flyout="navFlyout" title="Expand"><i class="vp-hicon vp-hicon--chevrons-right"></i></button>
+      <div class="vp-nav__divider"></div>
+      <button class="vp-nav__item" title="Search"><i class="vp-hicon vp-hicon--search"></i></button>
+      <button class="vp-nav__item" title="Favorites"><i class="vp-hicon vp-hicon--star"></i></button>
+      <button class="vp-nav__item" title="My Stuff"><i class="vp-hicon vp-hicon--nav-my-stuff"></i></button>
+      <button class="vp-nav__item" title="Dashboards"><i class="vp-hicon vp-hicon--nav-dashboard"></i></button>
+      <button class="vp-nav__item is-selected" title="Hubs"><i class="vp-hicon vp-hicon--nav-hubs"></i></button>
+      <button class="vp-nav__item" title="Resource Management"><i class="vp-hicon vp-hicon--nav-resource-management"></i></button>
+      <button class="vp-nav__item" title="Transaction Center"><i class="vp-hicon vp-hicon--nav-transaction"></i></button>
+      <button class="vp-nav__item" title="Accounting"><i class="vp-hicon vp-hicon--nav-accounting"></i></button>
+      <button class="vp-nav__item" title="General Ledger"><i class="vp-hicon vp-hicon--nav-general-ledger"></i></button>
+      <button class="vp-nav__item" title="Utilities"><i class="vp-hicon vp-hicon--nav-utilities"></i></button>
+      <button class="vp-nav__item" title="Settings"><i class="vp-hicon vp-hicon--nav-settings"></i></button>
+    </nav>
+
+    <div class="vp-nav-flyout" id="navFlyout">
+      <button class="vp-nav-flyout__pin" data-vp-flyout="navFlyout">
+        <i class="vp-hicon vp-hicon--sm vp-hicon--pinned"></i> Unpin Menu
+        <span class="chev" style="margin-left:auto">‹‹</span>
+      </button>
+      <hr class="vp-divider">
+      <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--search"></i> Search</button>
+      <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--star"></i> Favorites</button>
+      <hr class="vp-divider">
+      <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--nav-my-stuff"></i> My Stuff</button>
+      <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--nav-dashboard"></i> Dashboards</button>
+      <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--nav-hubs"></i> Hubs <span class="chev">∨</span></button>
+      <div class="vp-nav-flyout__sub">
+        <button class="vp-nav-flyout__item is-selected">Projects</button>
+        <button class="vp-nav-flyout__item">Contacts</button>
+        <button class="vp-nav-flyout__item">Firms</button>
+      </div>
+      <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--nav-resource-management"></i> Resource Management</button>
+      <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--nav-transaction"></i> Transaction Center</button>
+      <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--nav-accounting"></i> Accounting</button>
+      <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--nav-general-ledger"></i> General Ledger</button>
+      <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--nav-utilities"></i> Utilities</button>
+      <button class="vp-nav-flyout__item"><i class="vp-hicon vp-hicon--sm vp-hicon--nav-settings"></i> Settings</button>
+    </div>
+
+    <main class="vp-main">
+
+      <!-- Hub Toolbar — tile view variant -->
+      <div class="vp-hub-toolbar">
+        <span class="vp-hub-toolbar__module">Module Name</span>
+        <div class="vp-search">
+          <svg class="vp-icon vp-icon--sm"><use href="#i-search"/></svg>
+          <input type="text" placeholder="Find…">
+        </div>
+        <div style="position:relative">
+          <button class="vp-btn" data-vp-flyout="filterPopup">
+            <svg class="vp-icon vp-icon--sm"><use href="#i-filter"/></svg> All
+            <svg class="vp-icon vp-icon--sm"><use href="#i-chevron-down"/></svg>
+          </button>
+
+          <!-- Filter / Saved-Search two-panel popup -->
+          <div class="vp-filter-popup" id="filterPopup" style="top:36px; left:0">
+            <div class="vp-filter-popup__left">
+              <div class="vp-filter-popup__header">Saved Searches</div>
+              <div class="vp-search vp-filter-popup__quickfind"><input type="text" placeholder="Quick Find"></div>
+              <button class="vp-filter-popup__item is-selected">All</button>
+              <button class="vp-filter-popup__item">Active</button>
+              <div class="vp-filter-popup__group">My Searches</div>
+              <button class="vp-filter-popup__item">My Search 1</button>
+              <div class="vp-filter-popup__new"><a>+ New Search</a></div>
+            </div>
+            <div class="vp-filter-popup__right">
+              <div class="vp-search"><input type="text" placeholder="Find in list..."></div>
+              <div class="vp-filter-popup__list">
+                <label class="vp-filter-popup__row">
+                  <input type="checkbox"><span class="vp-filter-popup__avatar">R1</span>
+                  <span><span class="vp-filter-popup__row-name">Record One</span><br>
+                  <span class="vp-filter-popup__row-sub">Category</span></span>
+                </label>
+                <label class="vp-filter-popup__row">
+                  <input type="checkbox"><span class="vp-filter-popup__avatar">R2</span>
+                  <span><span class="vp-filter-popup__row-name">Record Two</span><br>
+                  <span class="vp-filter-popup__row-sub">Category</span></span>
+                </label>
+              </div>
+              <div class="vp-filter-popup__footer">
+                <button class="vp-btn vp-btn--primary vp-btn--mini">Select All</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Record count -->
+        <span class="vp-grid-toolbar__count">14 records</span>
+
+        <!-- View toggle: tile (active) / list -->
+        <div class="vp-view-toggle">
+          <button class="vp-btn vp-btn--icon is-selected" title="Tile view">
+            <svg class="vp-icon"><use href="#i-dashboard"/></svg>
+          </button>
+          <button class="vp-btn vp-btn--icon" title="List view" onclick="window.location='list-view.html'">
+            <svg class="vp-icon"><use href="#i-menu"/></svg>
+          </button>
+        </div>
+
+        <div class="vp-spacer"></div>
+        <button class="vp-btn vp-btn--add">
+          <svg class="vp-icon vp-icon--sm"><use href="#i-plus"/></svg> New Record
+        </button>
+      </div>
+
+      <!-- Record card (white card with blue top line, same as hub pages) -->
+      <div class="vp-record-card" style="margin:8px; border-radius:8px; overflow-y:auto; flex:1; display:flex; flex-direction:column;">
+
+        <!-- Section: Enabled records -->
+        <div class="vp-tile-section">
+          <div class="vp-section-title" style="margin-top:16px;">Enabled</div>
+          <div class="vp-tile-grid">
+
+            <div class="vp-tile">
+              <div class="vp-tile__image">
+                <img src="../icons/tile-placeholder.svg" alt="">
+              </div>
+              <div class="vp-tile__name">Record Name One</div>
+            </div>
+
+            <div class="vp-tile is-selected">
+              <div class="vp-tile__image">
+                <img src="../icons/tile-placeholder.svg" alt="">
+              </div>
+              <div class="vp-tile__name">Record Name Two</div>
+            </div>
+
+            <div class="vp-tile">
+              <div class="vp-tile__image">
+                <img src="../icons/tile-placeholder.svg" alt="">
+              </div>
+              <div class="vp-tile__name">Record Name Three</div>
+            </div>
+
+            <div class="vp-tile">
+              <div class="vp-tile__image">
+                <img src="../icons/tile-placeholder.svg" alt="">
+              </div>
+              <div class="vp-tile__name">Record Name Four</div>
+            </div>
+
+            <div class="vp-tile">
+              <div class="vp-tile__image">
+                <img src="../icons/tile-placeholder.svg" alt="">
+              </div>
+              <div class="vp-tile__name">Record Name Five</div>
+            </div>
+
+            <div class="vp-tile">
+              <div class="vp-tile__image">
+                <img src="../icons/tile-placeholder.svg" alt="">
+              </div>
+              <div class="vp-tile__name">Record Name Six</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Section: Available (with subscription-required tile variant) -->
+        <div class="vp-tile-section" style="margin-bottom:16px;">
+          <div class="vp-section-title">Available</div>
+          <div class="vp-tile-grid">
+
+            <!-- Subscription Required tile variant -->
+            <div class="vp-tile vp-tile__badge">
+              <div class="vp-tile__badge-label">
+                <svg class="vp-icon vp-icon--sm"><use href="#i-info"/></svg>
+                Subscription Required
+              </div>
+              <div class="vp-tile__image" style="opacity:0.6;">
+                <img src="../icons/tile-placeholder.svg" alt="">
+              </div>
+              <div class="vp-tile__name" style="color:var(--color-app-nav-border);">Record Name Seven</div>
+            </div>
+
+            <div class="vp-tile">
+              <div class="vp-tile__image">
+                <img src="../icons/tile-placeholder.svg" alt="">
+              </div>
+              <div class="vp-tile__name">Record Name Eight</div>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- /.vp-record-card -->
+
+    </main>
+
+    <!-- Right Utility Rail -->
+    <aside class="vp-utility-rail">
+      <button class="vp-utility-rail__item vp-utility-rail__item--dela" title="Ask Dela">
+        <i class="vp-hicon vp-dela">
+          <span class="vp-hicon vp-hicon--dela-1"></span><span class="vp-hicon vp-hicon--dela-2"></span>
+          <span class="vp-hicon vp-hicon--dela-3"></span><span class="vp-hicon vp-hicon--dela-4"></span>
+        </i>
+      </button>
+      <button class="vp-utility-rail__item" title="Insights"><i class="vp-hicon vp-hicon--sparkles"></i></button>
+      <button class="vp-utility-rail__item" title="Notifications"><i class="vp-hicon vp-hicon--bell"></i><span class="vp-badge-dot"></span></button>
+      <button class="vp-utility-rail__item" title="Help"><i class="vp-hicon vp-hicon--help"></i></button>
+    </aside>
+  </div>
+
+  <script>
+    // Tile selection — click to select, click again to deselect
+    document.querySelectorAll('.vp-tile').forEach(tile => {
+      tile.addEventListener('click', () => {
+        document.querySelectorAll('.vp-tile.is-selected').forEach(t => t.classList.remove('is-selected'));
+        tile.classList.add('is-selected');
+      });
+    });
+  </script>
+
+</body>
+</html>

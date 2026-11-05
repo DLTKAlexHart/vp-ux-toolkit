@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <!-- Generic two-piece puzzle icon — approximate style of Integrations Manager placeholder -->
+  <g opacity="0.18" fill="#4C92D9">
+    <rect x="10" y="10" width="100" height="100" rx="12"/>
+  </g>
+  <g stroke="#4C92D9" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- left puzzle piece -->
+    <path d="M28 55 L28 38 Q28 32 34 32 L51 32 L51 40 Q51 46 57 46 Q63 46 63 40 L63 32 L80 32 Q86 32 86 38 L86 55 L78 55 Q72 55 72 61 Q72 67 78 67 L86 67 L86 84 Q86 90 80 90 L63 90 L63 82 Q63 76 57 76 Q51 76 51 82 L51 90 L34 90 Q28 90 28 84 L28 67 L36 67 Q42 67 42 61 Q42 55 36 55 Z"/>
+  </g>
+</svg>

@@ -9,10 +9,10 @@ reference (v2.0, bundled with the `vantagepoint-mockup` skill):
 
 | Pattern | Kit classes |
 |---|---|
-| 1 · Application Shell | `.vp-app`, `.vp-banner`, `.vp-nav`, `.vp-nav-flyout`, `.vp-utility-rail` |
-| 1b · Dashboard Shell (floating) | `.vp-app--workbench`, `.vp-nav--floating`, `.vp-utility-rail--floating`, `.vp-dash-card`, `.vp-app-header`, `.vp-banner__indicator` |
+| 1 · Application Shell | `.vp-app`, `.vp-banner`, `.vp-nav.vp-nav--floating`, `.vp-nav-flyout`, `.vp-utility-rail.vp-utility-rail--floating` |
+| 1b · Dashboard Shell | `.vp-app--workbench` (blue-gray bg), `.vp-dash-card`, `.vp-app-header`, `.vp-banner__indicator` |
 | 1c · Dashboard Widget | `.vp-widget`, `.vp-widget__header`, `.vp-widget__meta`, `.vp-widget__tool`, `.vp-widget__toolbar`, `.vp-widget__body`, `.vp-widget--fill` |
-| 2 · Hub Toolbar | `.vp-hub-toolbar` |
+| 2 · Hub Toolbar | `.vp-hub-toolbar`, `.vp-toolbar-group`, `.vp-toolbar-group__seg`, `.vp-toolbar-group__sep` |
 | 3 · Record Header | `.vp-record-header`, `.vp-btn--dela` |
 | 4 · Tab Bar | `.vp-tabs`, `.vp-tab` |
 | 5 · Record Detail Sidebar | `.vp-record-body`, `.vp-record-sidebar` |
@@ -39,7 +39,8 @@ reference (v2.0, bundled with the `vantagepoint-mockup` skill):
 <body class="vp-app">
   <header class="vp-banner">…logo · search · firm + period + avatar…</header>
   <div class="vp-app__body">
-    <nav class="vp-nav">
+    <!-- vp-nav--floating is UNIVERSAL — all page types, not just dashboards -->
+    <nav class="vp-nav vp-nav--floating">
       <!-- Nav icons are Harmony glyphs on ALL page types (vp-hicons.css required) -->
       <!-- Typical item set — real users have 5–12 modules, adjust to match the mockup's persona -->
       <button class="vp-nav__item" data-vp-flyout="navFlyout" title="Expand"><i class="vp-hicon vp-hicon--chevrons-right"></i></button>
@@ -58,7 +59,27 @@ reference (v2.0, bundled with the `vantagepoint-mockup` skill):
     </nav>
     <div class="vp-nav-flyout" id="navFlyout">…</div>   <!-- optional -->
     <main class="vp-main">
-      <div class="vp-hub-toolbar">…module · Find · Filter · pager · +New…</div>
+      <div class="vp-hub-toolbar">
+        …module · Find ·
+        <!-- Toolbar group: filter + pager + view toggle in one bordered pill -->
+        <div class="vp-toolbar-group" style="position:relative">
+          <button class="vp-toolbar-group__seg" data-vp-flyout="filterPopup">
+            <svg class="vp-icon vp-icon--sm"><use href="#i-filter"/></svg> Filter name
+            <svg class="vp-icon vp-icon--sm"><use href="#i-chevron-down"/></svg>
+          </button>
+          <div class="vp-filter-popup" id="filterPopup" style="top:36px;left:0">…</div>
+          <div class="vp-toolbar-group__sep"></div>
+          <span class="vp-toolbar-group__seg vp-toolbar-group__seg--pager">
+            <button>‹</button> 4 of 128 <button>›</button>
+          </span>
+          <div class="vp-toolbar-group__sep"></div>
+          <!-- Single toggle — shows DESTINATION view icon, not current view -->
+          <button class="vp-toolbar-group__seg vp-toolbar-group__seg--icon" title="List view">
+            <svg class="vp-icon"><use href="#i-menu"/></svg>
+          </button>
+        </div>
+        · spacer · Export · +New…
+      </div>
       <div class="vp-record-card">  <!-- white card, blue top line -->
         <div class="vp-record-header">…name · id · last modified · actions…</div>
         <div class="vp-page-header" style="padding-top:0"><div class="vp-tabs">…</div></div>
@@ -68,8 +89,11 @@ reference (v2.0, bundled with the `vantagepoint-mockup` skill):
         </div>
       </div>
     </main>
+    <!-- vp-utility-rail--floating is UNIVERSAL — all page types, not just dashboards -->
     <!-- Utility rail: Dela · Insights · Notifications · Help (no pin/people buttons) -->
-    <aside class="vp-utility-rail">…Dela hicon · sparkles · bell · help…</aside>
+    <aside class="vp-utility-rail vp-utility-rail--floating" style="margin-top:12px;">
+      …Dela hicon · sparkles · bell · help…
+    </aside>
   </div>
 </body>
 ```
@@ -78,12 +102,16 @@ See `templates/hub-record.html` for the complete markup. Non-hub pages
 (settings, dashboards) keep banner + nav + utility rail and use
 `.vp-page-header` / `.vp-page-content` directly.
 
-## Dashboard shell (floating nav and utility rail)
+## Dashboard shell
 
-Variant of the shell for dashboard pages. The nav and utility rail become
-rounded cards floating on a bluish-gray workbench surface; the page content
-sits in a rounded `.vp-dash-card` with a 6px primary top line. Full page:
-`templates/dashboard-shell.html`.
+Variant of the shell for dashboard pages. Adds a bluish-gray workbench
+background (`.vp-app--workbench`) and a gradient company bar under the banner;
+page content sits in a rounded `.vp-dash-card` with a 6px primary top line.
+Full page: `templates/dashboard-shell.html`.
+
+Note: `vp-nav--floating` and `vp-utility-rail--floating` are **not**
+dashboard-specific — they are on every page type. Only `.vp-app--workbench`
+(and its associated classes below) are dashboard-only.
 
 ```html
 <body class="vp-app vp-app--workbench">
@@ -306,13 +334,35 @@ Full example (Hubs expanded): `templates/hub-record.html`.
 
 ## Hub toolbar
 
+Filter, pager, and view toggle are grouped in a single bordered pill
+(`.vp-toolbar-group`). The view toggle is a **single** button showing
+the *destination* view icon — not the current one (record view → show list
+icon; list/tile view → show record/hub icon).
+
 ```html
 <div class="vp-hub-toolbar">
   <span class="vp-hub-toolbar__module">Projects</span>
   <div class="vp-search"><svg class="vp-icon vp-icon--sm"><use href="#i-search"/></svg><input placeholder="Find Projects"></div>
-  <button class="vp-btn">Active <svg class="vp-icon vp-icon--sm"><use href="#i-chevron-down"/></svg></button>
-  <div class="vp-hub-toolbar__pager"><button>‹</button> 4 of 128 <button>›</button></div>
+
+  <!-- Toolbar group: filter + pager + view toggle in one bordered pill -->
+  <div class="vp-toolbar-group" style="position:relative">
+    <button class="vp-toolbar-group__seg" data-vp-flyout="filterPopup">
+      <svg class="vp-icon vp-icon--sm"><use href="#i-filter"/></svg> Active
+      <svg class="vp-icon vp-icon--sm"><use href="#i-chevron-down"/></svg>
+    </button>
+    <div class="vp-filter-popup" id="filterPopup" style="top:36px; left:0">…</div>
+    <div class="vp-toolbar-group__sep"></div>
+    <span class="vp-toolbar-group__seg vp-toolbar-group__seg--pager">
+      <button>‹</button> 4 of 128 <button>›</button>
+    </span>
+    <div class="vp-toolbar-group__sep"></div>
+    <button class="vp-toolbar-group__seg vp-toolbar-group__seg--icon" title="List view">
+      <svg class="vp-icon"><use href="#i-menu"/></svg>
+    </button>
+  </div>
+
   <div class="vp-spacer"></div>
+  <button class="vp-btn vp-btn--icon" title="Export"><svg class="vp-icon"><use href="#i-download"/></svg></button>
   <button class="vp-btn vp-btn--add"><svg class="vp-icon vp-icon--sm"><use href="#i-plus"/></svg> New Project</button>
 </div>
 ```
@@ -322,8 +372,9 @@ While a field is being edited, replace `+ New [record type]` with
 
 ## Filter / saved-search popup
 
-The Filter button opens the two-panel dropdown (measured: 615×442). Wrap the
-button in `position:relative` and toggle with `data-vp-flyout`:
+The Filter button opens the two-panel dropdown (measured: 615×442). It lives
+inside `.vp-toolbar-group` — put `position:relative` on the group and the popup
+anchors from there:
 
 ```html
 <div style="position:relative">
@@ -629,11 +680,53 @@ Position it yourself (absolute, relative to its trigger).
 Utilities: `.vp-row`, `.vp-stack`, `.vp-spacer`, `.vp-divider`, `.vp-muted`,
 `.vp-truncate`, `[hidden]`.
 
+## Tile view
+
+An alternative to list view where records appear as cards instead of grid rows.
+Start from `templates/tile-view.html`. The hub toolbar is identical to list view.
+
+Tiles are grouped by category using `.vp-tile-section` + `.vp-section-title`.
+The tile grid is a CSS auto-fill layout; tiles are `minmax(220px, 1fr)`.
+
+```html
+<!-- Tile grid container -->
+<div class="vp-tile-section">
+  <div class="vp-section-title">Enabled</div>
+  <div class="vp-tile-grid">
+
+    <!-- Standard tile -->
+    <div class="vp-tile">
+      <div class="vp-tile__image">
+        <img src="../icons/tile-placeholder.svg" alt="">
+      </div>
+      <div class="vp-tile__name">Record Name</div>
+    </div>
+
+    <!-- Selected tile -->
+    <div class="vp-tile is-selected">…</div>
+
+    <!-- Subscription Required variant -->
+    <div class="vp-tile vp-tile__badge">
+      <div class="vp-tile__badge-label">
+        <svg class="vp-icon vp-icon--sm"><use href="#i-info"/></svg>
+        Subscription Required
+      </div>
+      <div class="vp-tile__image" style="opacity:0.6;">…</div>
+      <div class="vp-tile__name" style="color:var(--color-app-nav-border);">Record Name</div>
+    </div>
+
+  </div>
+</div>
+```
+
+Tile states: default · `is-selected` (blue border + ring) · hover (blue border + shadow).
+All tile CSS is page-scoped in `templates/tile-view.html` — not in the shared kit CSS.
+
 ## Icons
 
 `<svg class="vp-icon"><use href="#i-NAME"/></svg>` — sizes `vp-icon--sm` (16),
 default (20), `vp-icon--lg` (24). Ids: search, bell, help, settings, menu,
 dashboard, folder, users, building, clock, dollar, chart, plus, chevron-down,
 chevron-right, dots, x, filter, columns, download, pencil, star, arrow-left,
-calendar, check, briefcase. Add more in `icons/_sprite.html`, then run
+calendar, check, briefcase, layout, info. Add more in `icons/_sprite.html`, then run
 `python3 scripts/build-icons.py`.

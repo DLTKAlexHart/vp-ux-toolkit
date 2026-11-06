@@ -7,11 +7,12 @@ what customers actually see today.
 
 ## Rules
 
-1. **Always use the kit's CSS.** Link these four files (in this order) in every page:
+1. **Always use the kit's CSS.** Link these five files (in this order) in every page:
    `css/vp-tokens.css`, `css/vp-base.css`, `css/vp-shell.css`, `css/vp-components.css`,
-   plus `js/vp-icons.js` and `js/vp-kit.js` (both `defer`). Use relative paths.
-   For **dashboard pages**, also add `css/vp-hicons.css` (Harmony/Vantagepoint icon fonts)
-   and optionally `js/vp-nav.js` (renders floating nav and utility rail from arrays).
+   `css/vp-hicons.css` (Harmony/Vantagepoint icon fonts — required on **all** page types,
+   not just dashboards), plus `js/vp-icons.js` and `js/vp-kit.js` (both `defer`).
+   Use relative paths. Optionally add `js/vp-nav.js` to render the nav and utility rail
+   from JS arrays instead of hand-coding the markup.
 2. **Never hardcode colors, radii, or fonts.** Use the CSS custom properties from
    `css/vp-tokens.css` (e.g. `var(--color-button-bg-primary)`). They were extracted
    from the real product stylesheet — treat them as ground truth.
@@ -19,6 +20,7 @@ what customers actually see today.
    inventing new structures. Class reference: `docs/COMPONENTS.md`.
 4. **Start new pages from a template.** For a record/detail screen copy
    `templates/hub-record.html`; for a list screen copy `templates/list-view.html`;
+   for a tile/card browse screen copy `templates/tile-view.html`;
    for settings/forms copy `templates/settings-form.html`; for a dashboard copy
    `templates/dashboard-shell.html`. Keep the shell intact so mockups feel like
    real product screens.
@@ -47,15 +49,19 @@ what customers actually see today.
   value below; empty = gray "None"). Only actively-edited fields render as
   bordered inputs (`.vp-field`). Don't build forms as walls of inputs.
 - **Hub pages** always have, top to bottom: Hub Toolbar (`.vp-hub-toolbar` —
-  module label, Find, Filter, pager `‹ N of NNN ›`, `+ New [record type]`),
+  module label, Find field, then a `.vp-toolbar-group` pill containing Filter button +
+  pager `‹ N of NNN ›` + single view-toggle button, then spacer, Export, `+ New [record type]`),
   Record Header (`.vp-record-header` — name, ID/hierarchy, "Last modified …
   by …" line, actions right: Dela Actions ✦ / Add Touchpoint / Other Actions ∨),
   Tab Bar, then Record Sidebar (`.vp-record-sidebar`) + tab content.
   While editing, `+ New` is replaced by Save (left) + Cancel (right).
 - **Dashboard widgets** (`.vp-widget`) sit inside `.vp-dash-card__body`. Each has a gray 36px header (title + optional `.vp-widget__meta` text + `.vp-widget__tool` icon buttons), an optional `.vp-widget__toolbar` row of circled icon buttons below the header, and a `.vp-widget__body` for content. Grids inside widgets use `.vp-grid-wrap` placed directly inside `.vp-widget` (not inside `__body`) with modifiers `vp-grid--fixed` (wrapping headers, even padding) and/or `vp-grid--zebra` (striped, 30px rows). Totals rows: `tr.is-totals`. Tree-row expand icons: `<span class="twisty">`. Full markup reference: `docs/COMPONENTS.md`.
-- **Shell:** global banner + collapsed left nav rail + Right Utility Rail
-  (`.vp-utility-rail`: Dela hicon · Insights · Notifications · Help) are on every
-  screen. They're boilerplate — include them, don't make them the focus.
+- **Shell:** global banner + floating left nav rail (`.vp-nav vp-nav--floating`) +
+  floating Right Utility Rail (`.vp-utility-rail vp-utility-rail--floating`: Dela hicon ·
+  Insights · Notifications · Help) are on every screen — hub pages, list views, tile views,
+  settings, everything. The `--floating` classes are **universal**, not dashboard-only.
+  (`vp-app--workbench` is dashboard-only — it adds the blue-gray workbench background.)
+  These are boilerplate — include them, don't make them the focus.
 - **Grids:** related-record lists use Named Grid Sections (`.vp-grid-section`)
   with `+ Add [item]` LEFT next to the title and icon toolbar right; empty
   grids say "There are no records to show in this grid." (omit the filter icon

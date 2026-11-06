@@ -377,6 +377,63 @@
 }
 .vp-hub-toolbar .vp-spacer { flex: 1; }
 
+/* ── Toolbar button group (filter + pager + view toggle) ─────────────────
+   A pill-shaped bordered group whose children are separated by inner
+   dividers. Used in the hub toolbar; also works standalone.
+   Each segment is a .vp-toolbar-group__seg; a bare hr becomes a divider.  */
+.vp-toolbar-group {
+  display: flex;
+  align-items: stretch;
+  height: 32px;
+  border: 1px solid var(--color-app-nav-border);
+  border-radius: 6px;
+  overflow: visible;
+  position: relative;
+  background: var(--color-base-bg);
+}
+.vp-toolbar-group__seg {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 6px;
+  font-size: 1.3rem;
+  color: var(--color-button-text);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+}
+.vp-toolbar-group__seg:first-child { border-radius: 5px 0 0 5px; }
+.vp-toolbar-group__seg:last-child  { border-radius: 0 5px 5px 0; }
+.vp-toolbar-group__seg:hover { background: var(--color-grid-header-bg); }
+.vp-toolbar-group__seg.is-active { background: var(--color-grid-header-bg); }
+/* Icon-only segment (view toggle) */
+.vp-toolbar-group__seg--icon { padding: 0 8px; }
+/* Pager segment — no interactive background, just text + arrow buttons */
+.vp-toolbar-group__seg--pager {
+  cursor: default;
+  gap: 4px;
+  padding: 0 6px;
+}
+.vp-toolbar-group__seg--pager:hover { background: transparent; }
+.vp-toolbar-group__seg--pager button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-icon);
+  font-size: 1.4rem;
+  padding: 2px 3px;
+  line-height: 1;
+  font-family: inherit;
+}
+.vp-toolbar-group__sep {
+  width: 1px;
+  background: var(--color-app-nav-border);
+  margin: 4px 0;
+  flex: none;
+}
+
 /* --------------------------------------------------------------------------
    Record Header (Pattern 3) — identifies the open record; record-level
    actions right-aligned (Dela Actions ✦ / Add Touchpoint / Other Actions ∨).
